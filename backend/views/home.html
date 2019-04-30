@@ -1,0 +1,210 @@
+<div ng-include src="'views/header.html'"></div>
+
+
+<div ng-show="page_type == 'banner'">
+	<div class="row form-group" style="padding-top: 10px;">
+	  <div class="col-lg-5">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <img src="../files/img/pin-menu.png">
+	        แบนเนอร์หลัก
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+</div>
+	<div ng-show="PAGE == 'UPDATE'">
+		<div class="row form-group">
+			<div class="col-lg-12 text-center">
+				<!--<img ngf-thumbnail="AttachFile" style="" ng-show="AttachFile != null && SlideShow.image_path == null">-->
+				<img
+				  ngf-src="AttachFile" style="height: 300px; width: auto;"
+				>
+				<img src="../{{SlideShow.file_path}}" ng-show="SlideShow.file_path != null && AttachFile == null" alt="" title="" style="height: 300px; width: auto;">
+				<video
+				  ngf-src="AttachFile" 
+				  ngf-resize="{width: 20, height: 20, quality: 0.9}" 
+				  ngf-no-object-url="true" 
+				  style="height: 100px; width: auto;"
+				>
+				<video src="../{{SlideShow.file_path}}" style="" ng-show="SlideShow.file_path != null && AttachFile == null" style="height: 100px; width: auto;">
+			</div>
+		</div>
+
+		<div class="row form-group">
+			<label class="col-lg-2 form-control-static">
+				รูปภาพ / วีดีโอ 
+			</label>
+			<div class="col-lg-4" >
+				<p class="input-group">
+		          <input type="text" readonly="true" class="form-control" ng-model="AttachFile.name" />
+		          <span class="input-group-btn">
+		            <button class="btn btn-default" ngf-select ng-model="AttachFile" ngf-max-size="50MB"  ngf-model-invalid="AttachFile.invalidFile" accept="image/*,video/*" >เลือก</button>
+		          </span>
+		        </p>
+			</div>
+			<div class="col-lg-3">
+				<div class="file-alert" ng-show="fle.attachFile.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{AttachFile.invalidFile.$errorParam}}</div>
+				<span style="color: red;">ขนาดแนะนำ 1200 * 450 px</span>
+			</div>
+		</div>
+		<!--<div class="row form-group">
+			<label class="col-lg-2 col-xs-12 form-control-static">
+				ประเภท Slide Show
+			</label>
+			<div class="col-lg-4 col-xs-12">
+				<select class="form-control" ng-model="SlideShow.slideshow_type">
+					<option value="">กรุณาเลือก</option>
+					<option value="IMAGE">รูปภาพ</option>
+					<option value="VIDEO">วีดีโอ</option>
+				</select>
+			</div>
+			
+		</div>-->
+		<div class="row form-group">
+			<label class="col-lg-2 col-xs-12 form-control-static">
+				ข้อความอธิบาย
+			</label>
+			<div class="col-lg-12" id="ckeditor">
+			<textarea class="form-control" id="editor1" name="editor1" ng-model="SlideShow.text_desc" rows="100" data-sample="40" data-sample-short="" >
+			</textarea>
+		</div>
+		</div>
+		<div class="row form-group">
+			<label class="col-lg-1 col-xs-12 form-control-static">
+				สถานะ
+			</label>
+			<div class="col-lg-10">
+				<div class="btn-group">
+	                <label class="btn btn-default btn-checkbox" ng-model="SlideShow.actives" uib-btn-radio="'Y'">ใช้งาน</label>
+	                <label class="btn btn-default btn-checkbox" ng-model="SlideShow.actives" uib-btn-radio="'N'">ไม่ใช้งาน</label>
+	            </div>
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="col-lg-1 col-xs-12 form-control-static">
+				ลำดับ
+			</label>
+			<div class="col-lg-2">
+				<input class="form-control" ng-model="SlideShow.order_no">
+			</div>
+		</div>
+		<div class="page-header text-center">
+			<button class="btn btn-info" ng-click="save('slideshow/update', SlideShow, AttachFile)">บันทึก</button>
+			<button class="btn btn-default" ng-click="cancelUpdate()">ยกเลิก</button>
+		</div>
+	</div>
+	<div class="row form-group" ng-show="PAGE == 'MAIN'">
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<caption><button ng-click="add()" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> เพิ่ม</button></caption>
+				<thead>
+					<tr>
+						<th>ลำดับ</th>
+						<th>รูปภาพ / วีดีโอ</th>
+						<th>จัดการ</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="data in SlideShowList">
+						<td>{{data.order_no}}</td>
+						<td>
+							<img src="{{ '../' + data.file_path }}" alt="" title="" style="height: 100px; width: auto;">
+							<video src="{{ '../' + data.file_path }}" style="height: 100px; width: auto;"></video>
+						</td>
+						<td>
+							<button class="btn btn-default btn-xs" ng-click="edit(data)"><span class="glyphicon glyphicon-edit"></span></button>
+							<button class="btn btn-danger btn-xs" ng-click="remove('slideshow/delete', data.id)"><span class="glyphicon glyphicon-trash"></span></button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div ng-show="page_type == 'staff-zone'">
+	<div class="row form-group" style="padding-top: 10px;">
+	  <div class="col-lg-5">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <img src="../files/img/pin-menu.png">
+	        Staff Zone
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+	</div>
+	<div class="row form-group" ng-show="PAGE == 'MAIN'">
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<caption >
+					<button class="btn btn-primary" ng-click="updateData()" ng-show="UPDATE_PAGE == ''"><span class="glyphicon glyphicon-plus"></span> เพิ่ม</button>
+				</caption>
+				<caption ng-show="UPDATE_PAGE == 'UPDATE'">
+					<div class="row form-group">
+						<div class="col-lg-1">
+							ชื่อระบบ
+						</div>
+						<div class="col-lg-6">
+							<input class="form-control" ng-model="FooterLink.link_name">
+						</div>
+					</div>
+					<div class="row form-group">
+						
+						<div class="col-lg-1">
+							ลิงก์
+						</div>
+						<div class="col-lg-6">
+							<input class="form-control" ng-model="FooterLink.link_url">
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-lg-1">
+							ลำดับ
+						</div>
+						<div class="col-lg-6">
+							<input class="form-control" ng-model="FooterLink.order_no">
+						</div>
+						<div class="col-lg-2">
+							<button ng-click="saveFooterLink(FooterLink)" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> บันทึก</button>
+
+							<button ng-click="cancelUpdate()" class="btn btn-default"><span class="glyphicon glyphicon-remove-sign"></span> ยกเลิก</button>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-lg-12">
+							<button ng-click="saveFooterLink(FooterLink)" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> บันทึก</button>
+
+							<button ng-click="cancelUpdate()" class="btn btn-default"><span class="glyphicon glyphicon-remove-sign"></span> ยกเลิก</button>
+						</div>
+						
+					</div>
+					
+				</caption>
+				<thead ng-show="UPDATE_PAGE == ''">
+					<tr>
+						<th>ลำดับ</th>
+						<th>ชื่อระบบ</th>
+						<th>จัดการ</th>
+					</tr>
+				</thead>
+				<tbody ng-show="UPDATE_PAGE == ''">
+					<tr ng-repeat="data in FooterLinkList">
+						<td>{{data.order_no}}</td>
+						<td><a href="{{data.link_url}}" target="_blank">{{data.link_name}}</a></td>
+						<td>
+							<button ng-click="updateFooterLink(data)" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> แก้ไข</button>
+							<button ng-click="removeFooterLink(data.id)" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> ลบ</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

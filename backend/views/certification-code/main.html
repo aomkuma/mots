@@ -1,0 +1,221 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group" style="padding-top: 10px;">
+	  <div class="col-lg-10">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+</div>
+<div ng-show="PAGE == 'UPDATE'">
+	<div ng-show="page_type != 'accept-standard'">
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				ชื่อเกษตรกร/ผู้ประกอบการ/ผู้ขอใบรับรอง (ไทย)
+			</label> 
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.operator_name_th">
+			</div>
+			<label class="form-control-static col-lg-2">
+				(อังกฤษ)
+			</label> 
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.operator_name_en">
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				ขอบข่ายการให้การรับรองมาตรฐาน (ไทย)
+			</label> 
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.scope_th">
+			</div>
+			<label class="form-control-static col-lg-2">
+				(อังกฤษ)
+			</label> 
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.scope_en">
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				จังหวัด (ไทย)
+			</label> 
+			<div class="col-lg-4">
+				<select class="form-control" ng-model="Data.province_th" ng-options="data.name_th as data.name_th for data in ProvinceList">
+					<option value="">กรุณาเลือก..</option>
+				</select>
+			</div>
+			<label class="form-control-static col-lg-2">
+				(อังกฤษ)
+			</label> 
+			<div class="col-lg-4">
+				<select class="form-control" ng-model="Data.province_en" ng-options="data.name_en as data.name_en for data in ProvinceList">
+					<option value="">กรุณาเลือก..</option>
+				</select>
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				ชื่อผู้ประกอบการตรวจสอบมาตรฐาน (ไทย)
+			</label> 
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.auditor_th">
+			</div>
+			<label class="form-control-static col-lg-2">
+				(อังกฤษ)
+			</label> 
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.auditor_en">
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				ชนิดสินค้า (ไทย)
+			</label> 
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.product_th">
+			</div>
+			<label class="form-control-static col-lg-2">
+				(อังกฤษ)
+			</label> 
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.product_en">
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				มาตรฐานสินค้าเกษตรที่ได้รับการรับรอง (ไทย)
+			</label> 
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.accredit_stadard_th">
+			</div>
+			<label class="form-control-static col-lg-2">
+				(อังกฤษ)
+			</label> 
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.accredit_stadard_en">
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				ที่ตั้งสถานที่ผลิต / ฟาร์ม / แปลง / โรงงาน (ไทย)
+			</label> 
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.address_th">
+			</div>
+			<label class="form-control-static col-lg-2">
+				(อังกฤษ)
+			</label> 
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.address_en">
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				สถานะ (ไทย)
+			</label> 
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.status_th">
+			</div>
+			<label class="form-control-static col-lg-2">
+				(อังกฤษ)
+			</label> 
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.status_en">
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="col-lg-2 form-control-static">
+				วันออกใบรับรอง
+			</label>
+			<div class="col-lg-4" >
+				<p class="input-group">
+					<input type="text" class="form-control" ng-model="Data.start_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup1.opened" required="true">
+					<span class="input-group-btn">
+		            	<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+		          </span>
+		        </p>
+			</div>
+			<label class="col-lg-2 form-control-static">
+				วันหมดอายุ
+			</label>
+			<div class="col-lg-4" >
+				<p class="input-group">
+					<input type="text" class="form-control" ng-model="Data.end_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup2.opened" required="true">
+					<span class="input-group-btn">
+		            	<button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+		          </span>
+		        </p>
+			</div>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-12 text-center">
+			<button class="btn btn-primary" ng-click="saveData(Data)">บันทึก</button>
+			<button class="btn btn-default" ng-click="cancel('MAIN')">ยกเลิก</button>
+		</div>
+	</div>
+</div>
+<div ng-show="PAGE == 'MAIN'">
+	<div class="row form-group">
+		<table class="table table-bordered table-striped">
+			<caption>
+				<div class="row form-group">
+					<div class="col-lg-3">
+						<input class="form-control" ng-model="condition.keyword">
+					</div>
+					
+					<div class="col-lg-2">
+						<button class="btn btn-primary" ng-click="loadList()"> <span class="glyphicon glyphicon-search"></span> ค้นหา</button>
+					</div>
+				</div>
+				
+				<div class="row form-group">
+					<div class="col-lg-12">
+						<button class="btn btn-primary" ng-click="updateData(null)">เพิ่ม</button>
+					</div>
+				</div>
+			</caption>	
+			<thead>
+				<tr>
+					<th>ชื่อเกษตรกร/ผู้ประกอบการ/ผู้ขอใบรับรอง</th>
+					<th>ขอบข่ายการให้การรับรองมาตรฐาน</th>
+					<th>จังหวัด</th>
+					<th>ชื่อผู้ประกอบการตรวจสอบมาตรฐาน</th>
+					<th>ชนิดสินค้า</th>
+					<th>มาตรฐานสินค้าเกษตรที่ได้รับการรับรอง</th>
+					<th>ที่ตั้งสถานที่ผลิต / ฟาร์ม / แปลง / โรงงาน</th>
+					<th>สถานะ</th>
+					<th>วันออกใบรับรอง</th>
+					<th>วันหมดอายุ</th>
+					<th>แก้ไข</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="data in DataList">
+					<td>{{data.operator_name_th}}</td>
+					<td>{{data.scope_th}}</td>
+					<td>{{data.province_th}}</td>
+					<td>{{data.auditor_th}}</td>
+					<td>{{data.product_th}}</td>
+					<td>{{data.accredit_stadard_th}}</td>
+					<td>{{data.address_th}}</td>
+					<td>{{data.status_th}}</td>
+					<td>{{data.start_date}}</td>
+					<td>{{data.end_date}}</td>
+					<td>
+						<button class="btn btn-warning" ng-click="updateData(data)">แก้ไข</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

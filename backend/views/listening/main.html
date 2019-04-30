@@ -1,0 +1,338 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group" style="padding-top: 10px;">
+	  <div class="col-lg-10">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+</div>
+<div  ng-show="PAGE == 'UPDATE'">
+	<div class="row form-group" ng-show="MasterList.length > 0">
+		<label class="form-control-static col-lg-2">
+			หมวดหมู่
+		</label>
+		<div class="col-lg-4">
+			<select class="form-control" ng-model="Data.listening_type">
+				<option value="">กรุณาเลือก..</option>
+				<option value="เกี่ยวกับ พ.ร.บ. มาตรฐานสินค้าเกษตร">เกี่ยวกับ พ.ร.บ. มาตรฐานสินค้าเกษตร</option>
+				<option value="เกี่ยวกับตราอนุบัญญัติ">เกี่ยวกับตราอนุบัญญัติ</option>
+				<option value="เกี่ยวกับมาตรฐานบังคับ">เกี่ยวกับมาตรฐานบังคับ</option>
+			</select>
+		</div>
+	</div>
+	<div class="row form-group">
+		
+		<div class="col-lg-12">
+			<div class="row form-group">
+				<div class="col-lg-12">
+					<div class="row form-group">
+						<label class="form-control-static col-lg-2">
+							หัวข้อภาษาไทย
+						</label>
+						<div class="col-lg-6" >
+							<input class="form-control" ng-model="Data.title_th" maxlength="255" required="true">
+						</div>
+					</div>
+					<div class="row form-group">
+						<label class="form-control-static col-lg-2">
+							หัวข้อภาษาอังกฤษ
+						</label>
+						<div class="col-lg-6" >
+							<input class="form-control" ng-model="Data.title_en" maxlength="255">
+						</div>
+					</div>
+					<div class="row form-group">
+						<label class="form-control-static col-lg-2">
+							ที่มาภาษาไทย
+						</label>
+						<div class="col-lg-10" >
+							<textarea class="form-control" id="editor1" name="editor1" ng-model="Data.content_th" rows="100" data-sample="40" data-sample-short="" >
+							</textarea>
+						</div>
+					</div>
+					<div class="row form-group">
+						<label class="form-control-static col-lg-2">
+							ที่มาภาษาอังกฤษ
+						</label>
+						<div class="col-lg-10" >
+							<textarea class="form-control" id="editor2" name="editor2" ng-model="Data.content_en" rows="100" data-sample="40" data-sample-short="" >
+							</textarea>
+						</div>
+					</div>
+					<div class="row">
+						<label class="form-control-static col-lg-2">
+							ไฟล์ภาษาไทย
+						</label>
+						<div class="col-lg-4" >
+							<p class="input-group">
+			                  <input type="text" class="form-control" ng-model="FileName.name_th"   />
+			                  <span class="input-group-btn">
+			                    <button class="btn btn-default" ngf-select ng-model="AttachFile.attachFileTH" ngf-max-size="25MB"  ngf-model-invalid="AttachFile.attachFileTH.invalidFile">เลือก</button>
+			                    
+			                  </span>
+			                </p>
+						</div>
+						<label class="form-control-static col-lg-2">
+							{{AttachFile.attachFileTH.name}}
+						</label>
+						<div class="col-lg-3">
+							<div class="file-alert" ng-show="AttachFile.attachFileTH.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{AttachFile.attachFileTH.invalidFile.$errorParam}}</div>
+						</div>
+					</div>
+					<div class="row">
+						<label class="form-control-static col-lg-2">
+							ไฟล์ภาษาอังกฤษ
+						</label>
+						<div class="col-lg-4" >
+							<p class="input-group">
+			                  <input type="text" class="form-control" ng-model="FileName.name_en" />
+			                  <span class="input-group-btn">
+			                    <button class="btn btn-default" ngf-select ng-model="AttachFile.attachFileEN" ngf-max-size="25MB"  ngf-model-invalid="AttachFile.attachFileEN.invalidFile">เลือก</button>
+			                    
+			                  </span>
+			                </p>
+						</div>
+						<label class="form-control-static col-lg-2">
+							{{AttachFile.attachFileEN.name}}
+						</label>
+						<div class="col
+						<div class="col-lg-3">
+							<div class="file-alert" ng-show="AttachFile.attachFileEN.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{AttachFile.attachFileEN.invalidFile.$errorParam}}</div>
+						</div>
+					</div>
+					<div class="row form-group">
+						<label class="form-control-static col-lg-2">
+							เปิดรับฟังความเห็นระหว่าง
+						</label>
+						<div class="col-lg-2" >
+							<p class="input-group">
+								<input type="text" class="form-control" ng-model="Data.start_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup1.opened" required="true">
+								<span class="input-group-btn">
+					            	<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+					          </span>
+					        </p>
+						</div>
+						<div class="col-lg-2" >
+							<p class="input-group">
+								<input type="text" class="form-control" ng-model="Data.end_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup2.opened" required="true">
+								<span class="input-group-btn">
+					            	<button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+					          </span>
+					        </p>
+						</div>
+					</div>
+					<div class="row form-group">
+						<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+							สถานะ
+						</label>
+						<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" >
+							<div class="btn-group">
+								<label class="btn btn-default btn-checkbox" ng-model="Data.actives" uib-btn-radio="'Y'" >ใช้งาน</label>
+					            <label class="btn btn-default btn-checkbox" ng-model="Data.actives" uib-btn-radio="'N'" >ไม่ใช้งาน</label>
+					        </div>
+						</div>
+					</div>
+					<hr>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row form-group">
+		<div class="col-lg-12 text-center">
+			<button class="btn btn-info" ng-click="save('listening/update', Data, AttachFile, FileName)">บันทึก</button>
+			<button class="btn btn-default" ng-click="cancel()">ยกเลิก</button>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-6 col-lg-offset-3 text-center">	
+			<table class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>ลำดับ</th>
+						<th>ชื่อผู้แสดงความเห็น</th>
+						<th>เรียกดู</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="data in CommentList">
+						<td>{{$index + 1}}</td>
+						<td>{{data.firstname}} {{data.lastname}}</td>
+						<td>
+							<button class="btn btn-success" ng-click="viewComment(data)"><span class="glyphicon glyphicon-zoom-in"></span></button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div ng-show="PAGE == 'COMMENT'">
+	<fieldset disabled="true">
+		<div class="row form-group">
+			<div class="col-lg-12 text-center">
+				<h3>{{Data.title_th}}</h3>
+			</div>
+		</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1">
+			<div class="row form-group">
+				<h4>ข้อมูลผู้ให้ความเห็น</h4>
+			</div>
+			<div class="row form-group">
+				<label class="form-control-static col-lg-1">
+					ชื่อ
+				</label>
+				<div class="col-lg-3">
+					<input class="form-control" ng-model="Comment.firstname" maxlength="70">
+				</div>
+				<label class="form-control-static col-lg-1">
+					สกุล
+				</label>
+				<div class="col-lg-3">
+					<input class="form-control" ng-model="Comment.lastname" maxlength="70">
+				</div>
+			</div>
+			<div class="row form-group">
+				<label class="form-control-static col-lg-1">
+					โทรศัพท์
+				</label>
+				<div class="col-lg-3">
+					<input class="form-control" ng-model="Comment.tel" maxlength="20">
+				</div>
+				<label class="form-control-static col-lg-1">
+					อีเมล
+				</label>
+				<div class="col-lg-3">
+					<input class="form-control" ng-model="Comment.email" maxlength="70">
+				</div>
+			</div>
+			<div class="row form-group">
+				<h4>ข้อมูลทั่วไปของผู้ให้ความเห็น</h4>
+			</div>
+			<div class="row form-group">
+				<label class="form-control-static col-lg-1">
+					อาชีพ
+				</label>
+				<div class="col-lg-4">
+					<input class="form-control" ng-model="Comment.job" ng-show="Comment.job != 'อื่นๆ'">
+					<input class="form-control" ng-model="Comment.other_job" ng-show="Comment.job == 'อื่นๆ'">
+				</div>
+			</div>
+			<div class="row form-group">
+				<label class="form-control-static col-lg-1">
+					ที่ทำงาน
+				</label>
+				<div class="col-lg-4">
+					<textarea class="form-control" ng-model="Comment.workplace" maxlength="255"></textarea>
+				</div>
+			</div>
+			<div class="row form-group">
+				<label class="form-control-static col-lg-1">
+					จังหวัด
+				</label>
+				<div class="col-lg-2">
+					<input class="form-control" ng-model="Comment.province">
+				</div>
+				<label class="form-control-static col-lg-2">
+					รหัสไปรษณีย์
+				</label>
+				<div class="col-lg-2">
+					<input class="form-control" ng-model="Comment.postcode" maxlength="5">
+				</div>
+			</div>
+			<div class="row form-group">
+				<h4>ความเห็นเกี่ยวกับเกี่ยวกับมาตรฐานบังคับ</h4>
+			</div> 
+			<div class="row form-group">
+				<label class="form-control-static col-lg-1">
+					
+				</label>
+				<div class="col-lg-11">
+					<div class="row">
+						<div class="col-lg-3">
+							<input id="agree1" type="radio" ng-model="Comment.comment" value="1" required="true"> <label for="agree1"> เห็นชอบทุกประการ</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-3">
+							<input id="agree2" type="radio" ng-model="Comment.comment" value="2" required="true"> <label for="agree2"> เห็นชอบส่วนใหญ่แต่มีข้อคิดเห็น</label>
+						</div>
+						<div class="col-lg-3" ng-show="Comment.comment == '2'">
+							<textarea class="form-control" ng-model="Comment.agree_comment" maxlength="255"></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-3">
+							<input id="agree3" type="radio" ng-model="Comment.comment" value="3" required="true"> <label for="agree3"> ไม่ให้ความเห็นชอบ เพราะ</label>
+						</div>
+						<div class="col-lg-3" ng-show="Comment.comment == '3'">
+							<textarea class="form-control" ng-model="Comment.disagree_comment" maxlength="255"></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-3">
+							<input id="agree4" type="radio" ng-model="Comment.comment" value="4" required="true"> <label for="agree4"> ไม่ออกความเห็น</label>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	</fieldset>
+	<div class="row form-group">
+		<div class="col-lg-12 text-center">
+			<button class="btn btn-default" ng-click="cancelComment()">กลับ</button>
+		</div>
+	</div>
+</div>
+	
+<div ng-show="PAGE == 'MAIN'">
+	<div class="row form-group">
+		<div class="col-lg-12">
+			<button class="btn btn-primary" ng-class="{'active':listening_type == 'เกี่ยวกับ พ.ร.บ. มาตรฐานสินค้าเกษตร'}" ng-click="loadList('listening/list', 'เกี่ยวกับ พ.ร.บ. มาตรฐานสินค้าเกษตร')">เกี่ยวกับ พ.ร.บ. มาตรฐานสินค้าเกษตร</button>
+			<button class="btn btn-primary" ng-class="{'active':listening_type == 'เกี่ยวกับตราอนุบัญญัติ'}" ng-click="loadList('listening/list', 'เกี่ยวกับตราอนุบัญญัติ')">เกี่ยวกับตราอนุบัญญัติ</button>
+			<button class="btn btn-primary" ng-class="{'active':listening_type == 'เกี่ยวกับมาตรฐานบังคับ'}" ng-click="loadList('listening/list', 'เกี่ยวกับมาตรฐานบังคับ')">เกี่ยวกับมาตรฐานบังคับ</button>
+		</div>
+	</div>
+	<div class="table-responsive">
+		<div class="col-lg-12">
+			<table class="table table-striped">
+				<caption>
+					<button class="btn btn-primary" ng-click="add()"><span class="glyphicon glyphicon-plus"></span> เพิ่ม</button>
+				</caption>
+				<thead>
+					<tr>
+						<th>ลำดับ</th>
+						<th>เรื่อง</th>
+						<th>ช่วงเวลาเปิดรับฟังความเห็น</th>
+						<th>จัดการข้อมูล</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="data in DataList">
+						<td>{{ $index + 1}}</td>
+						<td>{{data.title_th}}</td>
+						<td>{{data.start_date}} - {{data.end_date}}</td>
+						<td>
+							<button class="btn btn-default" ng-click="edit(data)"><span class="glyphicon glyphicon-edit"></span></button>
+							<button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>	
+
+	</div>
+</div>

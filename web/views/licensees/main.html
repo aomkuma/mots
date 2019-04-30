@@ -1,0 +1,135 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div  style="margin-top:180px;">
+	<div class="row form-group" style="padding-top: 70px;">
+	  <div class="col-lg-10 col-lg-offset-1">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<span class="title-content">
+				<h2>{{(DEFAULT_LANGUAGE == 'TH'?MenuName[MenuName.length - 1].menu_name_th:MenuName[MenuName.length - 1].menu_name_en)}}</h2>
+			</span>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<img src="../files/img/header_line.png" style="width: 70%;">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1">
+			<div class="row form-group">
+				<table class="table table-bordered table-striped">
+					<caption>
+						<div class="row form-group">
+							<label class="form-control-static col-lg-1">
+								ประเภทใบอนุญาต
+							</label> 
+							<div class="col-lg-2">
+								<select class="form-control" ng-model="condition.license_type">
+									<option value="">กรุณาเลือก..</option>
+									<option value="ผู้นำเข้า">ผู้นำเข้า</option>
+									<option value="ผู้ส่งออก">ผู้ส่งออก</option>
+								</select>
+							</div>
+							<label class="form-control-static col-lg-1">
+								สถานะใบอนุญาต
+							</label> 
+							<div class="col-lg-2">
+								<select class="form-control" ng-model="condition.license_status">
+									<option value="">กรุณาเลือก..</option>
+									<option value="ออกใบอนุญาติแล้ว">ออกใบอนุญาติแล้ว</option>
+									<option value="ยกเลิกใบอนุญาติแบบถาวร">ยกเลิกใบอนุญาติแบบถาวร</option>
+								</select>
+							</div>
+							<label class="form-control-static col-lg-1">
+								สถานะใบรับรอง
+							</label> 
+							<div class="col-lg-2">
+								<input class="form-control" ng-model="condition.cert_status">
+							</div>
+							
+						</div>
+						<div class="row form-group">
+							<label class="form-control-static col-lg-1">
+								ภาค
+							</label> 
+							<div class="col-lg-2">
+								<select class="form-control" ng-model="condition.region" ng-options="data.name as data.name for data in RegionList" ng-change="loadProvince(condition.region)">
+									<option value="">กรุณาเลือก..</option>
+								</select>
+							</div>
+							<label class="form-control-static col-lg-1">
+								จังหวัดที่ตั้งสถานที่ผลิต
+							</label> 
+							<div class="col-lg-2">
+								<select class="form-control" ng-model="condition.province" ng-options="data.name_th as data.name_th for data in ProvinceList">
+									<option value="">กรุณาเลือก..</option>
+								</select>
+							</div>
+							<label class="form-control-static col-lg-1">
+								ชื่อผู้ได้รับอนุญาต
+							</label> 
+							<div class="col-lg-3">
+								<input class="form-control" ng-model="condition.authorized_name">
+							</div>
+							
+							<div class="col-lg-2">
+								<button class="btn btn-primary" ng-click="loadList()"> <span class="glyphicon glyphicon-search"></span> ค้นหา</button>
+							</div>
+						</div>
+						
+					</caption>	
+					<thead>
+						<tr>
+							<th>เลขที่อ้างอิง</th>
+							<th>ชื่อผู้ได้รับอนุญาต</th>
+							<th>ประเภทใบอนุญาต</th>
+							<th>สถานะใบอนุญาต</th>
+							<th>วันที่ใบอนุญาตหมดอายุ</th>
+							<th>สถานะใบรับรอง</th>
+							<th>วันที่ใบรับรองหมดอายุ</th>
+							<th>รหัสมาตรฐานสินค้าเกษตร</th>
+							<th>ที่ตั้งสำนักงาน (ตามที่ปรากฎในใบอนุญาต)</th>
+							<th>ชื่อสถานที่ผลิต (ตามที่ปรากฎบนใบอนุญาต)</th>
+							<th>ภาค</th>
+							<th>จังหวัด</th>
+							<th>ที่ตั้งสถานที่ผลิต (ตามที่ปรากฎบนใบอนุญาต)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="data in DataList">
+							<td>{{data.reference}}</td>
+							<td>{{data.authorized_name}}</td>
+							<td>{{data.license_type}}</td>
+							<td>{{data.license_status}}</td>
+							<td>{{data.license_expire_date}}</td>
+							<td>{{data.cert_status}}</td>
+							<td>{{data.cert_expire_date}}</td>
+							<td>{{data.standard_code}}</td>
+							<td>{{data.office_address}}</td>
+							<td>{{data.production_name}}</td>
+							<td>{{data.region}}</td>
+							<td>{{data.province}}</td>
+							<td>{{data.production_address}}</td>
+							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<div ng-include src="'views/footer.html'"></div>

@@ -1,0 +1,103 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group" style="padding-top: 10px;">
+	  <div class="col-lg-10">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+
+	  
+</div>
+<div class="row form-group">
+	<label class="form-control-static col-lg-1 col-lg-offset-2">
+		ประจำเดือน
+	</label>
+	<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+		<select name="Year" class="form-control" ng-model="Data.months" ng-options="month.monthValue as month.monthText for month in MonthList" required="required">
+				<option value="">กรุณาเลือก..</option>
+			</select>
+	</div>
+	<label class="form-control-static col-lg-1">
+		ปี
+	</label>
+	<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+		<select name="Year" class="form-control" ng-model="Data.years" ng-options="year.yearText as year.yearValue for year in YearList" required="required">
+				<option value="">กรุณาเลือก..</option>
+			</select>
+	</div>
+	<div class="col-lg-2">
+		<button class="btn btn-primary" ng-click="queryReport(Data)">ออกรายงาน</button>
+		<button class="btn btn-success" ng-click="exportReport(Data, Result, DataList)" ng-disabled="DataList == null">Export Excel</button>
+	</div>
+</div>
+
+<div class="row form-group" ng-show="DataList != null">
+	<div class="col-lg-6 col-lg-offset-3 table-responsive">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>เว็บไซต์ ม.ก.อ.ช.</th>
+					<th>ดี</th>
+					<th>พอใช้</th>
+					<th>ควรปรับปรุง</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>ความสมบูรณ์ครบถ้วนของข้อมูล</td>
+					<td>{{Result.clarity.max}} %</td>
+					<td>{{Result.clarity.medium}} %</td>
+					<td>{{Result.clarity.min}} %</td>
+				</tr>
+				<tr>
+					<td>ความเป็นปัจจุบันของข้อมูล</td>
+					<td>{{Result.up_to_date.max}} %</td>
+					<td>{{Result.up_to_date.medium}} %</td>
+					<td>{{Result.up_to_date.min}} %</td>
+				</tr>
+				<tr>
+					<td>ความน่าเชื่อถือของข้อมูล</td>
+					<td>{{Result.correction.max}} %</td>
+					<td>{{Result.correction.medium}} %</td>
+					<td>{{Result.correction.min}} %</td>
+				</tr>
+				<tr>
+					<td>ความสะดวกในการใช้งานเว็บไซต์</td>
+					<td>{{Result.user_friendly.max}} %</td>
+					<td>{{Result.user_friendly.medium}} %</td>
+					<td>{{Result.user_friendly.min}} %</td>
+				</tr>
+				<tr>
+					<td>ข้อมูลมีประโยชน์ต่อผู้ใช้งาน</td>
+					<td>{{Result.benefit.max}} %</td>
+					<td>{{Result.benefit.medium}} %</td>
+					<td>{{Result.benefit.min}} %</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="row form-group" ng-show="DataList != null">
+	<div class="col-lg-12 text-center">
+		<h5>จำนวนผู้ตอบแบบสอบถามทั้งหมด จำนวน {{DataList.length}} ราย</h5>
+	</div>
+</div>
+<div class="row form-group" ng-show="DataList != null">
+	<div class="col-lg-10  col-lg-offset-1">
+		<h5>ข้อเสนอแนะ</h5>
+	</div>
+</div>
+<div class="row form-group" ng-repeat="data in DataList" ng-show="data.comment != null && data.comment != ''">
+	<div class="col-lg-10 col-lg-offset-1" style="border: 1px solid #999; padding: 10px;">
+		<p>{{data.comment}}</p>
+	</div>
+</div>

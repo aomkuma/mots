@@ -1,0 +1,106 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div  style="margin-top:180px;">
+	<div class="row form-group" style="padding-top: 70px;">
+	  <div class="col-lg-10 col-lg-offset-1">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+	  <div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<span class="title-content">
+				<h2>{{(DEFAULT_LANGUAGE == 'TH'?MenuName[MenuName.length - 1].menu_name_th:MenuName[MenuName.length - 1].menu_name_en)}}</h2>
+			</span>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<img src="../files/img/header_line.png" style="width: 70%;">
+		</div>
+	</div>
+	</div>
+		<div class="row form-group" ng-form="update_form">
+			<div class="col-lg-10 col-lg-offset-1">
+				<div class="row form-group">
+					<div class="col-lg-12 text-center">
+						<h3>แบบสำรวจความพึงพอใจเว็บไซต์</h3>
+					</div>
+				</div>
+				
+				<div class="row form-group">
+					<div class="col-lg-6 col-lg-offset-3 table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>เว็บไซต์</th>
+									<th>ดี</th>
+									<th>พอใช้</th>
+									<th>ควรปรับปรุง</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>ความสมบูรณ์ครบถ้วนของข้อมูล</td>
+									<td><input type="radio" required="true" ng-model="Data.clarity" value="ดี"></td>
+									<td><input type="radio" required="true" ng-model="Data.clarity" value="พอใช้"></td>
+									<td><input type="radio" required="true" ng-model="Data.clarity" value="ควรปรับปรุง"></td>
+								</tr>
+								<tr>
+									<td>ความเป็นปัจจุบันของข้อมูล</td>
+									<td><input type="radio" required="true" ng-model="Data.up_to_date" value="ดี"></td>
+									<td><input type="radio" required="true" ng-model="Data.up_to_date" value="พอใช้"></td>
+									<td><input type="radio" required="true" ng-model="Data.up_to_date" value="ควรปรับปรุง"></td>
+								</tr>
+								<tr>
+									<td>ความน่าเชื่อถือของข้อมูล</td>
+									<td><input type="radio" required="true" ng-model="Data.correction" value="ดี"></td>
+									<td><input type="radio" required="true" ng-model="Data.correction" value="พอใช้"></td>
+									<td><input type="radio" required="true" ng-model="Data.correction" value="ควรปรับปรุง"></td>
+								</tr>
+								<tr>
+									<td>ความสะดวกในการใช้งานเว็บไซต์</td>
+									<td><input type="radio" required="true" ng-model="Data.user_friendly" value="ดี"></td>
+									<td><input type="radio" required="true" ng-model="Data.user_friendly" value="พอใช้"></td>
+									<td><input type="radio" required="true" ng-model="Data.user_friendly" value="ควรปรับปรุง"></td>
+								</tr>
+								<tr>
+									<td>ข้อมูลมีประโยชน์ต่อผู้ใช้งาน</td>
+									<td><input type="radio" required="true" ng-model="Data.benefit" value="ดี"></td>
+									<td><input type="radio" required="true" ng-model="Data.benefit" value="พอใช้"></td>
+									<td><input type="radio" required="true" ng-model="Data.benefit" value="ควรปรับปรุง"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="row form-group">
+					<label class="form-control-static col-lg-1 col-lg-offset-3">
+						รายละเอียด
+					</label>
+					<div class="col-lg-5">
+						<textarea class="form-control" ng-model="Data.comment"></textarea>
+					</div>
+				</div>
+				
+				<div class="row form-group">
+					<div class="col-lg-12 text-center">
+						<button class="btn btn-primary" ng-click="updateData(Data)" ng-disabled="update_form.$invalid">ส่งข้อมูล</button>
+						<button class="btn btn-danger" ng-click="cancel()">ยกเลิก</button>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	<div ng-include src="'views/footer.html'"></div>
+</div>

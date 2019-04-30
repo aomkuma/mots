@@ -1,0 +1,272 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group" style="padding-top: 10px;">
+	  <div class="col-lg-10">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+</div>
+<div ng-show="PAGE == 'UPDATE'">
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			เลขที่อ้างอิง
+		</label> 
+		<div class="col-lg-3">
+			<input class="form-control" ng-model="Data.reference">
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			ชื่อผู้ได้รับอนุญาต
+		</label> 
+		<div class="col-lg-3">
+			<input class="form-control" ng-model="Data.authorized_name">
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			ประเภทใบอนุญาต
+		</label> 
+		<div class="col-lg-3">
+			<select class="form-control" ng-model="Data.license_type">
+				<option value="">กรุณาเลือก..</option>
+				<option value="ผู้นำเข้า">ผู้นำเข้า</option>
+				<option value="ผู้ส่งออก">ผู้ส่งออก</option>
+			</select>
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			สถานะใบอนุญาต
+		</label> 
+		<div class="col-lg-3">
+			<select class="form-control" ng-model="Data.license_status">
+				<option value="">กรุณาเลือก..</option>
+				<option value="ออกใบอนุญาติแล้ว">ออกใบอนุญาติแล้ว</option>
+				<option value="ยกเลิกใบอนุญาติแบบถาวร">ยกเลิกใบอนุญาติแบบถาวร</option>
+			</select>
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			วันที่ใบอนุญาตหมดอายุ
+		</label> 
+		<div class="col-lg-2">
+			<p class="input-group">
+				<input type="text" class="form-control" ng-model="Data.license_expire_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup1.opened" required="true">
+				<span class="input-group-btn">
+	            	<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+	          </span>
+	        </p>
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			สถานะใบรับรอง
+		</label> 
+		<div class="col-lg-2">
+			<input class="form-control" ng-model="Data.cert_status">
+		</div>
+		<label class="form-control-static col-lg-2">
+			วันที่ใบรับรองหมดอายุ
+		</label> 
+		<div class="col-lg-3">
+			<p class="input-group">
+				<input type="text" class="form-control" ng-model="Data.cert_expire_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup2.opened" required="true">
+				<span class="input-group-btn">
+	            	<button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+	          </span>
+	        </p>
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			รหัสมาตรฐานสินค้าเกษตร
+		</label> 
+		<div class="col-lg-3">
+			<select class="form-control" ng-model="Data.standard_code" ng-options="data.type_name as data.type_name for data in StandardList">
+				<option value="">กรุณาเลือก..</option>
+				
+			</select>
+		</div>
+		<div class="col-lg-2">
+			<button class="btn btn-success" ng-click="addMaster()">เพิ่มรหัสมาตรฐานสินค้าเกษตร</button>
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			ที่ตั้งสำนักงาน (ตามที่ปรากฎในใบอนุญาต)
+		</label> 
+		<div class="col-lg-4">
+			<input class="form-control" ng-model="Data.office_address">
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			ชื่อสถานที่ผลิต (ตามที่ปรากฎบนใบอนุญาต)
+		</label> 
+		<div class="col-lg-4">
+			<input class="form-control" ng-model="Data.production_name">
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			ภาค
+		</label> 
+		<div class="col-lg-3">
+			<select class="form-control" ng-model="Data.region" ng-options="data.name as data.name for data in RegionList" ng-change="loadProvince(Data.region)">
+				<option value="">กรุณาเลือก..</option>
+			</select>
+		</div>
+		<label class="form-control-static col-lg-2">
+			จังหวัดที่ตั้งสถานที่ผลิต
+		</label> 
+		<div class="col-lg-3">
+			<select class="form-control" ng-model="Data.province" ng-options="data.name_th as data.name_th for data in ProvinceList">
+				<option value="">กรุณาเลือก..</option>
+			</select>
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			ที่ตั้งสถานที่ผลิต (ตามที่ปรากฎบนใบอนุญาต)
+		</label> 
+		<div class="col-lg-4">
+			<input class="form-control" ng-model="Data.production_address">
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-12 text-center">
+			<button class="btn btn-primary" ng-click="saveData(Data)">บันทึก</button>
+			<button class="btn btn-default" ng-click="cancel('MAIN')">ยกเลิก</button>
+		</div>
+	</div>
+</div>
+<div ng-show="PAGE == 'MAIN'">
+	<div class="row form-group">
+		<table class="table table-bordered table-striped">
+			<caption>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-1">
+						ประเภทใบอนุญาต
+					</label> 
+					<div class="col-lg-2">
+						<select class="form-control" ng-model="condition.license_type">
+							<option value="">กรุณาเลือก..</option>
+							<option value="ผู้นำเข้า">ผู้นำเข้า</option>
+							<option value="ผู้ส่งออก">ผู้ส่งออก</option>
+						</select>
+					</div>
+					<label class="form-control-static col-lg-1">
+						สถานะใบอนุญาต
+					</label> 
+					<div class="col-lg-2">
+						<select class="form-control" ng-model="condition.license_status">
+							<option value="">กรุณาเลือก..</option>
+							<option value="ออกใบอนุญาติแล้ว">ออกใบอนุญาติแล้ว</option>
+							<option value="ยกเลิกใบอนุญาติแบบถาวร">ยกเลิกใบอนุญาติแบบถาวร</option>
+						</select>
+					</div>
+					<label class="form-control-static col-lg-1">
+						สถานะใบรับรอง
+					</label> 
+					<div class="col-lg-2">
+						<input class="form-control" ng-model="condition.cert_status">
+					</div>
+					
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-1">
+						ภาค
+					</label> 
+					<div class="col-lg-2">
+						<select class="form-control" ng-model="condition.region" ng-options="data.name as data.name for data in RegionList" ng-change="loadProvince(condition.region)">
+							<option value="">กรุณาเลือก..</option>
+						</select>
+					</div>
+					<label class="form-control-static col-lg-1">
+						จังหวัดที่ตั้งสถานที่ผลิต
+					</label> 
+					<div class="col-lg-2">
+						<select class="form-control" ng-model="condition.province" ng-options="data.name_th as data.name_th for data in ProvinceList">
+							<option value="">กรุณาเลือก..</option>
+						</select>
+					</div>
+					<label class="form-control-static col-lg-1">
+						ชื่อผู้ได้รับอนุญาต
+					</label> 
+					<div class="col-lg-3">
+						<input class="form-control" ng-model="condition.authorized_name">
+					</div>
+					
+					<div class="col-lg-2">
+						<button class="btn btn-primary" ng-click="loadList()"> <span class="glyphicon glyphicon-search"></span> ค้นหา</button>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-lg-12">
+						<button class="btn btn-primary" ng-click="updateData(null)">เพิ่ม</button>
+					</div>
+				</div>
+			</caption>	
+			<thead>
+				<tr>
+					<th>เลขที่อ้างอิง</th>
+					<th>ชื่อผู้ได้รับอนุญาต</th>
+					<th>ประเภทใบอนุญาต</th>
+					<th>สถานะใบอนุญาต</th>
+					<th>รหัสมาตรฐานสินค้าเกษตร</th>
+					<th>ภาค</th>
+					<th>จังหวัด</th>
+					<th>แก้ไข</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="data in DataList">
+					<td>{{data.reference}}</td>
+					<td>{{data.authorized_name}}</td>
+					<td>{{data.license_type}}</td>
+					<td>{{data.license_status}}</td>
+					<td>{{data.cert_status}}</td>
+					<td>{{data.region}}</td>
+					<td>{{data.province}}</td>
+					<td>
+						<button class="btn btn-warning" ng-click="updateData(data)">แก้ไข</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<script type="text/ng-template" id="add-master.html">
+    <div class="modal-header">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h3>เพิ่มข้อมูล</h3>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+    	<div class="row form-group">
+    		<label class="form-control-static col-lg-2">
+    			ชื่อ
+    		</label>	
+    		<div class="col-lg-10">
+    			<input class="form-control" ng-model="Master.type_name">
+    		</div>	
+    	</div>
+    </div>
+    <div class="modal-footer">
+    	<button class="btn btn-default" ng-click="ok(Master)">บันทึก</button>
+	    <button class="btn btn-default" ng-click="cancel()">ปิด</button>
+    </div>
+</script>

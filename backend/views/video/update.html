@@ -1,0 +1,82 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div class="page-header">
+	<h3>จัดการวีดีโอ</h3>
+</div>
+
+<div class="row form-group">
+	<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-12 col-xs-12">
+		<iframe id="video_frame" ng-src="{{Video.video_url}}" frameborder="0" width="100%" height="300" allowfullscreen=""></iframe>
+	</div>
+</div>
+<div class="row form-group">
+	<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+		URL
+	</label>
+	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+		​<input type="text" class="form-control" ng-model="Video.video_url" maxlength="512" ng-blur="trustUrl()">
+	</div>
+</div>
+<div class="row form-group">
+	<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+		วันที่วีดีโอ
+	</label>
+	<div class="col-lg-3 col-md-13 col-sm-12 col-xs-12">
+		​<p class="input-group">
+				<input type="text" class="form-control" ng-model="Video.video_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup1.opened" datepicker-options="dateOptions1">
+				<span class="input-group-btn">
+	            	<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+	          	</span>
+	        </p>
+	</div>
+</div>
+<div class="row form-group">
+	<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+		หัวข้อวีดีโอภาษาไทย
+	</label>
+	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+		​<input type="text" class="form-control" ng-model="Video.video_caption_th" maxlength="255">
+	</div>
+</div>
+
+<div class="row form-group">
+	<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+		เนื้อหาภาษาไทย
+	</label>
+	<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" id="ckeditor1">
+		<textarea class="form-control" id="editor1" name="editor1" ng-model="Video.video_content_th" rows="100" data-sample="40" data-sample-short="" >
+		</textarea>
+	</div>
+</div>
+<div class="row form-group">
+	<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+		หัวข้อวีดีโอภาษาอังกฤษ
+	</label>
+	<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+		​<input type="text" class="form-control" ng-model="Video.video_caption_en">
+	</div>
+</div>
+<div class="row form-group">
+	<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+		เนื้อหาภาษาอังกฤษ
+	</label>
+	<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" id="ckeditor2">
+		<textarea class="form-control" id="editor2" name="editor2" ng-model="Video.video_content_en" rows="100" data-sample="40" data-sample-short="" >
+		</textarea>
+	</div>
+</div>
+<div class="row form-group">
+	<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+		สถานะ
+	</label>
+	<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" >
+		<div class="btn-group">
+			<label class="btn btn-default btn-checkbox" ng-model="Video.actives" uib-btn-radio="'Y'" >ใช้งาน</label>
+            <label class="btn btn-default btn-checkbox" ng-model="Video.actives" uib-btn-radio="'N'" >ไม่ใช้งาน</label>
+        </div>
+	</div>
+</div>
+<div class="page-header text-center">
+	<button class="btn btn-info" ng-click="save('video/update', Video)">บันทึก</button>
+	<button class="btn btn-default" ng-click="cancelUpdate()">ยกเลิก</button>
+</div>

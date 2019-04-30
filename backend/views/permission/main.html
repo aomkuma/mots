@@ -1,0 +1,141 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group" style="padding-top: 10px;">
+        <div class="col-lg-5">
+          <div class="row">
+            <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+              <img src="../files/img/pin-menu.png">
+              สิทธิ์การใช้งาน
+
+              <span ng-show="MenuName.sub_menu != null">
+                  <img src="../files/img/pin-menu.png">
+                        {{MenuName.sub_menu.menu_name_th}}              
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+
+        </div>
+</div>
+<hr>
+<div ng-show="PAGE == 'UPDATE'">
+   <div class="row form-group">
+        <label class="col-lg-2 col-sm-12 col-xs-12 form-control-static">ชื่อประเภท</label>
+        <div class="col-lg-4 col-sm-12 col-xs-12">
+        	<input type="text" class="form-control" ng-model="Data.role_name">
+        </div>
+        
+   </div>
+   
+   <div class="row form-group">
+      <label class="col-lg-2 form-control-static">
+          สถานะการใช้งาน
+      </label>
+      <div class="col-lg-10">
+          <div class="btn-group">
+              <label class="btn btn-default btn-checkbox" ng-model="Data.actives" uib-btn-radio="'Y'">ใช้งาน</label>
+              <label class="btn btn-default btn-checkbox" ng-model="Data.actives" uib-btn-radio="'N'">ไม่ใช้งาน</label>
+          </div>
+      </div>
+  </div>
+   <div class="row form-group">
+        <div class="col-lg-12 text-center">
+              <button class="btn btn-primary" ng-click="saveData(Data, MenuList)" ng-disabled="Data.id == null && (confirmPassword != '' && (confirmPassword != Data.password))">บันทึก</button>
+              <button class="btn btn-default" ng-click="cancelUpdate()">ยกเลิก</button>
+        </div>
+  </div>
+  <div class="row form-group">
+      <label class="col-lg-12 form-control-static">
+        <ul style="list-style: none;">
+          <li ng-repeat="menu in MenuList" ng-init="level1 = $index">
+            <input id="chk{{menu.id}}" type="checkbox" ng-model="menu.checked_menu" ng-true-value="'Y'" ng-false-value="'N'" ng-checked="checkMenuRole(menu.id)" ng-click="checkAll(menu, 1, level1, menu.checked_menu)"> <label for="chk{{menu.id}}">{{menu.menu_name_th}}</label>
+
+            <ul style="list-style: none;">
+              <li ng-repeat="sub_menu1 in menu.sub_menu" ng-init="level2 = $index">
+                <input id="chk{{sub_menu1.id}}" type="checkbox" ng-model="sub_menu1.checked_menu" ng-true-value="'Y'" ng-false-value="'N'" ng-checked="checkMenuRole(sub_menu1.id)" ng-click="checkAll(sub_menu1, 2, level2, sub_menu1.checked_menu)"> 
+                <label for="chk{{sub_menu1.id}}">{{sub_menu1.menu_name_th}}</label>
+
+                  <ul style="list-style: none;">
+                    <li ng-repeat="sub_menu2 in sub_menu1.sub_menu" ng-init="level3 = $index">
+                      <input id="chk{{sub_menu2.id}}" type="checkbox" ng-model="sub_menu2.checked_menu" ng-true-value="'Y'" ng-false-value="'N'" ng-checked="checkMenuRole(sub_menu2.id)" ng-click="checkAll(sub_menu2, 3, level3, sub_menu2.checked_menu)"> 
+                      <label for="chk{{sub_menu2.id}}">{{sub_menu2.menu_name_th}}</label>
+
+                      <ul style="list-style: none;">
+                        <li ng-repeat="sub_menu3 in sub_menu2.sub_menu" ng-init="level4 = $index">
+                          <input id="chk{{sub_menu3.id}}" type="checkbox" ng-model="sub_menu3.checked_menu" ng-true-value="'Y'" ng-false-value="'N'" ng-checked="checkMenuRole(sub_menu3.id)"> 
+                          <label for="chk{{sub_menu3.id}}">{{sub_menu3.menu_name_th}}</label>
+                        </li>
+                      </ul>
+
+                    </li>
+                  </ul>
+
+              </li>
+            </ul>
+
+          </li>
+        </ul>
+            
+      </label>
+      
+  </div>
+</div>
+
+<div ng-show="PAGE == 'MAIN'">
+  <div class="row form-group">
+      <div class="col col-lg-12">
+        <button class="btn btn-primary pull-right" ng-click="add()">เพิ่มสิทธิ์</button>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-lg-12">
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>ประเภท</th>
+                <th>สถานะ</th>
+                <th>จัดการ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="Data in DataList">
+                <td>{{Data.role_name}}</td>
+                <td>{{Data.actives=='Y'?'ใช้งาน':'ไม่ใช้งาน'}}</td>
+                <td align="center">
+                  <button class="btn btn-default btn-sm" ng-click="edit(Data)">
+                    <span class="glyphicon glyphicon-edit"></span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <ul class="pagination pull-right">
+              <li ng-show="totalPages > 1">
+                <a ng-click="goToPage(0)" aria-label="First">
+                  <span aria-hidden="true">First</span>
+                </a>
+              </li>
+              <li ng-show="totalPages > 1">
+                <a ng-click="goToPage(currentPage - 1)" aria-label="Prev">
+                  <span aria-hidden="true">Prev.</span>
+                </a>
+              </li>
+              <li ng-repeat="page in [] | range : totalPages:currentPage:limitDisplay | limitTo:5" ng-class="{'active':page == (currentPage)}">
+                <a ng-click="goToPage(page)">{{page + 1}}</a>
+              </li>
+              <li ng-show="totalPages > 1">
+                <a ng-click="goToPage(currentPage + 1)" aria-label="Next">
+                  <span aria-hidden="true">Next</span>
+                </a>
+              </li>
+              <li ng-show="totalPages > 1">
+                <a ng-click="goToPage(totalPages - 1)" aria-label="Last">
+                  <span aria-hidden="true">Last</span>
+                </a>
+              </li>
+            </ul>
+        </div>
+      </div>  
+    </div>
+</div>

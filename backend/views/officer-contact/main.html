@@ -1,0 +1,157 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group" style="padding-top: 10px;">
+	  <div class="col-lg-5">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <img src="../files/img/pin-menu.png">
+	        ติดต่อเจ้าหน้าที่ มกอช.
+	        <span ng-show="MenuName.sub_menu != null">
+	        	<img src="../files/img/pin-menu.png">
+				{{MenuName.sub_menu.menu_name_th}}	        	
+	        </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+</div>
+<div ng-show="PAGE == 'PERSON'">
+	<div class="row form-group">
+		<div class="col-lg-12">
+			<button class="btn btn-primary" ng-click="addPerson()">เพิ่มข้อมูล</button>
+		</div>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>ชื่อ-สกุล</th>
+					<th>ตำแหน่ง</th>
+					<th>email</th>
+					<th>สายตรง</th>
+					<th>โทรศัพท์</th>
+					<th>โทรสาร</th>
+					<th>จัดการ</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="data in PersonList">
+					<td>
+						<div class="row form-group">
+							<label class="col-lg-3 form-control-static">
+								ไทย
+							</label>
+							<div class="col-lg-9">
+								<input class="form-control" ng-model="data.name_th" maxlength="150">
+							</div>
+						</div>
+						<div class="row form-group">
+							<label class="col-lg-3 form-control-static">
+								อังกฤษ
+							</label>
+							<div class="col-lg-9">
+								<input class="form-control" ng-model="data.name_en" maxlength="150">
+							</div>
+						</div>
+					</td>
+					<td>
+						<div class="row form-group">
+							<label class="col-lg-3 form-control-static">
+								ไทย
+							</label>
+							<div class="col-lg-9">
+								<input class="form-control" ng-model="data.position_th" maxlength="100">
+							</div>
+						</div>
+						<div class="row form-group">
+							<label class="col-lg-3 form-control-static">
+								อังกฤษ
+							</label>
+							<div class="col-lg-9">
+								<input class="form-control" ng-model="data.position_en" maxlength="150">
+							</div>
+						</div>
+					</td>
+					<td>
+						<div class="row form-group">
+							<div class="col-lg-12">
+								<input class="form-control" ng-model="data.email" maxlength="70">
+							</div>
+						</div>
+					</td>
+					<td>
+						<div class="row form-group">
+							<div class="col-lg-12">
+								<input class="form-control" ng-model="data.hotline" maxlength="20">
+							</div>
+						</div>
+					</td>
+					<td>
+						<div class="row form-group">
+							<div class="col-lg-12">
+								<input class="form-control" ng-model="data.tel" maxlength="20">
+							</div>
+						</div>
+					</td>
+					<td>
+						<div class="row form-group">
+							<div class="col-lg-12">
+								<input class="form-control" ng-model="data.fax" maxlength="20">
+							</div>
+						</div>
+					</td>
+					<td>
+						<button class="btn btn-primary" ng-click="saveOfficer(data, $index)">บันทึก</button>
+						<button class="btn btn-danger" ng-click="removeOfficerData(data.id, $index)">ลบ</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div ng-show="PAGE == 'MAIN'">
+	<div class="row form-group">
+		<div class="col-lg-12">
+			<button class="btn btn-primary" ng-click="addDep()">เพิ่มข้อมูล</button>
+		</div>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>กอง</th>
+					<th>จัดการ</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="data in DepList">
+					<td>
+						<div class="row form-group">
+							<label class="col-lg-3 form-control-static">
+								ภาษาไทย
+							</label>
+							<div class="col-lg-9">
+								<input class="form-control" ng-model="data.dep_name_th">
+							</div>
+						</div>
+						<div class="row form-group">
+							<label class="col-lg-3 form-control-static">
+								ภาษาอังกฤษ
+							</label>
+							<div class="col-lg-9">
+								<input class="form-control" ng-model="data.dep_name_en">
+							</div>
+						</div>
+					</td>
+					<td>
+						<button class="btn btn-primary" ng-click="saveDep(data, $index)">บันทึก</button>
+						<button class="btn btn-danger" ng-click="removeDepData(data.id, $index)">ลบ</button>
+						<button class="btn btn-default" ng-show="data.id != ''" ng-click="loadOfficer(data.id)">จัดการรายชื่อ</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -1,0 +1,13 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group">
+	<div class="col-lg-10 col-lg-offset-1" id="div_preview" bind-html-compile="(DEFAULT_LANGUAGE == 'TH'?Contact.contents:Contact.contents_en)">
+		
+	</div>
+</div>
+<div class="row form-group" ng-repeat="file in Contact.AttachFiles">
+	<div class="col-lg-10 col-lg-offset-1">
+		<a target="_self" href="{{'../'+file.file_path}}" download="{{file.file_name}}">{{file.file_name}}</a>			
+	</div>
+</div>
+
+<div ng-include src="'views/footer.html'"></div>

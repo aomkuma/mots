@@ -1,0 +1,118 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group" style="padding-top: 10px;">
+	  <div class="col-lg-5">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <img src="../files/img/pin-menu.png">
+	        ติอต่อเรา
+	        <span ng-show="MenuName.sub_menu != null">
+	        	<img src="../cio-files/img/pin-menu.png">
+				{{MenuName.sub_menu.menu_name_th}}	        	
+	        </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+</div>
+
+	<div class="row form-group">
+		<label class="form-control-static col-lg-1">
+			<img src="../files/img/user-icon.png" alt="" style="height: 50px;">
+		</label>
+		<label class="form-control-static col-lg-10">
+			ติดต่อเจ้าหน้าที่ มกอช
+			<br>
+
+			<a href="#/officer-contact">คลิกที่นี่เพื่อเข้าสู่หน้าติดต่อเจ้าหน้าที่ มกอช.</a>
+		</label>
+		
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			ที่อยู่ภาษาไทย
+		</label>
+		<div class="col-lg-4">
+			<textarea class="form-control" ng-model="Data.address_th" maxlength="512"></textarea>
+		</div>
+		<label class="form-control-static col-lg-2">
+			ที่อยู่ภาษาอังกฤษ
+		</label>
+		<div class="col-lg-4">
+			<textarea class="form-control" ng-model="Data.address_en" maxlength="512"></textarea>
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			หมายเลขโทรศัพท์
+		</label>
+		<div class="col-lg-3">
+			<input class="form-control" ng-model="Data.tel" maxlength="20">
+		</div>
+		
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			email
+		</label>
+		<div class="col-lg-3">
+			<input class="form-control" ng-model="Data.email" maxlength="70">
+		</div>
+		
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			URL google maps
+		</label>
+		<div class="col-lg-6">
+			<input class="form-control" ng-model="Data.url_google">
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			ไฟล์รูปภาพแผนที่ (ไทย)
+		</label>
+		<div class="col-lg-3">
+			<p class="input-group">
+              <input type="text" readonly="true" class="form-control" ng-model="ImageFile.name" />
+              <span class="input-group-btn">
+                <button class="btn btn-default" ngf-select ng-model="ImageFile" ngf-max-size="25MB"  ngf-model-invalid="ImageFile.invalidFile">เลือก</button>
+              </span>
+            </p>
+		</div>
+		<div class="col-lg-3">
+			<div class="file-alert" ng-show="ImageFile.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{ImageFile.invalidFile.$errorParam}}</div>
+		</div>
+		
+		<div class="col-lg-3 col-md-3 col-sm-10 col-xs-10" ng-show="Data.image_name != ''">
+			<img src="../{{Data.image_path}}" alt="" style="height: 200px;">
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			ไฟล์รูปภาพแผนที่ (อังกฤษ)
+		</label>
+		<div class="col-lg-3">
+			<p class="input-group">
+              <input type="text" readonly="true" class="form-control" ng-model="MapFile.name" />
+              <span class="input-group-btn">
+                <button class="btn btn-default" ngf-select ng-model="MapFile" ngf-max-size="25MB"  ngf-model-invalid="MapFile.invalidFile">เลือก</button>
+              </span>
+            </p>
+		</div>
+		<div class="col-lg-3">
+			<div class="file-alert" ng-show="MapFile.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{MapFile.invalidFile.$errorParam}}</div>
+		</div>
+		
+		<div class="col-lg-3 col-md-3 col-sm-10 col-xs-10" ng-show="Data.map_path != ''">
+			<img src="../{{Data.map_path}}" alt="" style="height: 200px;">
+		</div>
+	</div>
+	
+</fieldset>
+<div class="row form-group">
+	<div class="col-lg-12 text-center">
+		<button class="btn btn-default" ng-click="saveData(Data, ImageFile, MapFile)">บันทึก</button>
+	</div>
+</div>

@@ -1,0 +1,50 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div  style="margin-top:180px;">
+	<div class="row form-group" style="padding-top: 70px;">
+	  <div class="col-lg-10 col-lg-offset-1">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<span class="title-content">
+				<h2>{{(DEFAULT_LANGUAGE == 'TH'?MenuName[MenuName.length - 1].menu_name_th:MenuName[MenuName.length - 1].menu_name_en)}}</h2>
+			</span>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<img src="../files/img/header_line.png">
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1">
+			
+			
+			<div class="row form-group">
+				
+				<ul> 
+					<li ng-repeat="data in DataList">
+						<span class="glyphicon glyphicon-forward" style="color: green;"></span> <a href="{{data.link}}" target="_blank">{{data.title}}</a>
+						<br>
+						<span class="glyphicon glyphicon-calendar" style="color: #ccc;"></span> <span style="color: #999;">{{(data.date)}}</span>
+						<hr>
+					</li>
+				</ul>
+			</div>
+		
+		</div>
+	</div>
+</div>
+<div ng-include src="'views/footer.html'"></div>

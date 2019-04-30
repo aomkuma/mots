@@ -1,0 +1,76 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div  style="margin-top:180px;">
+	<div class="row form-group" style="padding-top: 70px;">
+	  <div class="col-lg-10 col-lg-offset-1">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<span class="title-content">
+				<h2>{{(DEFAULT_LANGUAGE == 'TH'?MenuName[MenuName.length - 1].menu_name_th:MenuName[MenuName.length - 1].menu_name_en)}}</h2>
+			</span>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<img src="../files/img/header_line.png" style="width: 70%;">
+		</div>
+	</div>
+<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1">
+			<div class="row form-group">
+				<label class="form-control-static col-lg-1">
+					ค้นหา
+				</label>
+				<div class="col-lg-2">
+					<input class="form-control" ng-model="condition.keyword">
+				</div>
+				<div class="col-lg-1">
+					<button class="btn btn-primary" ng-click="loadList(condition, operator_type)">ค้นหา</button>
+				</div>
+			</div>
+			<div class="table-responsive">
+				<table class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th>ชื่อบริษัท</th>
+							<th>ขอบข่าย</th>
+							<th>ผลิตภัณฑ์ / ระบบการผลิต</th>
+							<th>หน่วยรับรอง (CB)</th>
+						</tr>	
+					</thead>
+					<tbody>
+						<tr ng-repeat="data in DataList">
+							<td><a ng-click="updateData(data.id)">{{data.group_name}}</a></td>
+							<td>
+								<span ng-repeat="scope in data.form_data1_scope">
+									{{scope.scope_name}}<br>
+								</span>
+							</td>
+							<td>
+								<span ng-repeat="scope in data.form_data1_scope">
+									<span ng-repeat="subscope in scope.form_data1_sub_scope">
+										{{subscope.subscope_name}}<br>
+									</span>
+								</span>
+							</td>
+							<td>{{data.code_number}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+<div ng-include src="'views/footer.html'"></div>

@@ -1,0 +1,345 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group" style="padding-top: 10px;">
+	  <div class="col-lg-10">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+</div>
+<div  ng-show="PAGE == 'UPDATE'">
+	<div class="row form-group" ng-show="MasterList.length > 0">
+		<label class="form-control-static col-lg-2">
+			หมวดหมู่
+		</label>
+		<div class="col-lg-4">
+			<select class="form-control" ng-model="Data.file_type" ng-options="data.type_name as data.type_name for data in MasterList">
+				<option value="">กรุณาเลือก..</option>
+			</select>
+		</div>
+	</div>
+	<div class="row form-group">
+		
+		<div class="col-lg-12">
+			<div class="row form-group" ng-repeat="fle in FileList">
+				<div class="col-lg-12">
+					<div class="row">
+						<label class="form-control-static col-lg-2" ng-show="page_type != 'standard-logo'">
+							ไฟล์ภาษาไทย
+						</label>
+						<label class="form-control-static col-lg-2" ng-show="page_type == 'standard-logo'">
+							หัวข้อ
+						</label>
+						<div class="col-lg-4" >
+							<p class="input-group">
+			                  <input type="text" class="form-control" ng-model="FileName[$index].name_th"   />
+			                  <span class="input-group-btn">
+			                    <button class="btn btn-default" ngf-select ng-model="fle.attachFileTH" ngf-max-size="25MB"  ngf-model-invalid="fle.attachFileTH.invalidFile">เลือก</button>
+			                    
+			                  </span>
+			                </p>
+						</div>
+						<label class="form-control-static col-lg-2">
+							{{fle.attachFileTH.name}}
+						</label>
+						<label class="form-control-static col-lg-1"  ng-show="page_type == 'condition'">
+							รหัสเอกสาร
+						</label>
+						<div class="col-lg-2"  ng-show="page_type == 'condition'">
+							<input type="text" class="form-control" ng-model="FileCode[$index].code_th"   />
+						</div>
+						<label class="form-control-static col-lg-1"  ng-show="page_type == 'skr'">
+							ประจำปี (ไทย)
+						</label>
+						<div class="col-lg-2"  ng-show="page_type == 'skr'">
+							<input type="text" class="form-control" ng-model="FileCode[$index].code_th"   />
+						</div>
+						<div class="col-lg-3">
+							<div class="file-alert" ng-show="fle.attachFileTH.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{fle.attachFileTH.invalidFile.$errorParam}}</div>
+						</div>
+					</div>
+					<div class="row" ng-show="page_type != 'standard-logo'">
+						<label class="form-control-static col-lg-2">
+							ไฟล์ภาษาอังกฤษ
+						</label>
+						<div class="col-lg-4" >
+							<p class="input-group">
+			                  <input type="text" class="form-control" ng-model="FileName[$index].name_en" />
+			                  <span class="input-group-btn">
+			                    <button class="btn btn-default" ngf-select ng-model="fle.attachFileEN" ngf-max-size="25MB"  ngf-model-invalid="fle.attachFileEN.invalidFile">เลือก</button>
+			                    
+			                  </span>
+			                </p>
+						</div>
+						<label class="form-control-static col-lg-2">
+							{{fle.attachFileEN.name}}
+						</label>
+						<label class="form-control-static col-lg-1"  ng-show="page_type == 'condition'">
+							รหัสเอกสาร
+						</label>
+						<div class="col-lg-2"  ng-show="page_type == 'condition'">
+							<input type="text" class="form-control" ng-model="FileCode[$index].code_en"   />
+						</div>
+						<label class="form-control-static col-lg-1"  ng-show="page_type == 'skr'">
+							ประจำปี (อังกฤษ)
+						</label>
+						<div class="col-lg-2"  ng-show="page_type == 'skr'">
+							<input type="text" class="form-control" ng-model="FileCode[$index].code_en"   />
+						</div>
+						<div class="col-lg-3">
+							<div class="file-alert" ng-show="fle.attachFileEN.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{fle.attachFileEN.invalidFile.$errorParam}}</div>
+						</div>
+					</div>
+					<div class="row form-group" ng-show="page_type == 'paper'">
+						<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+							วันที่เผยแพร่
+						</label>
+						<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" >
+							<p class="input-group">
+								<input type="text" class="form-control" ng-model="Data.file_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup1.opened" required="true">
+								<span class="input-group-btn">
+					            	<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+					          </span>
+					        </p>
+						</div>
+					</div>
+					<div class="row form-group">
+						<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+							สถานะ
+						</label>
+						<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" >
+							<div class="btn-group">
+								<label class="btn btn-default btn-checkbox" ng-model="Data.actives" uib-btn-radio="'Y'" >ใช้งาน</label>
+					            <label class="btn btn-default btn-checkbox" ng-model="Data.actives" uib-btn-radio="'N'" >ไม่ใช้งาน</label>
+					        </div>
+						</div>
+					</div>
+					<hr>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row form-group" ng-show="FileList.length > 0">
+		<div class="col-lg-12 text-center">
+			<button class="btn btn-info" ng-click="save('attachfile-multi/update', Data, FileList, FileName, FileCode)">บันทึก</button>
+			<button class="btn btn-default" ng-click="cancel()">ยกเลิก</button>
+		</div>
+	</div>
+</div>
+<div ng-show="PAGE == 'MAIN'">
+	<div class="table-responsive">
+		<div class="col-lg-12">
+			<table class="table table-striped" ng-show="page_type != 'skr' && page_type != 'rule-food' && page_type != 'patrol' && page_type != 'standard-logo'" ng-repeat="(listName, list) in model.list">
+				<caption>
+					<button class="btn btn-primary" ng-click="add()"><span class="glyphicon glyphicon-plus"></span> เพิ่ม</button>
+				</caption>
+				<thead>
+					<tr>
+						<th>ลำดับ</th>
+						<th>เรื่อง</th>
+						<th ng-show="page_type == 'condition'">รหัวเอกสาร</th>
+						<th>จัดการข้อมูล</th>
+					</tr>
+				</thead>
+				<tbody dnd-list="list">
+					<tr ng-repeat="data in list" dnd-draggable="data"
+					        dnd-moved="list.splice($index, 1)"
+					        dnd-effect-allowed="move"
+					        dnd-selected="model.selected = data" 
+					        dnd-dragend="dropCallback(list)">
+						<td>{{ $index + 1}}</td>
+						<td>
+							{{data.AttachFiles[0].display_name}}
+							<br>
+							{{data.AttachFiles[1].display_name}}
+						</td>
+						<td ng-show="page_type == 'condition'">{{data.AttachFiles[0].file_code}}
+							<br>
+							{{data.AttachFiles[1].file_code}}
+						</td>
+						<td>
+							<button class="btn btn-default" ng-click="edit(data)"><span class="glyphicon glyphicon-edit"></span></button>
+							<button class="btn btn-danger" ng-click="removeData(data.id)"><span class="glyphicon glyphicon-trash"></span></button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table class="table table-striped" ng-show="page_type == 'skr'" ng-repeat="(listName, list) in model.list">
+				<caption>
+					<div class="row form-group">
+						<label class="form-control-static col-lg-1">
+							ค้นหา
+						</label> 
+						<div class="col-lg-3">
+							<input class="form-control" ng-model="condition.keyword">
+						</div>
+						<div class="col-lg-2">
+							<button class="btn btn-primary" ng-click="search(condition)"> <span class="glyphicon glyphicon-search"></span> ค้นหา</button>
+						</div>
+						<div class="col-lg-6">
+							<button class="btn btn-primary pull-right" ng-click="add()"><span class="glyphicon glyphicon-plus"></span> เพิ่ม</button>
+						</div>
+					</div>
+					
+				</caption>
+				<thead>
+					<tr>
+						<th>ประจำปี</th>
+						<th>จัดการข้อมูล</th>
+					</tr>
+				</thead>
+				<tbody dnd-list="list">
+					<tr ng-repeat="data in list" dnd-draggable="data"
+					        dnd-moved="list.splice($index, 1)"
+					        dnd-effect-allowed="move"
+					        dnd-selected="model.selected = data" 
+					        dnd-dragend="dropCallback(list)">
+						<td>{{data.AttachFiles[0].file_code}}
+							<br>
+							{{data.AttachFiles[1].file_code}}
+						</td>
+						<td>
+							<button class="btn btn-default" ng-click="edit(data)"><span class="glyphicon glyphicon-edit"></span></button>
+							<button class="btn btn-danger" ng-click="removeData(data.id)"><span class="glyphicon glyphicon-trash"></span></button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table class="table table-striped" ng-show="page_type == 'rule-food'" ng-repeat="(listName, list) in model.list">
+				<caption>
+					<div class="row form-group">
+						<label class="form-control-static col-lg-1">
+							ค้นหา
+						</label> 
+						<div class="col-lg-3">
+							<input class="form-control" ng-model="condition.keyword">
+						</div>
+						<div class="col-lg-2">
+							<button class="btn btn-primary" ng-click="search(condition)"> <span class="glyphicon glyphicon-search"></span> ค้นหา</button>
+						</div>
+						<div class="col-lg-6">
+							<button class="btn btn-primary pull-right" ng-click="add()"><span class="glyphicon glyphicon-plus"></span>  เพิ่ม</button>
+						</div>
+					</div>
+					
+				</caption>
+				<thead>
+					<tr>
+						<th>รายชื่อ</th>
+						<th>จัดการข้อมูล</th>
+					</tr>
+				</thead>
+				<tbody dnd-list="list">
+					<tr ng-repeat="data in list" dnd-draggable="data"
+					        dnd-moved="list.splice($index, 1)"
+					        dnd-effect-allowed="move"
+					        dnd-selected="model.selected = data" 
+					        dnd-dragend="dropCallback(list)">
+						<td>{{data.AttachFiles[0].display_name}}
+							<br>
+							{{data.AttachFiles[1].display_name}}
+						</td>
+						<td>
+							<button class="btn btn-default" ng-click="edit(data)"><span class="glyphicon glyphicon-edit"></span></button>
+							<button class="btn btn-danger" ng-click="removeData(data.id)"><span class="glyphicon glyphicon-trash"></span></button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div ng-show="page_type == 'patrol'">
+				<div class="row form-group">
+					<div class="col-lg-2">
+						<button class="btn btn-primary btn-block" ng-repeat="data in FileTypeList" ng-click="setFileType($index)" ng-class="{'active':$index == FileTypeIndex}">
+							{{data.file_type}}
+						</button>
+					</div>
+					<div class="col-lg-10">
+
+						<table class="table table-bordered table-striped" ng-repeat="(listName, list) in model.list">
+							<caption>
+								<div class="row form-group">
+									<label class="form-control-static col-lg-6">
+										{{FileType}}
+									</label> 
+									<label class="form-control-static col-lg-1">
+										ค้นหา
+									</label> 
+									<div class="col-lg-3">
+										<input class="form-control" ng-model="condition.keyword">
+									</div>
+									<div class="col-lg-2">
+										<button class="btn btn-primary" ng-click="search(condition)"> <span class="glyphicon glyphicon-search"></span> ค้นหา</button>
+									</div>
+								</div>
+							</caption>
+							<thead>
+								<tr>
+									<th>ชื่อเอกสาร</th>
+									<th>ดาวน์โหลด</th>
+								</tr>
+							</thead>
+							<tbody dnd-list="list">
+								<tr ng-repeat="data in list" dnd-draggable="data"
+							        dnd-moved="list.splice($index, 1)"
+							        dnd-effect-allowed="move"
+							        dnd-selected="model.selected = data" 
+							        dnd-dragend="dropCallback(list)">
+									<td>{{data.AttachFiles[0].display_name}}</td>
+									<td><a href="../{{data.AttachFiles[0].file_path}}" role="button" class="btn btn-default" download="{{data.AttachFiles[0].file_name}}"><span class="glyphicon glyphicon-download"></span></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<div ng-show="page_type == 'standard-logo'">
+				<div class="row form-group">
+					
+					<div class="col-lg-12">
+
+						<table class="table table-bordered table-striped" ng-repeat="(listName, list) in model.list">
+							<caption>
+								<button class="btn btn-primary" ng-click="add()"><span class="glyphicon glyphicon-plus"></span> เพิ่ม</button>
+							</caption>
+							<thead>
+								<tr>
+									<th>หัวข้อ</th>
+									<th>รูปภาพ</th>
+									<th>แก้ไข</th>
+								</tr>
+							</thead>
+							<tbody dnd-list="list">
+								<tr ng-repeat="data in list" dnd-draggable="data"
+							        dnd-moved="list.splice($index, 1)"
+							        dnd-effect-allowed="move"
+							        dnd-selected="model.selected = data" 
+							        dnd-dragend="dropCallback(list)">
+									<td>{{data.AttachFiles[0].display_name}}</td>
+									<td>
+										<img src="../{{data.AttachFiles[0].file_path}}" alt="" height="40">
+									</td>
+									<td>
+										<button class="btn btn-default" ng-click="edit(data)"><span class="glyphicon glyphicon-edit"></span></button>
+										<button class="btn btn-danger" ng-click="removeData(data.id)"><span class="glyphicon glyphicon-trash"></span></button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>	
+
+	</div>
+</div>

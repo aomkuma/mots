@@ -1,0 +1,97 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div class="row form-group" style="padding-top: 10px;">
+	  <div class="col-lg-5">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <img src="../files/img/pin-menu.png">
+	        แบนเนอร์รอง
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+</div>
+
+<div ng-show="PAGE == 'UPDATE'">
+	<div class="row form-group">
+		<div class="col-lg-12 text-center">
+			<img ngf-thumbnail="AttachFile" style="" ng-show="AttachFile != null && LinkUrl.image_path == null">
+			<img src="{{'../'+ LinkUrl.image_path}}" style="" ng-show="LinkUrl.image_path != null && AttachFile == null">
+		</div>
+	</div>
+
+	<div class="row form-group">
+		<label class="col-lg-2 col-lg-offset-2 form-control-static">
+			รูปภาพลิ้งค์
+		</label>
+		<div class="col-lg-4" >
+			<p class="input-group">
+	          <input type="text" readonly="true" class="form-control" ng-model="AttachFile.name" />
+	          <span class="input-group-btn">
+	            <button class="btn btn-default" ngf-select ng-model="AttachFile" ngf-max-size="5MB"  ngf-model-invalid="AttachFile.invalidFile" accept="image/*" ngf-pattern="'.png,.jpg,.gif'" >เลือก</button>
+	          </span>
+	        </p>
+		</div>
+		<div class="col-lg-3">
+			<div class="file-alert" ng-show="fle.attachFile.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{AttachFile.invalidFile.$errorParam}}</div>
+			<span style="color: red;">ขนาดแนะนำ 900 * 300 px</span>
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="col-lg-2 col-xs-12 form-control-static">
+			ประเภทลิ้งค์
+		</label>
+		<div class="col-lg-4 col-xs-12">
+			<input type="text" class="form-control" ng-model="LinkUrl.link_type">
+		</div>
+		<label class="col-lg-2 col-xs-12 form-control-static">
+			Url ลิ้งค์
+		</label>
+		<div class="col-lg-4 col-xs-12">
+			<input type="text" class="form-control" ng-model="LinkUrl.link_url">
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="col-lg-2 col-xs-12 form-control-static">
+			ลำดับ
+		</label>
+		<div class="col-lg-4 col-xs-12">
+			<input type="text" class="form-control" ng-model="LinkUrl.order_no">
+		</div>
+		
+	</div>
+	
+	<div class="page-header text-center">
+		<button class="btn btn-info" ng-click="save('linkurl/update', LinkUrl, AttachFile)">บันทึก</button>
+		<button class="btn btn-default" ng-click="cancelUpdate()">ยกเลิก</button>
+	</div>
+</div>
+<div class="row form-group" ng-show="PAGE == 'MAIN'">
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<caption><button ng-click="add()" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> เพิ่ม</button></caption>
+			<thead>
+				<tr>
+					<th>ลำดับ</th>
+					<th>รูปภาพลิ้งค์</th>
+					<th>Url ลิ้งค์</th>
+					<th>จัดการ</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="data in LinkUrlList">
+					
+					<td>{{data.order_no}}</td>
+					<td><img src="{{ '../' + data.image_path }}" style="height: 30px;"></td>
+					<td>{{data.link_url}}</td>
+					<td>
+						<button class="btn btn-default btn-xs" ng-click="edit(data)"><span class="glyphicon glyphicon-edit"></span></button>
+						<button class="btn btn-danger btn-xs" ng-click="remove('linkurl/delete', data.id)"><span class="glyphicon glyphicon-trash"></span></button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

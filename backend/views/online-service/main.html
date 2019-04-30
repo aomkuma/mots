@@ -1,0 +1,238 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group" style="padding-top: 10px;">
+	  <div class="col-lg-5">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <img src="../files/img/pin-menu.png">
+	        {{MenuName.menu_name_th}}
+	        <span ng-show="MenuName.sub_menu != null">
+	        	<img src="../files/img/pin-menu.png">
+				{{MenuName.sub_menu.menu_name_th}}	        	
+	        </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+</div>
+
+<div ng-show="PAGE == 'UPDATE'">
+	<fieldset ng-disabled="true">
+		<div class="row form-group">
+			<div class="col-lg-12 text-center">
+				<h3>แบบขอใช้บริการออนไลน์</h3>
+			</div>
+		</div>
+		<div class="row form-group">
+			<h4>1. ข้อมูลผู้ยื่นคำขอรับบริการ</h4>
+		</div>
+
+		<div class="row form-group">
+			<label class="form-control-static col-lg-4">
+				ข้าพเจ้า &nbsp;&nbsp;
+				<input type="radio" ng-model="Data.prefix" value="นาย"> นาย &nbsp;
+				<input type="radio" ng-model="Data.prefix" value="นาง"> นาง &nbsp;
+				<input type="radio" ng-model="Data.prefix" value="นางสาว"> นางสาว &nbsp;
+				<input type="radio" ng-model="Data.prefix" value="อื่นๆ"> อื่นๆ &nbsp;
+			</label>
+			<div class="col-lg-2" ng-show="Data.prefix != 'นาย' && Data.prefix != 'นาง' && Data.prefix != 'นางสาว'">
+				<input class="form-control" ng-model="Data.prefix" maxlength="70">
+			</div>
+			
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-1">
+				ชื่อ
+			</label>
+			<div class="col-lg-2">
+				<input class="form-control" ng-model="Data.firstname" maxlength="70">
+			</div>
+			<label class="form-control-static col-lg-1">
+				สกุล
+			</label>
+			<div class="col-lg-2">
+				<input class="form-control" ng-model="Data.lastname" maxlength="70">
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-6">
+				อาชีพ &nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" ng-model="Data.occupation" value="รับราชการ"> รับราชการ &nbsp;
+				<input type="radio" ng-model="Data.occupation" value="นักศึกษา"> นักศึกษา &nbsp;
+				<input type="radio" ng-model="Data.occupation" value="พนักงานบริษัท"> พนักงานบริษัท &nbsp;
+				<input type="radio" ng-model="Data.occupation" value="ประกอบธุรกิจส่วนตัว"> ประกอบธุรกิจส่วนตัว &nbsp;
+				<input type="radio" ng-model="Data.occupation" value="อื่นๆ"> อื่นๆ &nbsp;
+			</label>
+			<div class="col-lg-2" ng-show="Data.occupation != 'รับราชการ' && Data.occupation != 'นักศึกษา' && Data.occupation != 'พนักงานบริษัท' && Data.occupation != 'ประกอบธุรกิจส่วนตั'">
+				<input class="form-control" ng-model="Data.occupation" maxlength="70">
+			</div>
+			
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				รหัสบัตรประชาชน
+			</label>
+			<div class="col-lg-2">
+				<input class="form-control" ng-model="Data.id_card" maxlength="13">
+			</div>
+			<label class="form-control-static col-lg-2">
+				เลขบัตรประจำตัวนักศึกษา
+			</label>
+			<div class="col-lg-2">
+				<input class="form-control" ng-model="Data.student_card" maxlength="20">
+			</div>
+		</div>
+
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				ชื่อสถาบันศึกษา หรือ สถานที่ทำงาน
+			</label>
+			<div class="col-lg-6">
+				<input class="form-control" ng-model="Data.work_place" maxlength="512">
+			</div>
+			
+		</div>
+
+		<div class="row form-group">
+			<label class="form-control-static col-lg-1">
+				ที่อยู่
+			</label>
+			<div class="col-lg-3">
+				<textarea class="form-control" ng-model="Data.address"></textarea>
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-1">
+				จังหวัด
+			</label>
+			<div class="col-lg-3">
+				<select class="form-control" ng-model="Data.province" ng-options="data.ProvinceName as data.ProvinceName for data in ProvinceList">
+					<option value="">กรุณาเลือก..</option>
+				</select>
+			</div>
+			<label class="form-control-static col-lg-1">
+				รหัสไปรษณีย์
+			</label>
+			<div class="col-lg-2">
+				<input class="form-control" ng-model="Data.postcode" maxlength="5">
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-1">
+				โทรศัพท์บ้าน
+			</label>
+			<div class="col-lg-3">
+				<input class="form-control" ng-model="Data.tel" maxlength="20">
+			</div>
+			<label class="form-control-static col-lg-1">
+				อีเมล
+			</label>
+			<div class="col-lg-3">
+				<input class="form-control" ng-model="Data.email" maxlength="70">
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<h4>2. ข้อมูลที่ขอรับบริการ</h4>
+		</div> 
+		<div class="row form-group">
+			<label class="form-control-static col-lg-5">
+				ตาม &nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" ng-model="Data.section" value="มาตรา 9"> มาตรา 9 &nbsp;
+				<input type="radio" ng-model="Data.section" value="มาตรา 11 แห่งพระราชบัญญัติข้อมูลข่าวสาร พ.ศ.2540"> มาตรา 11 แห่งพระราชบัญญัติข้อมูลข่าวสาร พ.ศ.2540 &nbsp;
+			</label>
+			<div class="col-lg-2" ng-show="Data.occupation == 'อื่นๆ'">
+				<input class="form-control" ng-model="Data.other_occupation" maxlength="70">
+			</div>
+			
+		</div>
+		<div class="row form-group" ng-repeat="data in Data.online_service_type">
+			<label class="form-control-static col-lg-1">
+				
+			</label>
+			<div class="col-lg-4">
+				<input id="list_type{{$index}}" type="checkbox" value="ตามที่อยู่" ng-click="toggleServiceTypeList($index, data.checked)"> <label for="list_type{{$index}}"> {{data.request_type}}</label>
+			</div>
+			<label class="form-control-static col-lg-1">
+				เรื่อง
+			</label>
+			<div class="col-lg-2">
+				<input class="form-control" ng-model="data.request_desc">
+			</div>
+		</div>
+		<div class="row form-group">
+			<h4>3. เหตุผลที่ต้องการขอข้อมูล </h4>
+		</div> 
+		<div class="row form-group">
+			<label class="form-control-static col-lg-1">
+				รายละเอียด
+			</label>
+			<div class="col-lg-5">
+				<textarea class="form-control" ng-model="Data.request_description"></textarea>
+			</div>
+		</div>
+	</fieldset>
+	<br><br>
+	<fieldset>
+		<legend>สถานะการดำเนินการ</legend>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-12">
+				<input type="radio" ng-model="Data.status" value="รอการดำเนินการ"> รอการดำเนินการ &nbsp;
+				<input type="radio" ng-model="Data.status" value="ดำเนินการเสร็จสิ้น"> ดำเนินการเสร็จสิ้น &nbsp;
+			</label>
+		</div>
+	</fieldset>
+	<div class="row form-group">
+		<div class="col-lg-12 text-center">
+			<button class="btn btn-primary" ng-click="updateData(Data)">บันทึก</button>
+			<button class="btn btn-danger" ng-click="cancel('MAIN')">ยกเลิก</button>
+			
+		</div>
+	</div>
+</div>
+<div ng-show="PAGE == 'MAIN'">
+	<div class="row form-group">
+		<label class="form-control-static col-lg-1">
+			ปี
+		</label>
+		<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+			<select name="Year" class="form-control" ng-model="condition.years" ng-options="year.yearText as year.yearValue for year in YearList" required="required">
+					<option value="">กรุณาเลือก..</option>
+				</select>
+		</div>
+		<label class="form-control-static col-lg-1">
+			เดือน
+		</label>
+		<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+			<select name="Year" class="form-control" ng-model="condition.months" ng-options="month.monthValue as month.monthText for month in MonthList" required="required">
+					<option value="">กรุณาเลือก..</option>
+				</select>
+		</div>
+		<div class="col-lg-4">
+			<button class="btn btn-primary" ng-click="loadList(condition)"> <span class="glyphicon glyphicon-search"></span> ค้นหา</button>
+		</div>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>ชื่อ - นามสกุล</th>
+					<th>เมื่อ</th>
+					<th>สถานะ</th>
+					<th>จัดการ</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="data in DataList">
+					<td>{{data.firstname}} {{data.lastname}}</td>
+					<td>{{data.create_date}}</td>
+					<td>{{data.status}}</td>
+					<td>
+						<button class="btn btn-success" ng-click="viewData(data)">เรียกดู</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

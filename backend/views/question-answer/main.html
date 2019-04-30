@@ -1,0 +1,108 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group" style="padding-top: 10px;">
+	  <div class="col-lg-5">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <img src="../files/img/pin-menu.png">
+	        สอบถามผ่านทางระบบ (Q&A)
+	        <span ng-show="MenuName.sub_menu != null">
+	        	<img src="../files/img/pin-menu.png">
+				{{MenuName.sub_menu.menu_name_th}}	        	
+	        </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+</div>
+<div ng-show="PAGE == 'UPDATE'">
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1">
+			
+			<div class="row form-group">
+				<label class="form-control-static col-lg-2">
+					คำถาม
+				</label>
+				<label class="form-control-static col-lg-5">
+					{{Data.question_desc}}
+				</label>
+			</div>
+			<div class="row form-group">
+				<label class="form-control-static col-lg-2">
+					สถานะ
+				</label>
+				<div class="col-lg-10">
+					<div class="btn-group">
+		                <label class="btn btn-default btn-checkbox" ng-model="Data.question_status" uib-btn-radio="'pending'">รอการดำเนินการ</label>
+		                <label class="btn btn-default btn-checkbox" ng-model="Data.question_status" uib-btn-radio="'completed'">ดำเนินการแล้ว</label>
+		            </div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+					ตอบเมื่อวันที่
+				</label>
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" >
+					<p class="input-group">
+						<input type="text" class="form-control" ng-model="Data.answer_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup1.opened" required="true">
+						<span class="input-group-btn">
+			            	<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+			          </span>
+			        </p>
+				</div>
+			</div>
+			
+			<div class="row form-group">
+				<label class="form-control-static col-lg-2">
+					ตอบคำถาม
+				</label>
+				<div class="col-lg-5">
+					<textarea class="form-control" ng-model="Data.answer_desc"></textarea>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-lg-12 text-center">
+					<button class="btn btn-primary" ng-click="updateData(Data)">บันทึก</button>
+					<button class="btn btn-default" ng-click="cancel('MAIN')">บันทึก</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div ng-show="PAGE == 'MAIN'">
+	
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>ลำดับ</th>
+					<th>รายการคำถาม</th>
+					<th>สถานะการดำเนินงาน</th>
+					<th>วันที่ตอบคำถาม</th>
+					<th>จัดการ</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="data in DataList">
+					<td>
+						{{$index + 1}}	
+					</td>
+					<td>
+						{{data.question_desc}}
+					</td>
+					<td>
+						{{data.question_status == 'pending'?'รอการดำเนินงาน':'ดำเนินงานแล้ว'}}
+					</td>
+					<td>
+						{{data.answer_date}}	
+					</td>
+					<td>
+						<button class="btn btn-primary" ng-click="updateAnswer(data, $index)">แก้ไข</button>
+						<button class="btn btn-danger" ng-click="removeData(data.id, $index)">ลบ</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

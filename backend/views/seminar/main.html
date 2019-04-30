@@ -1,0 +1,376 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group" style="padding-top: 10px;">
+	  <div class="col-lg-10">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+</div>
+<div ng-show="PAGE == 'VIEW_RESPONSE_DETAIL'">
+	<fieldset ng-disabled="true">
+	<div class="row form-group">
+		<div class="col-lg-12">
+			<div class="row form-group">
+				<div class="row form-group">
+					<div class="col-lg-12">
+						<h4>ตอบรับการฝึกอบรม</h4>
+					</div>
+					<div class="col-lg-12">
+						<div style="height: 2px; background-color: #13569A; width: 100%;"></div>
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<label class="col-lg-2 form-control-static">
+					สถานะ
+				</label>
+				<div class="col-lg-3">
+					<input class="form-control" ng-model="Detail.status" required="true">
+				</div>
+			</div>
+			<div class="row form-group">
+				<label class="col-lg-2 form-control-static">
+					ชื่อ-สกุล
+				</label>
+				<div class="col-lg-3">
+					<input class="form-control" ng-model="Detail.name" required="true">
+				</div>
+				<label class="col-lg-2 form-control-static">
+					ตำแหน่ง
+				</label>
+				<div class="col-lg-3">
+					<input class="form-control" ng-model="Detail.position" required="true">
+				</div>
+			</div>
+			<div class="row form-group">
+				<label class="col-lg-2 form-control-static">
+					หน่วยงาน
+				</label>
+				<div class="col-lg-3">
+					<input class="form-control" ng-model="Detail.organize" required="true">
+				</div>
+				<label class="col-lg-2 form-control-static">
+					โทรศัพท์
+				</label>
+				<div class="col-lg-3">
+					<input class="form-control" ng-model="Detail.tel">
+				</div>
+			</div>
+			<div class="row form-group">
+				<label class="col-lg-2 form-control-static">
+					โทรสาร
+				</label>
+				<div class="col-lg-3">
+					<input class="form-control" ng-model="Detail.fax">
+				</div>
+				<label class="col-lg-2 form-control-static">
+					โทรศัพท์มือถือ
+				</label>
+				<div class="col-lg-3">
+					<input class="form-control" ng-model="Detail.mobile" required="true">
+				</div>
+			</div>
+			<div class="row form-group">
+				<label class="col-lg-2 form-control-static">
+					อีเมล์
+				</label>
+				<div class="col-lg-3">
+					<input class="form-control" ng-model="Detail.email" required="true">
+				</div>
+			</div>
+			<div class="row form-group" ng-show="page_type != 'standard-commodity'">
+				<label class="col-lg-2 form-control-static">
+					ไฟล์แนบ
+				</label>
+				<label class="col-lg-10 form-control-static">
+					<a href="../{{Detail.file_path}}" download="{{Detail.file_name}}">{{Detail.file_name}}</a>
+				</label>
+				
+			</div>
+			<fieldset ng-show="Data.accommodation == 'มีที่พัก'">
+				<legend>ที่พัก</legend>
+				<div class="row form-group">
+					<label class="col-lg-2 col-lg-offset-1 form-control-static">
+						<input type="radio" id="accommodation1" ng-model="Detail.accommodation" value="เข้าพัก"> 
+						<label for="accommodation1"> ประสงค์จะเข้าพักในวันที่</label>
+					</label>
+					<div class="col-lg-2" ng-show="Detail.accommodation == 'เข้าพัก'">
+						<p class="input-group">
+							<input type="text" class="form-control" ng-model="Detail.start_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup1.opened" placeholder="ตั้งแต่..">
+							<span class="input-group-btn">
+				            	<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+				          </span>
+				        </p>
+					</div>
+					<label class="col-lg-1 form-control-static" ng-show="Detail.accommodation == 'เข้าพัก'">
+						ออกวันที่
+					</label>
+					<div class="col-lg-2" ng-show="Detail.accommodation == 'เข้าพัก'">
+						<p class="input-group">
+							<input type="text" class="form-control" ng-model="Detail.end_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup2.opened" placeholder="ถึง..">
+							<span class="input-group-btn">
+				            	<button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+				          </span>
+				        </p>
+					</div>
+				</div>
+				<div class="row form-group">
+					<label class="col-lg-2 col-lg-offset-1 form-control-static">
+						<input type="radio" id="accommodation2" ng-model="Detail.accommodation" value="ไม่เข้าพัก"> 
+						<label for="accommodation2"> ไม่ประสงค์จะเข้าพัก</label>
+					</label>
+				</div>
+			</fieldset>
+			
+		</div>
+	</div>
+	</fieldset>
+	<div class="row form-group">
+		<div class="col-lg-12 text-center">
+			<button class="btn btn-default" ng-click="cancel('VIEW_RESPONSE_LIST')">ย้อนกลับ</button>
+		</div>
+	</div>
+</div>
+
+<div ng-show="PAGE == 'VIEW_RESPONSE_LIST'">
+	<div class="table-responsive">
+			<table class="table table-striped">
+				<caption>
+					<button class="btn btn-default" ng-click="cancel('UPDATE')">ย้อนกลับ</button>
+				</caption>
+				<thead>
+					<tr>
+						<th>รายชื่อผู้ตอบรับ</th>
+						<th>จัดการ</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="data in ResponseList">
+						<td>{{data.name}}</td>
+						<td>
+							<button class="btn btn-warning" ng-click="viewResponseDetail(data)"> ดูข้อมูล</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+</div>
+
+<div ng-show="PAGE == 'UPDATE'">
+	<div class="row form-group">
+		<div class="col-lg-12">
+			<div class="row form-group">
+				<label class="form-control-static col-lg-2">
+					หัวข้อภาษาไทย
+				</label>
+				<div class="col-lg-10" >
+					<input class="form-control" ng-model="Data.title_th" maxlength="255" required="true">
+				</div>
+			</div>
+			<div class="row form-group">
+				<label class="form-control-static col-lg-2">
+					หัวข้อภาษาอังกฤษ
+				</label>
+				<div class="col-lg-10" >
+					<input class="form-control" ng-model="Data.title_en" maxlength="255">
+				</div>
+			</div>
+			<div class="row form-group">
+				<label class="form-control-static col-lg-2">
+					รายละเอียดภาษาไทย
+				</label>
+				<div class="col-lg-10" >
+					<textarea class="form-control" id="editor1" name="editor1" ng-model="Data.content_th" rows="100" data-sample="40" data-sample-short="" >
+					</textarea>
+				</div>
+			</div>
+			<div class="row form-group">
+				<label class="form-control-static col-lg-2">
+					รายละเอียดภาษาอังกฤษ
+				</label>
+				<div class="col-lg-10" >
+					<textarea class="form-control" id="editor2" name="editor2" ng-model="Data.content_en" rows="100" data-sample="40" data-sample-short="" >
+					</textarea>
+				</div>
+			</div>
+
+			<fieldset>
+				<legend>กำหนดการ</legend>
+				<div class="row">
+					<label class="form-control-static col-lg-2">
+						ไฟล์ภาษาไทย
+					</label>
+					<div class="col-lg-4" >
+						<p class="input-group">
+		                  <input type="text" class="form-control" ng-model="ScheduleFile.attachFileTH.name"   />
+		                  <span class="input-group-btn">
+		                    <button class="btn btn-default" ngf-select ng-model="ScheduleFile.attachFileTH" ngf-max-size="25MB"  ngf-model-invalid="ScheduleFile.attachFileTH.invalidFile">เลือก</button>
+		                    
+		                  </span>
+		                </p>
+					</div>
+					<label class="form-control-static col-lg-2">
+						{{Data.schedule_filename_th}}
+					</label>
+					<div class="col-lg-3">
+						<div class="file-alert" ng-show="ScheduleFile.attachFileTH.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{ScheduleFile.attachFileTH.invalidFile.$errorParam}}</div>
+					</div>
+				</div>
+				<div class="row">
+					<label class="form-control-static col-lg-2">
+						ไฟล์ภาษาอังกฤษ
+					</label>
+					<div class="col-lg-4" >
+						<p class="input-group">
+		                  <input type="text" class="form-control" ng-model="ScheduleFile.attachFileEN.name" />
+		                  <span class="input-group-btn">
+		                    <button class="btn btn-default" ngf-select ng-model="ScheduleFile.attachFileEN" ngf-max-size="25MB"  ngf-model-invalid="ScheduleFile.attachFileEN.invalidFile">เลือก</button>
+		                    
+		                  </span>
+		                </p>
+					</div>
+					<label class="form-control-static col-lg-2">
+						{{Data.schedule_filename_en}}
+					</label>
+					<div class="col-lg-3">
+						<div class="file-alert" ng-show="ScheduleFile.attachFileEN.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{ScheduleFile.attachFileEN.invalidFile.$errorParam}}</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-2">
+						ช่วงทั่เปิดรับสมัคร
+					</label>
+					<div class="col-lg-2" >
+						<p class="input-group">
+							<input type="text" class="form-control" ng-model="Data.start_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup1.opened" required="true">
+							<span class="input-group-btn">
+				            	<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+				          </span>
+				        </p>
+					</div>
+					<div class="col-lg-2" >
+						<p class="input-group">
+							<input type="text" class="form-control" ng-model="Data.end_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup2.opened" required="true">
+							<span class="input-group-btn">
+				            	<button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+				          </span>
+				        </p>
+					</div>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-2">
+						ที่พัก
+					</label>
+					<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" >
+						<div class="btn-group">
+							<label class="btn btn-default btn-checkbox" ng-model="Data.accommodation" uib-btn-radio="'มีที่พัก'" >มีที่พัก</label>
+				            <label class="btn btn-default btn-checkbox" ng-model="Data.accommodation" uib-btn-radio="'ไม่มีที่พัก'" >ไม่มีที่พัก</label>
+				        </div>
+					</div>
+				</div>
+			</fieldset>
+			<div class="row form-group">
+				<div class="col-lg-12" >
+					<button class="btn btn-success" ng-click="viewResponseList(Data.id)">รายชื่อผู้ตอบรับการเข้าร่วมสัมนา</button>
+				</div>
+			</div>
+			<fieldset>
+				<legend>รายชื่อผู้เข้าร่วม</legend>
+				<div class="row">
+					<label class="form-control-static col-lg-2">
+						ไฟล์ภาษาไทย
+					</label>
+					<div class="col-lg-4" >
+						<p class="input-group">
+		                  <input type="text" class="form-control" ng-model="ParticipantFile.attachFileTH.name"   />
+		                  <span class="input-group-btn">
+		                    <button class="btn btn-default" ngf-select ng-model="ParticipantFile.attachFileTH" ngf-max-size="25MB"  ngf-model-invalid="ParticipantFile.attachFileTH.invalidFile">เลือก</button>
+		                    
+		                  </span>
+		                </p>
+					</div>
+					<label class="form-control-static col-lg-2">
+						{{Data.participant_filename_th}}
+					</label>
+					<div class="col-lg-3">
+						<div class="file-alert" ng-show="ParticipantFile.attachFileTH.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{ParticipantFile.attachFileTH.invalidFile.$errorParam}}</div>
+					</div>
+				</div>
+				<div class="row">
+					<label class="form-control-static col-lg-2">
+						ไฟล์ภาษาอังกฤษ
+					</label>
+					<div class="col-lg-4" >
+						<p class="input-group">
+		                  <input type="text" class="form-control" ng-model="ParticipantFile.attachFileEN.name" />
+		                  <span class="input-group-btn">
+		                    <button class="btn btn-default" ngf-select ng-model="ParticipantFile.attachFileEN" ngf-max-size="25MB"  ngf-model-invalid="ParticipantFile.attachFileEN.invalidFile">เลือก</button>
+		                    
+		                  </span>
+		                </p>
+					</div>
+					<label class="form-control-static col-lg-2">
+						{{Data.participant_filename_en}}
+					</label>
+					<div class="col-lg-3">
+						<div class="file-alert" ng-show="ParticipantFile.attachFileEN.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{ParticipantFile.attachFileEN.invalidFile.$errorParam}}</div>
+					</div>
+				</div>
+			</fieldset>
+			<hr>
+			<div class="row form-group">
+				<label class="form-control-static col-lg-2">
+					สถานะ
+				</label>
+				<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" >
+					<div class="btn-group">
+						<label class="btn btn-default btn-checkbox" ng-model="Data.actives" uib-btn-radio="'Y'" >ใช้งาน</label>
+			            <label class="btn btn-default btn-checkbox" ng-model="Data.actives" uib-btn-radio="'N'" >ไม่ใช้งาน</label>
+			        </div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-lg-12 text-center">
+					<button class="btn btn-primary" ng-click="saveData(Data, ScheduleFile, ParticipantFile)"> บันทึก</button>
+					<button class="btn btn-default" ng-click="cancel('MAIN')">ย้อนกลับ</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div ng-show="PAGE == 'MAIN'">
+	<div class="row form-group">
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<caption>
+					<button class="btn btn-primary" ng-click="updateData(null)"> เพิ่มข้อมูล</button>
+				</caption>
+				<thead>
+					<tr>
+						<th>รายการฝึกอบรม</th>
+						<th>จัดการ</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="data in DataList">
+						<td>{{data.title_th}}</td>
+						<td>
+							<button class="btn btn-warning" ng-click="updateData(data)"> ดูข้อมูล</button>
+							<button class="btn btn-danger" ng-click="removeData(data.id)"> ลบ</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+

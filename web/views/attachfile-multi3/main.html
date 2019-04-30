@@ -1,0 +1,247 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div  style="margin-top:180px;">
+	<div class="row form-group" style="padding-top: 70px;">
+	  <div class="col-lg-10 col-lg-offset-1">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+	</div>
+	<!--
+	<div class="row form-group">
+		<label class="form-control-static col-lg-1 col-lg-offset-1">
+			ค้นหา
+		</label> 
+		<div class="col-lg-3">
+			<input class="form-control" ng-model="condition.keyword">
+		</div>
+		<label class="form-control-static col-lg-1" ng-show="MasterList.length > 0">
+			แสดงข้อมูล
+		</label> 
+		<div class="col-lg-2" ng-show="MasterList.length > 0">
+			<select class="form-control" ng-model="condition.type" ng-options="data.type_name as data.type_name for data in MasterList">
+				<option value="">ทั้งหมด</option>
+			</select>
+		</div>
+		<div class="col-lg-2">
+			<button class="btn btn-primary" ng-click="search(condition)"> <span class="glyphicon glyphicon-search"></span> ค้นหา</button>
+		</div>
+	</div>
+	-->
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<span class="title-content">
+				<h2>{{(DEFAULT_LANGUAGE == 'TH'?MenuName[MenuName.length - 1].menu_name_th:MenuName[MenuName.length - 1].menu_name_en)}}</h2>
+			</span>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<img src="../files/img/header_line.png" style="width: 70%;">
+		</div>
+	</div>
+	<div class="row form-group" >
+		<div class="col-lg-10 col-lg-offset-1">
+			<div class="table-responsive">
+				<table class="table table-bordered table-striped"  ng-show="page_type != 'skr' && page_type != 'paper'  && page_type != 'rule-food' && page_type != 'manual-inspection' && page_type != 'patrol' && page_type != 'standard-logo' && page_type != 'clipping-news' && page_type != 'work-application'">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>ชื่อเอกสาร</th>
+							<th ng-show="page_type == 'condition'">รหัสเอกสาร</th>
+							<th>ดาวน์โหลด</th>
+							<th ng-show="page_type == 'condition'">หมายเหตุ</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="data in DataList">
+							<td>{{$index + 1 }}</td>
+							<td>{{data.AttachFiles[0].display_name}}</td>
+							<td ng-show="page_type == 'condition'">{{data.AttachFiles[0].file_code}}</td>
+							<td><a href="../{{data.AttachFiles[0].file_path}}" role="button" class="btn btn-default" download="{{data.AttachFiles[0].file_name}}"><img src="../files/img/attach-file.png" style="height: 2em;"></a></td>
+							<td ng-show="page_type == 'condition'"></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<table class="table table-bordered table-striped" ng-show="page_type == 'skr'">
+					<caption>
+						<div class="row form-group">
+							<label class="form-control-static col-lg-1">
+								ค้นหา
+							</label> 
+							<div class="col-lg-3">
+								<input class="form-control" ng-model="condition.keyword">
+							</div>
+							<div class="col-lg-2">
+								<button class="btn btn-primary" ng-click="search(condition)"> <span class="glyphicon glyphicon-search"></span> ค้นหา</button>
+							</div>
+						</div>
+					</caption>
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>ประจำปี</th>
+							<th>ดาวน์โหลด</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="data in DataList">
+							<td>{{$index + 1}}</td>
+							<td>{{data.AttachFiles[0].file_code==''?data.AttachFiles[0].display_name:data.AttachFiles[0].file_code}}</td>
+							<td><a href="../{{data.AttachFiles[0].file_path}}" role="button" class="btn btn-default" download="{{data.AttachFiles[0].file_name}}"><img src="../files/img/attach-file.png" style="height: 2em;"></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<table class="table table-bordered table-striped" ng-show="page_type == 'clipping-news' || page_type == 'work-application'">
+					<caption>
+						<div class="row form-group">
+							<label class="form-control-static col-lg-1">
+								ค้นหา
+							</label> 
+							<div class="col-lg-3">
+								<input class="form-control" ng-model="condition.keyword">
+							</div>
+							<div class="col-lg-2">
+								<button class="btn btn-primary" ng-click="search(condition)"> <span class="glyphicon glyphicon-search"></span> ค้นหา</button>
+							</div>
+						</div>
+					</caption>
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>ชื่อเอกสาร</th>
+							<th>ดาวน์โหลด</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="data in DataList">
+							<td>{{$index + 1}}</td>
+							<td>{{data.AttachFiles[0].file_code==''?data.AttachFiles[0].display_name:data.AttachFiles[0].file_code}}</td>
+							<td><a href="../{{data.AttachFiles[0].file_path}}" role="button" class="btn btn-default" download="{{data.AttachFiles[0].file_name}}"><img src="../files/img/attach-file.png" style="height: 2em;"></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<table class="table table-bordered table-striped" ng-show="page_type == 'paper'">
+					
+					<thead>
+						<tr>
+							<th>ชื่อไฟล์</th>
+							<th>วันที่</th>
+							<th>ขนาด</th>
+							<th>ดาวน์โหลด</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="data in DataList">
+							<td>{{data.AttachFiles[0].display_name}}</td>
+							<td>{{getThaiDate(data.file_date)}}</td>
+							<td>{{(data.AttachFiles[0].file_size  /1024).toFixed(2)}} MB</td>
+							<td><a href="../{{data.AttachFiles[0].file_path}}" role="button" class="btn btn-default" download="{{data.AttachFiles[0].file_name}}"><img src="../files/img/attach-file.png" style="height: 2em;"></a></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<table class="table table-bordered table-striped" ng-show="page_type == 'rule-food' || page_type == 'manual-inspection'">
+					<caption>
+						<div class="row form-group">
+							<label class="form-control-static col-lg-1">
+								ค้นหา
+							</label> 
+							<div class="col-lg-3">
+								<input class="form-control" ng-model="condition.keyword">
+							</div>
+							<div class="col-lg-2">
+								<button class="btn btn-primary" ng-click="search(condition)"> <span class="glyphicon glyphicon-search"></span> ค้นหา</button>
+							</div>
+						</div>
+					</caption>
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>รายชื่อ</th>
+							<th>ดาวน์โหลด</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="data in DataList">
+							<td><img src="../files/img/{{findExtension(data.AttachFiles[0].file_name)}}.png" style="height: 2.5em;"></td>
+							<td>{{data.AttachFiles[0].display_name}}</td>
+							<td><a href="../{{data.AttachFiles[0].file_path}}" role="button" class="btn btn-default" download="{{data.AttachFiles[0].file_name}}"><img src="../files/img/attach-file.png" style="height: 2em;"></a></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<div ng-show="page_type == 'patrol'">
+					<div class="row form-group">
+						<div class="col-lg-2">
+							<button class="btn btn-primary btn-block" ng-repeat="data in FileTypeList" ng-click="setFileType($index)" ng-class="{'active':$index == FileTypeIndex}">
+								{{data.file_type}}
+							</button>
+						</div>
+						<div class="col-lg-10">
+
+							<table class="table table-bordered table-striped">
+								<caption>
+									<div class="row form-group">
+										<label class="form-control-static col-lg-6">
+											{{FileType}}
+										</label> 
+										<label class="form-control-static col-lg-1">
+											ค้นหา
+										</label> 
+										<div class="col-lg-3">
+											<input class="form-control" ng-model="condition.keyword">
+										</div>
+										<div class="col-lg-2">
+											<button class="btn btn-primary" ng-click="search(condition)"> <span class="glyphicon glyphicon-search"></span> ค้นหา</button>
+										</div>
+									</div>
+								</caption>
+								<thead>
+									<tr>
+										<th>ชื่อเอกสาร</th>
+										<th>ดาวน์โหลด</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="data in DataList">
+										<td>{{data.AttachFiles[0].display_name}}</td>
+										<td><a href="../{{data.AttachFiles[0].file_path}}" role="button" class="btn btn-default" download="{{data.AttachFiles[0].file_name}}"><img src="../files/img/attach-file.png" style="height: 2em;"></a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<div ng-show="page_type == 'standard-logo'">
+					<div class="row form-group" ng-repeat="data in DataList">
+						<div class="col-lg-10 col-lg-offset-1">
+							{{$index + 1}} เครื่องหมายรับรองมาตรฐานบังคับ  <a href="../{{data.AttachFiles[0].file_path}}" download="{{data.file_name}}">ดาวน์โหลดไฟล์ความละเอียดสูง</a>
+						</div>
+						<div class="col-lg-12 text-center">
+							<img src="../{{data.AttachFiles[0].file_path}}" height="150" alt="">
+							<br><br>
+							{{data.AttachFiles[0].display_name}}
+						</div>
+					</div>
+				</div>
+
+			</div>
+			
+		</div>
+	</div>
+	<div ng-include src="'views/footer.html'"></div>
+</div>

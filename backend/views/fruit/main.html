@@ -1,0 +1,404 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group" style="padding-top: 10px;">
+	  <div class="col-lg-10">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+</div>
+<div ng-show="PAGE == 'UPDATE'">
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			ชื่อผลไม้ (ไทย)
+		</label>
+		<div class="col-lg-4">
+			<input class="form-control" ng-model="Data.name_th"> 
+		</div>
+		<label class="form-control-static col-lg-2">
+			ชื่อผลไม้ (อังกฤษ)
+		</label>
+		<div class="col-lg-4">
+			<input class="form-control" ng-model="Data.name_en"> 
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			ชื่อผลไม้ (วิทยาศาสตร์)
+		</label>
+		<div class="col-lg-4">
+			<input class="form-control" ng-model="Data.name_science"> 
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			สี (ไทย)
+		</label>
+		<div class="col-lg-4">
+			<input class="form-control" ng-model="Data.color_th"> 
+		</div>
+		<label class="form-control-static col-lg-2">
+			สี (อังกฤษ)
+		</label>
+		<div class="col-lg-4">
+			<input class="form-control" ng-model="Data.color_en"> 
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			รสชาติ (ไทย)
+		</label>
+		<div class="col-lg-4">
+			<input class="form-control" ng-model="Data.flavour_th"> 
+		</div>
+		<label class="form-control-static col-lg-2">
+			รสชาติ(อังกฤษ)
+		</label>
+		<div class="col-lg-4">
+			<input class="form-control" ng-model="Data.flavour_en"> 
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			รูปร่าง (ไทย)
+		</label>
+		<div class="col-lg-4">
+			<input class="form-control" ng-model="Data.shape_th"> 
+		</div>
+		<label class="form-control-static col-lg-2">
+			รูปร่าง(อังกฤษ)
+		</label>
+		<div class="col-lg-4">
+			<input class="form-control" ng-model="Data.shape_en"> 
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			ฤดูผลไม้ ตั้งแต่
+		</label>
+		<div class="col-lg-4">
+			<select name="Year" class="form-control" ng-model="Data.season_from" ng-options="month.monthValue as month.monthText for month in MonthList">
+				<option value="">กรุณาเลือก..</option>
+			</select>
+		</div>
+		<label class="form-control-static col-lg-2">
+			จนถึง
+		</label>
+		<div class="col-lg-4">
+			<select name="Year" class="form-control" ng-model="Data.season_to" ng-options="month.monthValue as month.monthText for month in MonthList">
+				<option value="">กรุณาเลือก..</option>
+			</select>
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			วิธีการจัดเตรียมและการรับประทาน (ไทย)
+		</label>
+		<div class="col-lg-6">
+			<textarea class="form-control" ng-model="Data.prepare_to_eat_th"></textarea>
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			วิธีการจัดเตรียมและการรับประทาน (อังกฤษ)
+		</label>
+		<div class="col-lg-6">
+			<textarea class="form-control" ng-model="Data.prepare_to_eat_en"></textarea>
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			การใช้ประโยชน์ (ไทย)
+		</label>
+		<div class="col-lg-4">
+			<input class="form-control" ng-model="Data.usage_th"> 
+		</div>
+		<label class="form-control-static col-lg-2">
+			การใช้ประโยชน์ (อังกฤษ)
+		</label>
+		<div class="col-lg-4">
+			<input class="form-control" ng-model="Data.usage_en"> 
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			การเก็บรักษา (ไทย)
+		</label>
+		<div class="col-lg-4">
+			<input class="form-control" ng-model="Data.storage_th"> 
+		</div>
+		<label class="form-control-static col-lg-2">
+			การเก็บรักษา (อังกฤษ)
+		</label>
+		<div class="col-lg-4">
+			<input class="form-control" ng-model="Data.storage_en"> 
+		</div>
+	</div>
+	<br><br>
+	<div class="row form-group">
+		<div class="col-lg-6">
+			<fieldset>
+				<legend>
+					Nutrition value of   Tangerine  100 g
+				</legend>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-3">
+						พลังงาน
+					</label>
+					<div class="col-lg-6">
+						<input class="form-control" ng-model="Data.energy"> 
+					</div>
+					<label class="form-control-static col-lg-3">
+						แคลอรี่
+					</label>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-3">
+						โปรตีน
+					</label>
+					<div class="col-lg-6">
+						<input class="form-control" ng-model="Data.protein"> 
+					</div>
+					<label class="form-control-static col-lg-3">
+						กรัม
+					</label>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-3">
+						ไขมัน
+					</label>
+					<div class="col-lg-6">
+						<input class="form-control" ng-model="Data.fat"> 
+					</div>
+					<label class="form-control-static col-lg-3">
+						กรัม
+					</label>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-3">
+						คาร์โบไฮเดรท
+					</label>
+					<div class="col-lg-6">
+						<input class="form-control" ng-model="Data.carbohydrate"> 
+					</div>
+					<label class="form-control-static col-lg-3">
+						กรัม
+					</label>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-3">
+						ใยอาหาร
+					</label>
+					<div class="col-lg-6">
+						<input class="form-control" ng-model="Data.fiber"> 
+					</div>
+					<label class="form-control-static col-lg-3">
+						กรัม
+					</label>
+				</div>
+			</fieldset>
+		</div>
+		<div class="col-lg-6">
+			<fieldset>
+				<legend>
+					แร่ธาตุ
+				</legend>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-3">
+						แคลเซียม
+					</label>
+					<div class="col-lg-6">
+						<input class="form-control" ng-model="Data.calcium"> 
+					</div>
+					<label class="form-control-static col-lg-3">
+						มิลลิกรัม
+					</label>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-3">
+						ฟอสฟอรัส
+					</label>
+					<div class="col-lg-6">
+						<input class="form-control" ng-model="Data.phosphorus"> 
+					</div>
+					<label class="form-control-static col-lg-3">
+						มิลลิกรัม
+					</label>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-3">
+						เหล็ก
+					</label>
+					<div class="col-lg-6">
+						<input class="form-control" ng-model="Data.steel"> 
+					</div>
+					<label class="form-control-static col-lg-3">
+						มิลลิกรัม
+					</label>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-3">
+						โพแทสเซียม
+					</label>
+					<div class="col-lg-6">
+						<input class="form-control" ng-model="Data.potassium"> 
+					</div>
+					<label class="form-control-static col-lg-3">
+						มิลลิกรัม
+					</label>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-3">
+						แมกนีเซียม
+					</label>
+					<div class="col-lg-6">
+						<input class="form-control" ng-model="Data.magnesium"> 
+					</div>
+					<label class="form-control-static col-lg-3">
+						มิลลิกรัม
+					</label>
+				</div>
+			</fieldset>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-6">
+			<fieldset>
+				<legend>
+					วิตามิน
+				</legend>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-3">
+						วิตามินเอ รวม
+					</label>
+					<div class="col-lg-6">
+						<input class="form-control" ng-model="Data.vitamin_e"> 
+					</div>
+					<label class="form-control-static col-lg-3">
+						I.U.
+					</label>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-3">
+						บี (ไทอามีน)
+					</label>
+					<div class="col-lg-6">
+						<input class="form-control" ng-model="Data.vitamin_b_ty_amine"> 
+					</div>
+					<label class="form-control-static col-lg-3">
+						มิลลิกรัม
+					</label>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-3">
+						บี (ไรโบเฟลวิน)
+					</label>
+					<div class="col-lg-6">
+						<input class="form-control" ng-model="Data.vitamin_b_riboflavin"> 
+					</div>
+					<label class="form-control-static col-lg-3">
+						มิลลิกรัม
+					</label>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-3">
+						บี1 + บี2
+					</label>
+					<div class="col-lg-6">
+						<input class="form-control" ng-model="Data.vitamin_b1_b2"> 
+					</div>
+					<label class="form-control-static col-lg-3">
+						มิลลิกรัม
+					</label>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-3">
+						ซี
+					</label>
+					<div class="col-lg-6">
+						<input class="form-control" ng-model="Data.vitamin_c"> 
+					</div>
+					<label class="form-control-static col-lg-3">
+						มิลลิกรัม
+					</label>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-3">
+						ไนอาซิน
+					</label>
+					<div class="col-lg-6">
+						<input class="form-control" ng-model="Data.niacin"> 
+					</div>
+					<label class="form-control-static col-lg-3">
+						มิลลิกรัม
+					</label>
+				</div>
+			</fieldset>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-12 text-center">
+			<button class="btn btn-primary" ng-click="saveData(Data)">บันทึก</button>
+			<button class="btn btn-danger" ng-click="cancel('MAIN')">ยกเลิก</button>
+		</div>
+	</div>
+</div>
+
+
+<div ng-show="PAGE == 'MAIN'">
+	<div class="row form-group">
+		<label class="form-control-static col-lg-1">
+			ค้นหา
+		</label>
+		<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+			<input class="form-control" ng-model="condition.keyword">
+		</div>
+		<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+			<select name="Year" class="form-control" ng-model="condition.column_name" >
+				<option value="">ทั้งหมด</option>
+				<option value="name_th">ชื่อภาษาไทย</option>
+				<option value="name_en">ชื่อภาษาอังกฤษ</option>
+				<option value="name_science">ชื่อทางวิทยาศาตร์</option>
+			</select>
+		</div>
+		
+		<div class="col-lg-3">
+			<button class="btn btn-primary" ng-click="loadList(condition)"> ค้นหา</button>
+		</div>
+		
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-12">
+			<button class="btn btn-primary" ng-click="updateData(null)">เพิ่มข้อมูล</button>
+		</div>
+	</div>	
+	<div class="row form-group">
+		<div class="table-responsive">	
+			<table class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>ผลไม้</th>
+						<th>จัดการ</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="data in DataList">
+						<td>
+							{{data.name_th}}
+						</td>
+						<td>
+							<button class="btn btn-warning" ng-click="updateData(data)">แก้ไข</button>
+							<button class="btn btn-danger" ng-click="removeData(data.id)">แก้ไข</button>
+						</td>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

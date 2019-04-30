@@ -1,0 +1,105 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div  style="margin-top:180px;">
+	<div class="row form-group" style="padding-top: 70px;">
+	  <div class="col-lg-10 col-lg-offset-1">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<span class="title-content">
+				<h2>{{(DEFAULT_LANGUAGE == 'TH'?MenuName[MenuName.length - 1].menu_name_th:MenuName[MenuName.length - 1].menu_name_en)}}</h2>
+			</span>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<img src="../files/img/header_line.png" style="width: 70%;">
+		</div>
+	</div>
+	<div class="row form-group" ng-show="checkMenuType(palace_type) == 'current'">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<a class="btn btn-info" href="#/palace/current-board" ng-class="{'active':palace_type == 'current-board'}">ผู้บริหารปัจจุบัน</a>
+			<a class="btn btn-info" href="#/palace/current-cio" ng-class="{'active':palace_type == 'current-cio'}">CIO</a>
+			<a class="btn btn-info" href="#/palace/current-consult" ng-class="{'active':palace_type == 'current-consult'}">ที่ปรึกษา มกอช.</a>
+			<a class="btn btn-info" href="#/palace/current-specialist" ng-class="{'active':palace_type == 'current-specialist'}">ผู้เชี่ยวชาญ มกอช.</a>
+			<br><br>
+		</div>
+	</div>
+
+	<div class="row form-group" ng-show="checkMenuType(palace_type) == 'history'">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<a class="btn btn-info" href="#/palace/history-board" ng-class="{'active':palace_type == 'history-board'}">ผู้บริหาร</a>
+			<a class="btn btn-info" href="#/palace/history-secretary" ng-class="{'active':palace_type == 'history-secretary'}">เลขาธิการ มกอช.</a>
+			<a class="btn btn-info" href="#/palace/history-deputy-secretary" ng-class="{'active':palace_type == 'history-deputy-secretary'}">รองเลขาธิการ มกอช.</a>
+			<a class="btn btn-info" href="#/palace/history-cio" ng-class="{'active':palace_type == 'history-cio'}">CIO</a>
+			<a class="btn btn-info" href="#/palace/history-consult" ng-class="{'active':palace_type == 'history-consult'}">ที่ปรึกษา มกอช.</a>
+			<a class="btn btn-info" href="#/palace/history-specialist" ng-class="{'active':palace_type == 'history-specialist'}">ผู้เชี่ยวชาญ มกอช.</a>
+			<br><br>
+		</div>
+	</div>
+
+	<div  ng-repeat="Palace in PalaceList">
+		<div class="row form-group">
+			<div class="col-lg-3 col-md-4 col-sm-5 col-lg-offset-1 text-center">
+				<img src="{{'../' + Palace.picture_path}}" style="height: 315px; max-width: 250px;" ng-show="Palace.picture_path != null && AttachFile == null">
+			</div>
+			<div class="col-lg-8 col-md-8 col-sm-7" style="padding-left: 5%;">
+				<div class="row form-group" ng-show="checkHistory(palace_type)">
+					<div class="col-lg-12" style="font-size: 1.5em; color: #336229;">
+						ลำดับที่ {{ $index + 1 }}
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-lg-12" style="font-size: 1.5em; color: #336229;">
+						ชื่อ - สกุล : {{Palace.firstname_th + ' ' + Palace.lastname_th}}
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-lg-12">
+						ตำแหน่ง : {{Palace.position_th}}
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-lg-12">
+						<span bind-html-compile="DEFAULT_LANGUAGE=='TH'?'ระยะเวลา ':'Date of holding '"></span>{{getDateTimeFormat(Palace.position_start_date)}} ถึง {{Palace.position_end_date==null || Palace.position_end_date=='0000-00-00'?'ปัจจุบัน':getDateTimeFormat(Palace.position_end_date)}}
+					</div>
+				</div>
+				<div ng-show="palace_type == 'current-cio' || palace_type == 'history-cio'">
+					<div class="row form-group">
+						<div class="col-lg-12">
+							วิสัยทัศน์ : {{Palace.vision_th}}
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-lg-12">
+							พันธกิจ : {{Palace.mission_th}}
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-lg-12">
+							ข้อมูลการติดต่อ : {{Palace.contact_th}}
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-lg-12">
+							บทบาทหน้าที่ : {{Palace.role_th}}
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+	</div>
+	<div ng-include src="'views/footer.html'"></div>
+</div>

@@ -1,0 +1,43 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div class="page-header">
+	<h3>จัดการงานบริการ</h3>
+</div>
+<fieldset ng-repeat="Data in ServicesList">
+	<div class="row form-group">
+		<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+			ชื่อบริการ
+		</label>
+		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+			​<input type="text" class="form-control" ng-model="Data.service_name" maxlength="255">
+		</div>
+	</div>
+
+	<div class="row form-group">
+		<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+			ลิ้งค์
+		</label>
+		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+			​<input type="text" class="form-control" ng-model="Data.url" maxlength="500">
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+			ใช้งาน
+		</label>
+		<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" >
+			<div class="btn-group">
+				<label class="btn btn-default btn-checkbox" ng-model="Data.actives" uib-btn-radio="'Y'" >ใช้งาน</label>
+	            <label class="btn btn-default btn-checkbox" ng-model="Data.actives" uib-btn-radio="'N'" >ไม่ใช้งาน</label>
+	        </div>
+		</div>
+	</div>
+</fieldset>
+<div class="row form-group">
+	<div class="col-lg-10 col-lg-offset-1">
+		<button class="btn btn-primary pull-right" ng-click="addServices()">เพิ่มงานบริการ</button>
+	</div>
+</div>
+<div class="page-header text-center">
+	<button class="btn btn-info" ng-click="save('services/update', ServicesList)">บันทึก</button>
+</div>

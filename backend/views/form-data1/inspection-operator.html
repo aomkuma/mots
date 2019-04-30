@@ -1,0 +1,337 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group" style="padding-top: 10px;">
+	  <div class="col-lg-5">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <img src="../files/img/pin-menu.png">
+	        รายชื่อผู้ประกอบการตรวจสอบมาตรฐานภาครัฐ และเอกชน 
+	        <span ng-show="MenuName.sub_menu != null">
+	        	<img src="../files/img/pin-menu.png">
+				{{MenuName.sub_menu.menu_name_th}}	        	
+	        </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+</div>
+
+<div ng-show="PAGE == 'ISO'">
+	<div class="row form-group">
+		<h4>เพิ่ม ISO/ขอบข่าย/ขอบข่ายย่อย</h4>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-1">
+			ประเภท
+		</label>
+		<div class="col-lg-3">
+			<select class="form-control" ng-model="ISO.iso_type">
+				<option value="">กรุณาเลือก..</option>
+				<option value="ISO">ISO</option>
+				<option value="ขอบข่าย">ขอบข่าย</option>
+				<option value="ขอบข่ายย่อย">ขอบข่ายย่อย</option>
+			</select>
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-1">
+			ชื่อ
+		</label>
+		<div class="col-lg-3">
+			<input class="form-control" ng-model="ISO.iso_name">
+		</div>
+	</div>
+	<div class="row form-group text-center">
+		<button class="btn btn-primary" ng-click="saveIso(ISO)"> บันทึก</button>
+		<button class="btn btn-default" ng-click="cancel()"> ยกเลิก</button>
+	</div>
+</div>
+
+<div ng-show="PAGE == 'UPDATE'">
+	<div class="row form-group">
+		<h4>เพิ่มรายชื่อหน่วยรับรอง (CB)</h4>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-1">
+			ชื่อหน่วย
+		</label>
+		<div class="col-lg-5">
+			<input class="form-control" ng-model="FormData1.group_name">
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-1">
+			ที่อยู่
+		</label>
+		<div class="col-lg-5">
+			<textarea class="form-control" ng-model="FormData1.group_address"></textarea>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-12">
+			<button class="btn btn-primary pull-right" ng-click="addDetail()">เพิ่ม ISO</button>
+		</div>
+	</div>
+	<fieldset class="fieldset_data" ng-repeat="detail in form_data1_detail" ng-init="detail_index = $index" ng-class="{'bg-odd':$index%2 == 0}">
+		<legend>รายละเอียด</legend>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-1">
+				เลขที่
+			</label>
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="detail.item_no">
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-1">
+				ISO
+			</label>
+			<div class="col-lg-4">
+				<select class="form-control" ng-model="detail.iso" ng-options="item.id as item.iso_name for item in Iso1List">
+					<option value="">กรุณาเลือก..</option>
+				</select>
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-1">
+				Normaltive
+			</label>
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="detail.normative">
+			</div>
+		</div>
+		<div class="row form-group">
+			<div class="col-lg-12">
+				<button class="btn btn-primary pull-right" ng-click="addScope(detail_index)">เพิ่มขอบข่าย</button>
+			</div>
+		</div>
+
+		<fieldset class="fieldset_data" ng-repeat="scope in detail.form_data1_scope" ng-init="scope_index = $index">
+			<legend>ขอบข่าย</legend>
+			<div class="row form-group">
+				<label class="form-control-static col-lg-1">
+					ขอบข่าย
+				</label>
+				<div class="col-lg-4">
+					<select class="form-control" ng-model="scope.iso" ng-options="item.id as item.iso_name for item in Iso2List">
+						<option value="">กรุณาเลือก..</option>
+					</select>
+				</div>
+			</div>
+			<div class="row form-group" ng-repeat="subscope in scope.form_data1_sub_scope" ng-init="subscope_index = $index">
+				<label class="form-control-static col-lg-2 col-lg-offset-1">
+					ขอบข่ายย่อย
+				</label>
+				<div class="col-lg-4">
+					<select class="form-control" ng-model="subscope.iso" ng-options="item.id as item.iso_name for item in Iso3List">
+						<option value="">กรุณาเลือก..</option>
+					</select>
+				</div>
+				<div class="col-lg-2">
+					<button class="btn btn-primary pull-right" ng-click="addSubScope(detail_index, scope_index)">เพิ่มขอบข่ายย่อย</button>
+				</div>
+			</div>
+			<div class="row form-group" ng-repeat="cert in scope.form_data1_certification" ng-init="cert_index = $index">
+				<label class="form-control-static col-lg-2  col-lg-offset-1">
+					Certification
+				</label>
+				<div class="col-lg-4">
+					<input class="form-control" ng-model="cert.certification">
+				</div>
+				<div class="col-lg-2">
+					<button class="btn btn-primary pull-right" ng-click="addCertification(detail_index, scope_index)">เพิ่ม Certification</button>
+				</div>
+			</div>
+		</fieldset>
+		<br><br>
+		<div class="row form-group" ng-repeat="arc in detail.form_data1_standard_a_r_c" ng-init="arc_index = $index">
+			<label class="form-control-static col-lg-3">
+				มาตรฐานกระทรวงเกษตร และสหกรณ์
+			</label>
+			<div class="col-lg-5">
+				<input class="form-control" ng-model="arc.arc_name">
+			</div>
+			<div class="col-lg-3">
+				<button class="btn btn-primary pull-right" ng-click="addStandardARC(detail_index)">เพิ่มมาตรฐานกระทรวงเกษตร และสหกรณ์</button>
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				ไฟล์แนบ
+			</label>
+			<div class="col-lg-4" >
+				<p class="input-group">
+		          <input type="text" readonly="true" class="form-control" ng-model="detail.AttachFile.name" />
+		          <span class="input-group-btn">
+		            <button class="btn btn-default" ngf-select ng-model="detail.AttachFile" ngf-max-size="25MB"  ngf-model-invalid="detail.AttachFile.invalidFile" >Browse</button>
+		          </span>
+		        </p>
+			</div>
+			<label class="form-control-static col-lg-3">
+				{{detail.file_name}}
+			</label>
+			<div class="col-lg-3">
+				<div class="file-alert" ng-show="detail.attachFile.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{detail.AttachFile.invalidFile.$errorParam}}</div>
+			</div>
+
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				วันที่ให้การรับรอง
+			</label>
+			<div class="col-lg-2">
+				<p class="input-group">
+					<input type="text" class="form-control" ng-model="detail.start_date" uib-datepicker-popup="yyyy-MM-dd" is-open="detail.open_start_date">
+					<span class="input-group-btn">
+		            	<button type="button" class="btn btn-default" ng-click="openStartDateObj(detail_index)"><i class="glyphicon glyphicon-calendar"></i></button>
+		          </span>
+		        </p>
+			</div>
+			<label class="form-control-static col-lg-1">
+				วันที่สิ้นสุด
+			</label>
+			<div class="col-lg-2">
+				<p class="input-group">
+					<input type="text" class="form-control" ng-model="detail.end_date" uib-datepicker-popup="yyyy-MM-dd" is-open="detail.open_end_date">
+					<span class="input-group-btn">
+		            	<button type="button" class="btn btn-default" ng-click="openEndDateObj(detail_index)"><i class="glyphicon glyphicon-calendar"></i></button>
+		          </span>
+		        </p>
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				สถานะการบังคับใช้
+			</label>
+			<div class="col-lg-2">
+				<input type="checkbox" value="การบังคับใช้" ng-click="toggleUsageStatus(detail_index, 'การบังคับใช้')" ng-checked="detail.usage_status == 'การบังคับใช้' || detail.usage_status == 'การบังคับใช้,ลดขอบข่าย' || detail.usage_status == 'ลดขอบข่าย,การบังคับใช้'"> การบังคับใช้
+			</div>
+			<div class="col-lg-2">
+				<input type="checkbox" value="ลดขอบข่าย" ng-click="toggleUsageStatus(detail_index, 'ลดขอบข่าย')" ng-checked="detail.usage_status == 'ลดขอบข่าย' || detail.usage_status == 'การบังคับใช้,ลดขอบข่าย' || detail.usage_status == 'ลดขอบข่าย,การบังคับใช้'"> ลดขอบข่าย
+			</div>
+		</div>
+	</fieldset>
+	<br><br>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			สถานะการใช้งาน
+		</label>
+		<div class="col-lg-10">
+			<div class="btn-group">
+                <label class="btn btn-default btn-checkbox" ng-model="FormData1.actives" uib-btn-radio="'Y'">ใช้งาน</label>
+                <label class="btn btn-default btn-checkbox" ng-model="FormData1.actives" uib-btn-radio="'N'">ไม่ใช้งาน</label>
+            </div>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-12 text-center">
+			<button class="btn btn-primary" ng-click="saveData(FormData1, form_data1_detail)">บันทึก</button>
+			<button class="btn btn-default" ng-click="cancel()">ยกเลิก</button>
+		</div>
+	</div>
+</div>
+
+<div ng-show="PAGE == 'MAIN'">
+	<div class="row form-group">
+		<div class="col-lg-12">
+			<button class="btn btn-info" ng-click="addIso()">เพิ่ม ISO/ขอบข่าย/ขอบข่ายย่อย</button>
+		</div>
+	</div>
+	<div class="row form-group">
+		
+		<!--
+		<label class="form-control-static col-lg-1">
+			ประเภทหน่วยตรวจสอบ
+		</label>
+		<div class="col-lg-2">
+			<select class="form-control" ng-model="condition.group_type">
+				<option value="">ทั้งหมด</option>
+				<option value="CA">CA</option>
+				<option value="CB">CB</option>
+				<option value="ต่างประเทศ">ต่างประเทศ</option>
+			</select>
+		</div>-->
+		<label class="form-control-static col-lg-2">
+			ค้นหา
+		</label>
+		<div class="col-lg-2">
+			<input class="form-control" ng-model="condition.keyword">
+		</div>
+		<label class="form-control-static col-lg-1">
+			ขอบข่าย
+		</label>
+		<div class="col-lg-2">
+			<select class="form-control" ng-model="condition.iso" ng-options="item.id as item.iso_name for item in IsoList">
+				<option value="">กรุณาเลือก..</option>
+			</select>
+		</div>
+		
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			วันที่ให้การรับรอง
+		</label>
+		<div class="col-lg-2">
+			<p class="input-group">
+				<input type="text" class="form-control" ng-model="condition.start_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup1.opened">
+				<span class="input-group-btn">
+	            	<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+	          </span>
+	        </p>
+		</div>
+		<label class="form-control-static col-lg-1">
+			วันที่สิ้นสุด
+		</label>
+		<div class="col-lg-2">
+			<p class="input-group">
+				<input type="text" class="form-control" ng-model="condition.end_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup2.opened">
+				<span class="input-group-btn">
+	            	<button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+	          </span>
+	        </p>
+		</div>
+		<div class="col-lg-1">
+			<button class="btn btn-primary" ng-click="loadList(condition)">ค้นหา</button>
+		</div>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered">
+			<caption>
+				<button class="btn btn-info pull-right" ng-click="updateData('')">เพิ่มข้อมูล</button>
+			</caption>
+			<thead>
+				<tr>
+					<th>หน่วยรับรอง</th>
+					<th>ที่อยู่</th>
+					<th>ขอบข่าย</th>
+					<th>เพิ่มเติม</th>
+					<th>แก้ไข</th>
+				</tr>	
+			</thead>
+			<tbody>
+				<tr ng-repeat="data in DataList">
+					<td>{{data.group_name}}</td>
+					<td>{{data.group_address}}</td>
+					<td>{{data.iso_name}}</td>
+					<td><a href="../{{data.file_path}}">{{data.file_name}}</a></td>
+					<td>
+						<button class="btn btn-warning" ng-click="updateData(data.id)">แก้ไข</button>
+						<button class="btn btn-danger" ng-click="removeData(data.id)">ลบ</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<style type="text/css">
+	.fieldset_data{
+		padding: 10px;
+		border : 1px solid #999;
+	}
+	.bg-odd{
+		background-color: #FAFAFA;
+		margin: 10px;
+	}
+</style>

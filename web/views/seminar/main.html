@@ -1,0 +1,208 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div  style="margin-top:180px;">
+	<div class="row form-group" style="padding-top: 70px;">
+	  <div class="col-lg-10 col-lg-offset-1">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<span class="title-content">
+				<h2>{{(DEFAULT_LANGUAGE == 'TH'?MenuName[MenuName.length - 1].menu_name_th:MenuName[MenuName.length - 1].menu_name_en)}}</h2>
+			</span>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<img src="../files/img/header_line.png" style="width: 70%;">
+		</div>
+	</div>
+	<div ng-show="PAGE == 'RESPONSE'" ng-form="response_form">
+		<div class="row form-group">
+			<div class="col-lg-10 col-lg-offset-1">
+				<div class="row form-group">
+					<div class="row form-group">
+						<div class="col-lg-12">
+							<h4 ng-show="page_type == 'training'">ตอบรับการฝึกอบรม</h4>
+							<h4 ng-show="page_type == 'seminar'">ตอบรับการสัมมนา</h4>
+						</div>
+						<div class="col-lg-12">
+							<div style="height: 2px; background-color: #13569A; width: 100%;"></div>
+						</div>
+					</div>
+					<div class="col-lg-12 text-center">
+						<span style="font-size: 1.5em;" ng-show="page_type == 'training'">แบบตอบรับการเข้าร่วมฝึกอบรม</span>
+						<span style="font-size: 1.5em;" ng-show="page_type == 'seminar'">แบบตอบรับการเข้าร่วมสัมมนา</span>
+						<button class="btn btn-primary pull-right"> ดาวน์โหลดใบสมัคร</button>
+					</div>
+				</div>
+				<div class="row form-group">
+					<label class="col-lg-2 form-control-static">
+						สถานะ
+					</label>
+					<div class="col-lg-3">
+						<input class="form-control" ng-model="Data.status" required="true">
+					</div>
+				</div>
+				<div class="row form-group">
+					<label class="col-lg-2 form-control-static">
+						ชื่อ-สกุล
+					</label>
+					<div class="col-lg-3">
+						<input class="form-control" ng-model="Data.name" required="true">
+					</div>
+					<label class="col-lg-2 form-control-static">
+						ตำแหน่ง
+					</label>
+					<div class="col-lg-3">
+						<input class="form-control" ng-model="Data.position" required="true">
+					</div>
+				</div>
+				<div class="row form-group">
+					<label class="col-lg-2 form-control-static">
+						หน่วยงาน
+					</label>
+					<div class="col-lg-3">
+						<input class="form-control" ng-model="Data.organize" required="true">
+					</div>
+					<label class="col-lg-2 form-control-static">
+						โทรศัพท์
+					</label>
+					<div class="col-lg-3">
+						<input class="form-control" ng-model="Data.tel">
+					</div>
+				</div>
+				<div class="row form-group">
+					<label class="col-lg-2 form-control-static">
+						โทรสาร
+					</label>
+					<div class="col-lg-3">
+						<input class="form-control" ng-model="Data.fax">
+					</div>
+					<label class="col-lg-2 form-control-static">
+						โทรศัพท์มือถือ
+					</label>
+					<div class="col-lg-3">
+						<input class="form-control" ng-model="Data.mobile" required="true">
+					</div>
+				</div>
+				<div class="row form-group">
+					<label class="col-lg-2 form-control-static">
+						อีเมล์
+					</label>
+					<div class="col-lg-3">
+						<input class="form-control" ng-model="Data.email" required="true">
+					</div>
+				</div>
+				<div class="row form-group" ng-show="page_type != 'standard-commodity'">
+					<label class="col-lg-2 form-control-static">
+						ไฟล์แนบ
+					</label>
+					<div class="col-lg-3" >
+						<p class="input-group">
+				          <input type="text" readonly="true" class="form-control" ng-model="AttachFile.name" />
+				          <span class="input-group-btn">
+				            <button class="btn btn-primary" ngf-select ng-model="AttachFile" ngf-max-size="25MB"  ngf-model-invalid="AttachFile.invalidFile" >เลือก</button>
+				          </span>
+				        </p>
+					</div>
+					<div class="col-lg-3">
+						<div class="file-alert" ng-show="fle.attachFile.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{AttachFile.invalidFile.$errorParam}}</div>
+					</div>
+				</div>
+				<fieldset ng-show="Detail.accommodation == 'มีที่พัก'">
+					<legend>ที่พัก</legend>
+					<div class="row form-group">
+						<label class="col-lg-2 col-lg-offset-1 form-control-static">
+							<input type="radio" id="accommodation1" ng-model="Data.accommodation" value="เข้าพัก"> 
+							<label for="accommodation1"> ประสงค์จะเข้าพักในวันที่</label>
+						</label>
+						<div class="col-lg-2" ng-show="Data.accommodation == 'เข้าพัก'">
+							<p class="input-group">
+								<input type="text" class="form-control" ng-model="Data.start_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup1.opened" placeholder="ตั้งแต่..">
+								<span class="input-group-btn">
+					            	<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+					          </span>
+					        </p>
+						</div>
+						<label class="col-lg-1 form-control-static" ng-show="Data.accommodation == 'เข้าพัก'">
+							ออกวันที่
+						</label>
+						<div class="col-lg-2" ng-show="Data.accommodation == 'เข้าพัก'">
+							<p class="input-group">
+								<input type="text" class="form-control" ng-model="Data.end_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup2.opened" placeholder="ถึง..">
+								<span class="input-group-btn">
+					            	<button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+					          </span>
+					        </p>
+						</div>
+					</div>
+					<div class="row form-group">
+						<label class="col-lg-2 col-lg-offset-1 form-control-static">
+							<input type="radio" id="accommodation2" ng-model="Data.accommodation" value="ไม่เข้าพัก"> 
+							<label for="accommodation2"> ไม่ประสงค์จะเข้าพัก</label>
+						</label>
+					</div>
+				</fieldset>
+				<div class="row form-group">
+					<div class="col-lg-12 text-center">
+						<button class="btn btn-primary" ng-disabled="response_form.$invalid" ng-click="saveResponse(Data, AttachFile)">ส่งข้อมูล</button>
+						<button class="btn btn-default" ng-click="cancel()">ยกเลิก</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div ng-show="PAGE == 'DETAIL'">
+		<div class="row form-group">
+			<div class="col-lg-10 col-lg-offset-1">
+				<div class="row form-group">
+					<div class="col-lg-12 text-center">
+						<h4>{{Detail.title_th}}</h4>
+					</div>
+					<div class="col-lg-12">
+						<div style="height: 2px; background-color: #13569A; width: 100%;"></div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-lg-12" bind-html-compile="Detail.content_th">
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-lg-12">
+						<a role="button" class="btn btn-info" href="../{{Detail.schedule_filepath_th}}" download="{{Detail.schedule_filename_th}}"> กำหนดการ</a>
+						<button class="btn btn-success" ng-click="viewResponse(Detail.id)"> แบบตอบรับการฝึกอบรม</button>
+						<button class="btn btn-primary" ng-show="Detail.participant_filename_th != ''"> รายชื่อผู้เข้าร่วมอบรม</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div ng-show="PAGE == 'MAIN'">
+		<div class="row form-group">
+			<div class="col-lg-10 col-lg-offset-1">
+				<div class="row form-group">
+					<ul style="list-style: none;">
+						<li ng-repeat="data in DataList">
+							<a ng-click="viewDetail(data)">{{$index + 1}}. {{data.title_th}}</a> 
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-include src="'views/footer.html'"></div>
+</div>

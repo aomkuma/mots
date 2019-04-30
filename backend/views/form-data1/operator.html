@@ -1,0 +1,330 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group" style="padding-top: 10px;">
+	  <div class="col-lg-5">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <img src="../files/img/pin-menu.png">
+	        รายชื่อผู้ประกอบการตรวจสอบมาตรฐาน
+	        <span ng-show="MenuName.sub_menu != null">
+	        	<img src="../files/img/pin-menu.png">
+				{{MenuName.sub_menu.menu_name_th}}	        	
+	        </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+</div>
+
+<div ng-show="PAGE == 'UPDATE'">
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			ชื่อผู้ประกอบการ
+		</label>
+		<div class="col-lg-5">
+			<input class="form-control" ng-model="FormData1.group_name">
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			รหัสชุดที่ 1
+		</label>
+		<div class="col-lg-5">
+			<input class="form-control" ng-model="FormData1.code_number">
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			ที่อยู่
+		</label>
+		<div class="col-lg-5">
+			<textarea class="form-control" ng-model="FormData1.group_address"></textarea>
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			ประเภทผู้ประกอบการ
+		</label>
+		<div class="col-lg-10">
+			<div class="btn-group">
+                <label class="btn btn-default btn-checkbox" ng-model="FormData1.operator_type" uib-btn-radio="'government'">รัฐบาล</label>
+                <label class="btn btn-default btn-checkbox" ng-model="FormData1.operator_type" uib-btn-radio="'private'">เอกชน</label>
+            </div>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-12">
+			<button class="btn btn-primary pull-right" ng-click="addDetail()">เพิ่มใบอนุญาต</button>
+		</div>
+	</div>
+	<fieldset class="fieldset_data" ng-repeat="detail in form_data1_license" ng-init="detail_index = $index" ng-class="{'bg-odd':$index%2 == 0}">
+		<legend>ใบอนุญาต</legend>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				เลขที่ใบอนุญาต
+			</label>
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="detail.license_no">
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-lg-12">
+				<button class="btn btn-primary pull-right" ng-click="addStandardChecked(detail_index)">เพิ่มมาตรฐานสินค้าที่ตรวจสอบ
+</button>
+			</div>
+		</div>
+
+		<fieldset class="fieldset_data" ng-repeat="check in detail.FormData1StandardChecked" ng-init="check_index = $index">
+			<legend>มาตรฐานสินค้าที่ตรวจสอบ</legend>
+			<div class="row form-group">
+				<label class="form-control-static col-lg-2">
+					มาตรฐานสินค้าที่ตรวจสอบ
+				</label>
+				<div class="col-lg-4">
+					<input class="form-control" ng-model="check.standard_name">
+				</div>
+			</div>
+			<div class="row form-group" ng-repeat="inspect in check.FormData1ProductInspect" ng-init="inspect_index = $index">
+				<label class="form-control-static col-lg-2 col-lg-offset-2">
+					ขอบข่ายสินค้าเกษตรที่ตรวจสอบ
+				</label>
+				<div class="col-lg-4">
+					<input class="form-control" ng-model="inspect.inspect_name">
+				</div>
+				<div class="col-lg-2">
+					<button class="btn btn-primary pull-right" ng-click="addProductInspect(detail_index, check_index)">เพิ่มสินค้าเกษตรที่ตรวจสอบ</button>
+				</div>
+			</div>
+			<div class="row form-group" ng-repeat="cert in scope.FormData1Certification" ng-init="cert_index = $index">
+				<label class="form-control-static col-lg-2  col-lg-offset-1">
+					Certification
+				</label>
+				<div class="col-lg-4">
+					<input class="form-control" ng-model="cert.certification">
+				</div>
+				<div class="col-lg-2">
+					<button class="btn btn-primary pull-right" ng-click="addCertification(detail_index, scope_index)">เพิ่ม Certification</button>
+				</div>
+			</div>
+		</fieldset>
+		<br><br>
+		<div class="row form-group" ng-repeat="arc in detail.FormData1StandardARC" ng-init="arc_index = $index">
+			<label class="form-control-static col-lg-3">
+				มาตรฐานกระทรวงเกษตร และสหกรณ์
+			</label>
+			<div class="col-lg-5">
+				<input class="form-control" ng-model="arc.arc_name">
+			</div>
+			<div class="col-lg-3">
+				<button class="btn btn-primary pull-right" ng-click="addStandardARC(detail_index)">เพิ่มมาตรฐานกระทรวงเกษตร และสหกรณ์</button>
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				ไฟล์แนบ
+			</label>
+			<div class="col-lg-4" >
+				<p class="input-group">
+		          <input type="text" readonly="true" class="form-control" ng-model="detail.AttachFile.name" />
+		          <span class="input-group-btn">
+		            <button class="btn btn-default" ngf-select ng-model="detail.AttachFile" ngf-max-size="25MB"  ngf-model-invalid="detail.AttachFile.invalidFile" >Browse</button>
+		          </span>
+		        </p>
+			</div>
+			<div class="col-lg-3">
+				<div class="file-alert" ng-show="detail.attachFile.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{detail.AttachFile.invalidFile.$errorParam}}</div>
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				วันที่ให้การรับรอง
+			</label>
+			<div class="col-lg-2">
+				<p class="input-group">
+					<input type="text" class="form-control" ng-model="detail.start_date" uib-datepicker-popup="yyyy-MM-dd" is-open="detail.open_start_date">
+					<span class="input-group-btn">
+		            	<button type="button" class="btn btn-default" ng-click="openStartDateObj(detail_index)"><i class="glyphicon glyphicon-calendar"></i></button>
+		          </span>
+		        </p>
+			</div>
+			<label class="form-control-static col-lg-1">
+				วันที่สิ้นสุด
+			</label>
+			<div class="col-lg-2">
+				<p class="input-group">
+					<input type="text" class="form-control" ng-model="detail.end_date" uib-datepicker-popup="yyyy-MM-dd" is-open="detail.open_end_date">
+					<span class="input-group-btn">
+		            	<button type="button" class="btn btn-default" ng-click="openEndDateObj(detail_index)"><i class="glyphicon glyphicon-calendar"></i></button>
+		          </span>
+		        </p>
+			</div>
+		</div>
+		
+	</fieldset>
+	<br><br>
+
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			ชื่อผู้ติดต่อของ CA/register CB
+		</label>
+		<div class="col-lg-5">
+			<input class="form-control" ng-model="FormData1.contact_name">
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			โทรศัพท์
+		</label>
+		<div class="col-lg-5">
+			<input class="form-control" ng-model="FormData1.contact_phone">
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			โทรสาร
+		</label>
+		<div class="col-lg-5">
+			<input class="form-control" ng-model="FormData1.contact_fax">
+		</div>
+	</div>
+
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			แนบไฟล์ผู้ประกอบการตรวจสอบมาตรฐาน
+		</label>
+		<div class="col-lg-4" >
+			<p class="input-group">
+	          <input type="text" readonly="true" class="form-control" ng-model="FormData1.AttachFile.name" />
+	          <span class="input-group-btn">
+	            <button class="btn btn-default" ngf-select ng-model="FormData1.AttachFile" ngf-max-size="25MB"  ngf-model-invalid="FormData1.AttachFile.invalidFile" >Browse</button>
+	          </span>
+	        </p>
+		</div>
+		<div class="col-lg-3">
+			<div class="file-alert" ng-show="FormData1.AttachFile.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{FormData1.AttachFile.invalidFile.$errorParam}}</div>
+		</div>
+	</div>
+
+	<div class="row form-group" ng-show="FormData1.operator_type == 'private'">
+		<label class="form-control-static col-lg-2">
+			เลขที่ใบรับรอง
+		</label>
+		<div class="col-lg-5">
+			<input class="form-control" ng-model="FormData1.cert_number">
+		</div>
+	</div>
+
+	<div class="row form-group">
+		<div class="col-lg-12">
+			<button class="btn btn-primary pull-right" ng-click="addScope()">เพิ่มขอบข่าย</button>
+		</div>
+	</div>
+
+	<fieldset class="fieldset_data" ng-repeat="scope in form_data1_scope" ng-init="scope_index = $index">
+		<legend>ขอบข่าย</legend>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-1">
+				ขอบข่าย
+			</label>
+			<div class="col-lg-4">
+				<select class="form-control" ng-model="scope.iso" ng-options="item.id as item.iso_name for item in Iso2List">
+					<option value="">กรุณาเลือก..</option>
+				</select>
+			</div>
+		</div>
+		<div class="row form-group" ng-repeat="subscope in scope.FormData1SubScope" ng-init="subscope_index = $index"  ng-show="FormData1.operator_type == 'private'">
+			<label class="form-control-static col-lg-2 col-lg-offset-1">
+				ขอบข่ายย่อย
+			</label>
+			<div class="col-lg-4">
+				<select class="form-control" ng-model="subscope.iso" ng-options="item.id as item.iso_name for item in Iso3List">
+					<option value="">กรุณาเลือก..</option>
+				</select>
+			</div>
+			<div class="col-lg-2">
+				<button class="btn btn-primary pull-right" ng-click="addSubScope(scope_index)">เพิ่มขอบข่ายย่อย</button>
+			</div>
+		</div>
+		
+	</fieldset>
+	<br><br>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-2">
+			สถานะการใช้งาน
+		</label>
+		<div class="col-lg-10">
+			<div class="btn-group">
+                <label class="btn btn-default btn-checkbox" ng-model="FormData1.actives" uib-btn-radio="'Y'">ใช้งาน</label>
+                <label class="btn btn-default btn-checkbox" ng-model="FormData1.actives" uib-btn-radio="'N'">ไม่ใช้งาน</label>
+            </div>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-12 text-center">
+			<button class="btn btn-primary" ng-click="saveData(FormData1, form_data1_license, form_data1_scope)">บันทึก</button>
+			<button class="btn btn-default" ng-click="cancel()">ยกเลิก</button>
+		</div>
+	</div>
+</div>
+
+<div ng-show="PAGE == 'MAIN'">
+	<div class="row form-group">
+		<button class="btn btn-primary" ng-class="{'active':operator_type == 'private'}" ng-click="loadList(condition, 'private')">ประเภทหน่วยรับรอง (Certification Body : CB)</button>
+		<button class="btn btn-primary" ng-class="{'active':operator_type == 'government'}" ng-click="loadList(condition, 'government')">ประเภทหน่วยตรวจ (Inspection Body : IB)</button>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-1">
+			ค้นหา
+		</label>
+		<div class="col-lg-2">
+			<input class="form-control" ng-model="condition.keyword">
+		</div>
+		<div class="col-lg-1">
+			<button class="btn btn-primary" ng-click="loadList(condition, operator_type)">ค้นหา</button>
+		</div>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered">
+			<caption>
+				<button class="btn btn-info pull-right" ng-click="updateData('')">เพิ่มข้อมูล</button>
+			</caption>
+			<thead>
+				<tr>
+					<th>รายชื่อ</th>
+					<th>ติดต่อ</th>
+					<th>มาตรฐาน</th>
+					<th>หมายเลขประจำตัว</th>
+					<th>ไฟล์แนบ</th>
+				</tr>	
+			</thead>
+			<tbody>
+				<tr ng-repeat="data in DataList">
+					<td><a ng-click="updateData(data.id)">{{data.group_name}}</a></td>
+					<td>{{data.contact_name}} {{data.contact_phone}} {{data.contact_fax}}</td>
+					<td>
+						<span ng-repeat="license in data.form_data1_license">
+							<span ng-repeat="standard in license.form_data1_standard_checked">
+								{{standard.standard_name}}<br>
+							</span>
+						</span>
+					</td>
+					<td>{{data.code_number}}</td>
+					<td><a href="../{{data.file_path}}">{{data.file_name}}</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<style type="text/css">
+	.fieldset_data{
+		padding: 10px;
+		border : 1px solid #999;
+	}
+	.bg-odd{
+		background-color: #FAFAFA;
+		margin: 10px;
+	}
+</style>

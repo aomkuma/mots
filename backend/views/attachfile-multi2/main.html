@@ -1,0 +1,124 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group" style="padding-top: 10px;">
+	  <div class="col-lg-10">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+</div>
+<div  ng-show="PAGE == 'UPDATE'">
+	<div class="row form-group" ng-show="MasterList.length > 0">
+		<label class="form-control-static col-lg-2">
+			หมวดหมู่
+		</label>
+		<div class="col-lg-4">
+			<select class="form-control" ng-model="Data.file_type" ng-options="data.type_name as data.type_name for data in MasterList">
+				<option value="">กรุณาเลือก..</option>
+			</select>
+		</div>
+	</div>
+	<div class="row form-group">
+		
+		<div class="col-lg-12">
+			<div class="row form-group" ng-repeat="fle in FileList">
+				<div class="col-lg-12">
+					<div class="row">
+						<label class="form-control-static col-lg-2">
+							ไฟล์ภาษาไทย
+						</label>
+						<div class="col-lg-4" >
+							<p class="input-group">
+			                  <input type="text" class="form-control" ng-model="FileName[$index].name_th"   />
+			                  <span class="input-group-btn">
+			                    <button class="btn btn-default" ngf-select ng-model="fle.attachFileTH" ngf-max-size="25MB"  ngf-model-invalid="fle.attachFileTH.invalidFile">เลือก</button>
+			                    
+			                  </span>
+			                </p>
+						</div>
+						<label class="form-control-static col-lg-2">
+							{{fle.attachFileTH.name}}
+						</label>
+						<div class="col-lg-3">
+							<div class="file-alert" ng-show="fle.attachFileTH.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{fle.attachFileTH.invalidFile.$errorParam}}</div>
+						</div>
+					</div>
+					<div class="row">
+						<label class="form-control-static col-lg-2">
+							ไฟล์ภาษาอังกฤษ
+						</label>
+						<div class="col-lg-4" >
+							<p class="input-group">
+			                  <input type="text" class="form-control" ng-model="FileName[$index].name_en" />
+			                  <span class="input-group-btn">
+			                    <button class="btn btn-default" ngf-select ng-model="fle.attachFileEN" ngf-max-size="25MB"  ngf-model-invalid="fle.attachFileEN.invalidFile">เลือก</button>
+			                    
+			                  </span>
+			                </p>
+						</div>
+						<label class="form-control-static col-lg-2">
+							{{fle.attachFileEN.name}}
+						</label>
+						<div class="col
+						<div class="col-lg-3">
+							<div class="file-alert" ng-show="fle.attachFileEN.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{fle.attachFileEN.invalidFile.$errorParam}}</div>
+						</div>
+					</div>
+					<hr>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row form-group" ng-show="FileList.length > 0">
+		<div class="col-lg-12 text-center">
+			<button class="btn btn-info" ng-click="save('attachfile-multi/update', Data, FileList, FileName)">บันทึก</button>
+			<button class="btn btn-default" ng-click="cancel()">ยกเลิก</button>
+		</div>
+	</div>
+</div>
+<div ng-show="PAGE == 'MAIN'">
+	<div class="table-responsive">
+		<div class="col-lg-12">
+			<table class="table table-striped" ng-repeat="(listName, list) in model.list">
+				<caption>
+					<button class="btn btn-primary" ng-click="add()"><span class="glyphicon glyphicon-plus"></span> เพิ่ม</button>
+				</caption>
+				<thead>
+					<tr>
+						<th>ลำดับ</th>
+						<th>เรื่อง</th>
+						<th ng-show="page_type == 'ministerial-orders'">หมวดหมู่</th>
+						<th>วันที่</th>
+						<th>จัดการข้อมูล</th>
+					</tr>
+				</thead>
+				<tbody dnd-list="list">
+					<tr ng-repeat="data in list" dnd-draggable="data"
+					        dnd-moved="list.splice($index, 1)"
+					        dnd-effect-allowed="move"
+					        dnd-selected="model.selected = data" 
+					        dnd-dragend="dropCallback(list)">
+						<td>{{ $index + 1}}</td>
+						<td>
+							{{data.AttachFiles[0].display_name == null || data.AttachFiles[0].display_name == ''?data.AttachFiles[0].file_name:data.AttachFiles[0].display_name}}
+						</td>
+						<td ng-show="page_type == 'ministerial-orders'">{{data.file_type}}</td>
+						<td>{{data.file_date==null|| data.file_date == '0000-00-00'?data.create_date:data.file_date}}</td>
+						<td>
+							<button class="btn btn-default" ng-click="edit(data)"><span class="glyphicon glyphicon-edit"></span></button>
+							<button class="btn btn-danger" ng-click="removeData(data.id)"><span class="glyphicon glyphicon-trash"></span></button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>	
+
+	</div>
+</div>

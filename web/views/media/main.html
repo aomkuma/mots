@@ -1,0 +1,110 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div  style="margin-top:180px;">
+	<div class="row form-group" style="padding-top: 70px;">
+	  <div class="col-lg-10 col-lg-offset-1">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<span class="title-content">
+				<h2>{{(DEFAULT_LANGUAGE == 'TH'?MenuName[MenuName.length - 1].menu_name_th:MenuName[MenuName.length - 1].menu_name_en)}}</h2>
+			</span>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<img src="../files/img/header_line.png" style="width: 70%;">
+		</div>
+	</div>
+	</div>
+
+	<div ng-show="PAGE == 'DETAIL'">
+		<div class="row">
+			<div class="col-lg-10 col-lg-offset-1">		
+				<div class="row form-group">
+					<label class="col-lg-12 form-control-static text-center">
+						<h4>{{Detail.title_th}}</h4>
+					</label>
+					<div class="col-lg-12">
+						<div style="height: 2px; background-color: #13569A; width: 100%;"></div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<label class="col-lg-12 form-control-static text-center">
+						<video height="300" controls style="border : 1px solid #999;">
+						  <source src="../{{Detail.file_path}}" type="{{Detail.file_type}}">
+						Your browser does not support the video tag.
+						</video>
+					</label>
+				</div>
+				<div class="row form-group">
+					<div class="col-lg-12 form-control-static" bind-html-compile="Detail.content_th | htmlToPlaintext">
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-lg-12">
+						<a role="button" class="btn btn-success pull-right" href="../{{Detail.file_path}}" download="{{Detail.file_name}}">ดาวน์โหลด</a>
+					</div>
+				</div>
+			</div>	
+		</div>
+	</div>
+	<div class="row" ng-show="PAGE == 'MAIN'">
+		<div class="row">
+			<div class="col-lg-10 col-lg-offset-1">		
+				<div class="col-lg-4 col-sm-3 col-xs-12" ng-repeat="data in DataList" style="border: 1px #ccc solid; height: 470px; word-break:break-all;">
+					<div class="row" style="height: 240px;">
+						<div class="col-lg-12 text-center">
+							<video width="320" height="240" controls>
+							  <source src="../{{data.file_path}}" type="{{data.file_type}}">
+							Your browser does not support the video tag.
+							</video>
+						</div>
+					</div>
+					<div class="row">
+							<div class="col-lg-12">
+								<a ng-click="viewDetail(data)" style="cursor: pointer; color: #999;" bind-html-compile="data.title_th | htmlToPlaintext"></a>
+								<br>
+								
+							</div>
+						</div>
+					
+					<div class="row" style="padding-top: 2vh;">
+						<div class="col-lg-6">
+							
+						</div>	
+						<div class="col-lg-6 ">
+							<span class="pull-right" style="color: #FF5C5C;"></span>
+						</div>	
+					</div>
+					<hr>
+					<div class="row" style="padding-bottom: 3vh;">
+						<div class="col-lg-6 ">
+							&nbsp;
+						</div>	
+						<div class="col-lg-6">
+							<span class=" pull-right" style="color:#A5C7CE;">
+								<button class="btn btn-warning" ng-click="viewDetail(data)">อ่านต่อ</button>
+							</span>
+						</div>	
+						
+					</div>
+				</div>
+			<div class="col-lg-12" style="text-align:center;" ng-show="tableLoad"><img src="img/ellipsis.gif"></div>
+		</div>
+	</div>
+	
+</div>
+<div ng-include src="'views/footer.html'"></div>

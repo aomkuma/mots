@@ -1,0 +1,74 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div class="page-header">
+	<h3>จัดการคำถามที่พบบ่อย</h3>
+</div>
+
+<div class="row form-group">
+	<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+		ประเภทคำถาม
+	</label>
+	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+		​<select class="form-control" ng-model="Question.question_type">
+			<option value="">กรุณาเลือก</option>
+			<option value="travel">ด้านท่องเที่ยว</option>
+			<option value="sport">ด้านกีฬา</option>
+		</select>
+	</div>
+</div>
+<div class="row form-group">
+	<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+		วันที่คำถาม
+	</label>
+	<div class="col-lg-3 col-md-13 col-sm-12 col-xs-12">
+		​<p class="input-group">
+				<input type="text" class="form-control" ng-model="Question.question_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup1.opened" datepicker-options="dateOptions1">
+				<span class="input-group-btn">
+	            	<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+	          	</span>
+	        </p>
+	</div>
+</div>
+
+<div class="row form-group">
+	<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+		ชื่ออผู้ถาม
+	</label>
+	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+		​<input type="text" class="form-control" ng-model="Question.question_by" maxlength="70">
+	</div>
+</div>
+
+<div class="row form-group">
+	<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+		รายละเอียดคำถาม
+	</label>
+	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+		​<input type="text" class="form-control" ng-model="Question.question" maxlength="500">
+	</div>
+</div>
+
+<div class="row form-group">
+	<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+		คำตอบ
+	</label>
+	<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" id="ckeditor1">
+		<textarea class="form-control" id="editor1" name="editor1" ng-model="Question.question_reply" rows="100" data-sample="40" data-sample-short="" >
+		</textarea>
+	</div>
+</div>
+<div class="row form-group">
+	<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+		เลือกแสดงที่หน้าเว็บไซต์
+	</label>
+	<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" >
+		<div class="btn-group">
+			<label class="btn btn-default btn-checkbox" ng-model="Question.question_picked" uib-btn-radio="'Y'" >ใช่</label>
+            <label class="btn btn-default btn-checkbox" ng-model="Question.question_picked" uib-btn-radio="'N'" >ไม่ใช่</label>
+        </div>
+	</div>
+</div>
+<div class="page-header text-center">
+	<button class="btn btn-info" ng-click="save('question/update', Question)">บันทึก</button>
+	<button class="btn btn-default" ng-click="cancelUpdate()">ยกเลิก</button>
+</div>

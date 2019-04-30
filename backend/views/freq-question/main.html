@@ -1,0 +1,103 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group" style="padding-top: 10px;">
+	  <div class="col-lg-5">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <img src="../files/img/pin-menu.png">
+	        คำถามที่พบบ่อย
+	        <span ng-show="MenuName.sub_menu != null">
+	        	<img src="../files/img/pin-menu.png">
+				{{MenuName.sub_menu.menu_name_th}}	        	
+	        </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+</div>
+<div class="row form-group">
+	<div class="col-lg-12">
+		<button class="btn btn-default" ng-class="{'active':QuestionIndex==0}" ng-click="setQuestionType(0)">มาตรฐาน</button>
+		<button class="btn btn-default" ng-class="{'active':QuestionIndex==1}" ng-click="setQuestionType(1)">การรับรอง</button>
+		<button class="btn btn-default" ng-class="{'active':QuestionIndex==2}" ng-click="setQuestionType(2)">เกษตรดิจิทัล</button>
+		<button class="btn btn-default" ng-class="{'active':QuestionIndex==3}" ng-click="setQuestionType(3)">การควบคุม</button>
+		<button class="btn btn-default" ng-class="{'active':QuestionIndex==4}" ng-click="setQuestionType(4)">ความรู้ทั่วไป</button>
+		<button class="btn btn-default" ng-class="{'active':QuestionIndex==5}" ng-click="setQuestionType(5)">พ.ร.บ. มาตรฐานสินค้าเกษตร</button>
+	</div>
+</div>
+<div class="row form-group">
+	<label class="form-control-static col-lg-1">
+		ค้นหา
+	</label> 
+	<div class="col-lg-3">
+		<input class="form-control" ng-model="keyword">
+	</div>
+	<div class="col-lg-2">
+		<button class="btn btn-primary" ng-click="loadList(QuestionType)"> <span class="glyphicon glyphicon-search"></span> ค้นหา</button>
+	</div>
+	
+</div>
+<div class="table-responsive">
+	<table class="table table-striped">
+		<caption>
+			<div class="col-lg-10"><h4>{{QuestionType}}</h4></div>
+			<div class="col-lg-1">
+				<button class="btn btn-primary" ng-click="add()">เพิ่มข้อมูล</button>
+			</div>
+		</caption>
+		<tbody>
+			<tr ng-repeat="data in DataList">
+				<td>
+					<div class="row form-group">
+						<label class="form-control-static col-lg-3">
+							คำถามภาษาไทย
+						</label>
+						<div class="col-lg-9">
+							<input class="form-control" ng-model="data.question_th">
+						</div>
+					</div>
+					<div class="row form-group">
+						<label class="form-control-static col-lg-3">
+							คำตอบภาษาไทย
+						</label>
+						<div class="col-lg-9">
+							<input class="form-control" ng-model="data.answer_th">
+						</div>
+					</div>
+					<div class="row form-group">
+						<label class="form-control-static col-lg-3">
+							คำถามภาษาอังกฤษ
+						</label>
+						<div class="col-lg-9">
+							<input class="form-control" ng-model="data.question_en">
+						</div>
+					</div>
+					<div class="row form-group">
+						<label class="form-control-static col-lg-3">
+							คำถามภาษาอังกฤษ
+						</label>
+						<div class="col-lg-9">
+							<input class="form-control" ng-model="data.answer_en">
+						</div>
+					</div>
+					<div class="row form-group">
+						<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+							สถานะ
+						</label>
+						<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" >
+							<div class="btn-group">
+								<label class="btn btn-default btn-checkbox" ng-model="data.actives" uib-btn-radio="'Y'" >ใช้งาน</label>
+					            <label class="btn btn-default btn-checkbox" ng-model="data.actives" uib-btn-radio="'N'" >ไม่ใช้งาน</label>
+					        </div>
+						</div>
+					</div>
+				</td>
+				<td>
+					<button class="btn btn-primary" ng-click="updateData(data)">บันทึก</button>
+					<button class="btn btn-danger" ng-click="removeData(data.id, $index)">ลบ</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

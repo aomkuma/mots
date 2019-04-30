@@ -1,0 +1,94 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div style="margin-top:180px;">
+	<div class="row form-group" style="padding-top: 70px;">
+	  <div class="col-lg-10 col-lg-offset-1">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+	</div>
+<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<span class="title-content">
+				<h2>{{(DEFAULT_LANGUAGE == 'TH'?MenuName[MenuName.length - 1].menu_name_th:MenuName[MenuName.length - 1].menu_name_en)}}</h2>
+			</span>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<img src="../files/img/header_line.png" style="width: 70%;">
+		</div>
+	</div>
+		<div class="row form-group">
+			<div class="col col-lg-10 col-lg-offset-1">
+				<div class="row form-group">
+					<label class="form-control-static col-lg-1">
+						ค้นหา
+					</label> 
+					<div class="col-lg-3">
+						<input class="form-control" ng-model="keyword">
+					</div>
+					<div class="col-lg-2">
+						<button class="btn btn-primary" ng-click="search(keyword)"> <span class="glyphicon glyphicon-search"></span> ค้นหา</button>
+					</div>
+				</div>
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>มาตรฐานสินค้า</th>
+								<th>ประเภทมาตรฐาน</th>
+								<th>แผนประจำปี</th>
+								<th>ขั้นตอน</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="data in dataset">
+								<td>{{data.standardNameThai}}</td>
+								<td>{{data.standardType}}</td>
+								<td>{{data.years}}</td>
+								<td><img src="../files/img/step{{data.step}}.png" alt="" style="height: 100px;"></td>
+								
+							</tr>
+						</tbody>
+					</table>
+					<ul class="pagination pull-right">
+					    <li ng-show="totalPages > 1">
+					      <a ng-click="goToPage(0)" aria-label="First">
+					        <span aria-hidden="true">First</span>
+					      </a>
+					    </li>
+					    <li ng-show="totalPages > 1">
+					      <a ng-click="goToPage(currentPage - 1)" aria-label="Prev">
+					        <span aria-hidden="true">Prev.</span>
+					      </a>
+					    </li>
+					    <li ng-repeat="page in [] | range : totalPages:currentPage:limitDisplay | limitTo:5" ng-class="{'active':page == (currentPage)}">
+					    	<a ng-click="goToPage(page)">{{page + 1}}</a>
+					    </li>
+					    <li ng-show="totalPages > 1">
+					      <a ng-click="goToPage(currentPage + 1)" aria-label="Next">
+					        <span aria-hidden="true">Next</span>
+					      </a>
+					    </li>
+					    <li ng-show="totalPages > 1">
+					      <a ng-click="goToPage(totalPages - 1)" aria-label="Last">
+					        <span aria-hidden="true">Last</span>
+					      </a>
+					    </li>
+					  </ul>
+				</div>
+			</div>
+		</div>
+	<div ng-include src="'views/footer.html'"></div>
+</div>

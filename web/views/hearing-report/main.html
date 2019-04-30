@@ -1,0 +1,382 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div  style="margin-top:180px;">
+	<div class="row form-group" style="padding-top: 70px;">
+	  <div class="col-lg-10 col-lg-offset-1">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+	  <div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<span class="title-content">
+				<h2>{{(DEFAULT_LANGUAGE == 'TH'?MenuName[MenuName.length - 1].menu_name_th:MenuName[MenuName.length - 1].menu_name_en)}}</h2>
+			</span>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<img src="../files/img/header_line.png" style="width: 70%;">
+		</div>
+	</div>
+	</div>
+		<div class="row form-group">
+			<div class="col-lg-10 col-lg-offset-1">
+				<div class="row form-group">
+					<div class="col-lg-12 text-center">
+						<h3>แบบรับฟังความคิดเห็น</h3>
+					</div>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-1">
+						ชื่อ
+					</label>
+					<div class="col-lg-2">
+						<input class="form-control" ng-model="Data.firstname" maxlength="70">
+					</div>
+					<label class="form-control-static col-lg-1">
+						สกุล
+					</label>
+					<div class="col-lg-2">
+						<input class="form-control" ng-model="Data.lastname" maxlength="70">
+					</div>
+				</div>
+				<div class="row form-group">
+					<h4>1. ข้อมูลทั่วไป</h4>
+				</div> 
+				<div class="row form-group">
+					<label class="form-control-static col-lg-2">
+						ประเภทของผู้รับบริการ
+					</label>
+					<div class="col-lg-10">
+						<div class="row form-group">
+							<label class="form-control-static col-lg-3">
+								
+								<input type="radio" ng-model="Data.service_type" value="หน่วยงานราชการ / รัฐวิสาหกิจ"> หน่วยงานราชการ / รัฐวิสาหกิจ &nbsp;
+							</label>
+							<label class="form-control-static col-lg-3">
+								
+								<input type="radio" ng-model="Data.service_type" value="บริษัท/ห้างร้าน/เอกชน"> บริษัท/ห้างร้าน/เอกชน &nbsp;
+								
+							</label>
+							<label class="form-control-static col-lg-3">
+								
+								<input type="radio" ng-model="Data.service_type" value="สื่อมวลชน"> สื่อมวลชน &nbsp;
+								
+							</label>
+							<label class="form-control-static col-lg-3">
+								
+								<input type="radio" ng-model="Data.service_type" value="ประชาชนทั่วไป"> ประชาชนทั่วไป &nbsp;
+								
+							</label>
+							<label class="form-control-static col-lg-3">
+								
+								<input type="radio" ng-model="Data.service_type" value="นักเรียน/นิสิต/นักศึกษา"> นักเรียน/นิสิต/นักศึกษา &nbsp;
+								
+							</label>
+							<label class="form-control-static col-lg-3">
+								
+								<input type="radio" ng-model="Data.service_type" value="องค์กรอิสระ/หน่วยงานอิสระ"> องค์กรอิสระ/หน่วยงานอิสระ &nbsp;
+								
+							</label>
+							<label class="form-control-static col-lg-3">
+								
+								<input type="radio" ng-model="Data.service_type" value="อื่นๆ"> อื่นๆ &nbsp;
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-2">
+						เพศของผู้รับบริการ 
+					</label>
+					<div class="col-lg-10">
+						<div class="row form-group">
+							<label class="form-control-static col-lg-3">
+								
+								<input type="radio" ng-model="Data.gender" value="ชาย"> ชาย &nbsp;
+							</label>
+							<label class="form-control-static col-lg-3">
+								
+								<input type="radio" ng-model="Data.gender" value="หญิง"> หญิง &nbsp;
+								
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-2">
+						อายุของผู้รับบริการ
+					</label>
+					<div class="col-lg-10">
+						<div class="row form-group">
+							<label class="form-control-static col-lg-3">
+								
+								<input type="radio" ng-model="Data.age" value="ต่ำกว่า 18 ปี"> ต่ำกว่า 18 ปี &nbsp;
+							</label>
+							<label class="form-control-static col-lg-3">
+								
+								<input type="radio" ng-model="Data.age" value="18-25 ปี"> 18-25 ปี &nbsp;
+								
+							</label>
+							<label class="form-control-static col-lg-3">
+								
+								<input type="radio" ng-model="Data.age" value="26-35 ปี"> 26-35 ปี&nbsp;
+								
+							</label>
+							<label class="form-control-static col-lg-3">
+								
+								<input type="radio" ng-model="Data.age" value="36-45 ปี"> 36-45 ปี&nbsp;
+								
+							</label>
+							<label class="form-control-static col-lg-3">
+								
+								<input type="radio" ng-model="Data.age" value="46-55 ปี"> 46-55 ปี&nbsp;
+								
+							</label>
+							<label class="form-control-static col-lg-3">
+								
+								<input type="radio" ng-model="Data.age" value="56 ปี ขึ้นไป"> 56 ปี ขึ้นไป&nbsp;
+								
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-12">
+						ท่านทราบข้อมูลเกี่ยวกับศูนย์ข้อมูลข่าวสารของสำนักงานมาตรฐานสินค้าเกษตรและอาหารแห่งชาติผ่านช่องทางใดบ้าง( เลือกได้มากกว่า 1 ข้อ ) 
+					</label>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-2">
+						
+					</label>
+					<div class="col-lg-10">
+						<div class="row form-group">
+							<label class="form-control-static col-lg-3" ng-repeat="data in ChanelList">
+								<input type="checkbox" value="{{data.detail_desc}}" ng-click="toggleChanelList(data.detail_desc)"> {{data.detail_desc}}&nbsp;
+							</label>
+							
+						</div>
+					</div>
+				</div>
+
+				<div class="row form-group">
+					<label class="form-control-static col-lg-12">
+						ข้อมูลที่ท่านต้องการขอ หรือต้องการทราบเป็นข้อมูลประเภทใด ( เลือกได้มากกว่า 1 ข้อ)
+					</label>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-2">
+						
+					</label>
+					<div class="col-lg-10">
+						<div class="row form-group">
+							<label class="form-control-static col-lg-12" ng-repeat="data in DataTypeList">
+								<input type="checkbox" value="{{data.detail_desc}}" ng-click="toggleDataTypeList(data.detail_desc)"> {{data.detail_desc}}&nbsp;
+							</label>
+							
+						</div>
+					</div>
+				</div>
+
+				<div class="row form-group">
+					<h4>2. ข้อมูลการเข้าใช้บริการ</h4>
+				</div> 
+				<div class="row form-group">
+					<label class="form-control-static col-lg-4">
+						จำนวนครั้งที่ท่านเข้าใช้บริการเว็บไซต์ www.acfs.go.th   เฉลี่ย
+					</label>
+					<div class="col-lg-1">
+						<input type="number" class="form-control" ng-model="Data.total_visit">
+					</div>
+					<label class="form-control-static col-lg-2">
+						ครั้งต่อสัปดาห์
+					</label>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-4">
+						ระยะเวลาที่ท่านเข้าใช้บริการเว็บไซต์ www.acfs.go.th ต่อครั้ง
+					</label>
+					<div class="col-lg-1">
+						<input type="number" class="form-control" ng-model="Data.time_visit">
+					</div>
+					<label class="form-control-static col-lg-2">
+						นาที
+					</label>
+				</div>
+
+				<div class="row form-group">
+					<label class="form-control-static col-lg-3">
+						ท่านใช้บริการเว็บไซต์ในช่วงเวลาใด มากที่สุด
+					</label>
+					<div class="col-lg-9">
+						<div class="row form-group">
+							<label class="form-control-static col-lg-3">
+								
+								<input type="radio" ng-model="Data.visit_website_time" value="06.00-10.00 น."> 06.00-10.00 น.&nbsp;
+							</label>
+							<label class="form-control-static col-lg-3">
+								
+								<input type="radio" ng-model="Data.visit_website_time" value="10.00-14.00 น."> 10.00-14.00 น.&nbsp;
+								
+							</label>
+							<label class="form-control-static col-lg-3">
+								
+								<input type="radio" ng-model="Data.visit_website_time" value="14.00-18.00 น."> 14.00-18.00 น.&nbsp;
+								
+							</label>
+							<label class="form-control-static col-lg-3">
+								
+								<input type="radio" ng-model="Data.visit_website_time" value="18.00-22.00 น."> 18.00-22.00 น.&nbsp;
+								
+							</label>
+							<label class="form-control-static col-lg-3">
+								
+								<input type="radio" ng-model="Data.visit_website_time" value="22.00-02.00 น."> 22.00-02.00 น.&nbsp;
+								
+							</label>
+							<label class="form-control-static col-lg-3">
+								
+								<input type="radio" ng-model="Data.visit_website_time" value="02.00-06.00 น."> 02.00-06.00 น.&nbsp;
+								
+							</label>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row form-group">
+					<h4>3. ข้อมูลการแสดงความคิดเห็นของผู้ใช้บริการ </h4>
+				</div> 
+				<div class="row form-group">
+					<div class="col-lg-6 table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>ด้านรูปแบบ</th>
+									<th>ดี</th>
+									<th>พอใช้</th>
+									<th>ควรปรับปรุง</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>สีและขนาดตัวอักษร</td>
+									<td><input type="radio" ng-model="Data.color_font_size" value="ดี"></td>
+									<td><input type="radio" ng-model="Data.color_font_size" value="พอใช้"></td>
+									<td><input type="radio" ng-model="Data.color_font_size" value="ควรปรับปรุง"></td>
+								</tr>
+								<tr>
+									<td>ภาพหรือสัญลักษณ์ที่ใช้</td>
+									<td><input type="radio" ng-model="Data.picture_symbol" value="ดี"></td>
+									<td><input type="radio" ng-model="Data.picture_symbol" value="พอใช้"></td>
+									<td><input type="radio" ng-model="Data.picture_symbol" value="ควรปรับปรุง"></td>
+								</tr>
+								<tr>
+									<td>การจัดหมวดหมู่ข้อมูล</td>
+									<td><input type="radio" ng-model="Data.group_data" value="ดี"></td>
+									<td><input type="radio" ng-model="Data.group_data" value="พอใช้"></td>
+									<td><input type="radio" ng-model="Data.group_data" value="ควรปรับปรุง"></td>
+								</tr>
+								<tr>
+									<td>การเชื่อมโยงเว็บไซต์ต่าง ๆ</td>
+									<td><input type="radio" ng-model="Data.external_link" value="ดี"></td>
+									<td><input type="radio" ng-model="Data.external_link" value="พอใช้"></td>
+									<td><input type="radio" ng-model="Data.external_link" value="ควรปรับปรุง"></td>
+								</tr>
+								<tr>
+									<td>ความง่ายในการใช้งาน</td>
+									<td><input type="radio" ng-model="Data.user_friendly" value="ดี"></td>
+									<td><input type="radio" ng-model="Data.user_friendly" value="พอใช้"></td>
+									<td><input type="radio" ng-model="Data.user_friendly" value="ควรปรับปรุง"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="row form-group">
+					<div class="col-lg-6 table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>ด้านข้อมูล</th>
+									<th>ดี</th>
+									<th>พอใช้</th>
+									<th>ควรปรับปรุง</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>ความทันสมัยของข้อมูล</td>
+									<td><input type="radio" ng-model="Data.up_to_date" value="ดี"></td>
+									<td><input type="radio" ng-model="Data.up_to_date" value="พอใช้"></td>
+									<td><input type="radio" ng-model="Data.up_to_date" value="ควรปรับปรุง"></td>
+								</tr>
+								<tr>
+									<td>ความถูกต้องของข้อมูล</td>
+									<td><input type="radio" ng-model="Data.correction" value="ดี"></td>
+									<td><input type="radio" ng-model="Data.correction" value="พอใช้"></td>
+									<td><input type="radio" ng-model="Data.correction" value="ควรปรับปรุง"></td>
+								</tr>
+								<tr>
+									<td>ความน่าสนใจของข้อมูล</td>
+									<td><input type="radio" ng-model="Data.attractive" value="ดี"></td>
+									<td><input type="radio" ng-model="Data.attractive" value="พอใช้"></td>
+									<td><input type="radio" ng-model="Data.attractive" value="ควรปรับปรุง"></td>
+								</tr>
+								<tr>
+									<td>ความชัดเจนของข้อมูล</td>
+									<td><input type="radio" ng-model="Data.clarity" value="ดี"></td>
+									<td><input type="radio" ng-model="Data.clarity" value="พอใช้"></td>
+									<td><input type="radio" ng-model="Data.clarity" value="ควรปรับปรุง"></td>
+								</tr>
+								<tr>
+									<td>ความรวดเร็วในการเข้าถึงข้อมูล</td>
+									<td><input type="radio" ng-model="Data.speed_data" value="ดี"></td>
+									<td><input type="radio" ng-model="Data.speed_data" value="พอใช้"></td>
+									<td><input type="radio" ng-model="Data.speed_data" value="ควรปรับปรุง"></td>
+								</tr>
+								<tr>
+									<td>ประโยชน์ของข้อมูลข่าวสารที่ได้รับ</td>
+									<td><input type="radio" ng-model="Data.benefit" value="ดี"></td>
+									<td><input type="radio" ng-model="Data.benefit" value="พอใช้"></td>
+									<td><input type="radio" ng-model="Data.benefit" value="ควรปรับปรุง"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="row form-group">
+					<h4>4. เหตุผลที่ต้องการขอข้อมูล </h4>
+				</div> 
+				<div class="row form-group">
+					<label class="form-control-static col-lg-1">
+						รายละเอียด
+					</label>
+					<div class="col-lg-5">
+						<textarea class="form-control" ng-model="Data.comment"></textarea>
+					</div>
+				</div>
+				
+				<div class="row form-group">
+					<div class="col-lg-12 text-center">
+						<button class="btn btn-primary" ng-click="updateData(Data, Chanel, DataType)">ส่งข้อมูล</button>
+						<button class="btn btn-danger" ng-click="cancel()">ยกเลิก</button>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	<div ng-include src="'views/footer.html'"></div>
+</div>

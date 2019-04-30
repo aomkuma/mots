@@ -1,0 +1,162 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group" style="padding-top: 10px;">
+        <div class="col-lg-5">
+          <div class="row">
+            <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+              <img src="../files/img/pin-menu.png">
+              ผู้ใช้งาน
+
+              <span ng-show="MenuName.sub_menu != null">
+                  <img src="../files/img/pin-menu.png">
+                        {{MenuName.sub_menu.menu_name_th}}              
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+
+        </div>
+</div>
+<hr>
+<div ng-show="PAGE == 'UPDATE'">
+   <div class="row form-group">
+        <label class="col-lg-2 col-sm-12 col-xs-12 form-control-static">ชื่อ</label>
+        <div class="col-lg-4 col-sm-12 col-xs-12">
+        	<input type="text" class="form-control" ng-model="Data.firstname">
+        </div>
+        <label class="col-lg-2 col-sm-12 col-xs-12 form-control-static">สกุล</label>
+        <div class="col-lg-4 col-sm-12 col-xs-12">
+          <input type="text" class="form-control" ng-model="Data.lastname">
+        </div>
+   </div>
+   <div class="row form-group">
+        <label class="col-lg-2 col-sm-12 col-xs-12 form-control-static">ตำแหน่ง</label>
+        <div class="col-lg-4 col-sm-12 col-xs-12">
+        	<input type="text" class="form-control" ng-model="Data.position">
+        </div>
+        <label class="col-lg-2 col-sm-12 col-xs-12 form-control-static">หน่วยงาน</label>
+        <div class="col-lg-4 col-sm-12 col-xs-12">
+        	<input type="text" class="form-control" ng-model="Data.org">
+        </div>
+   </div> 
+   <div class="row form-group">
+        <label class="col-lg-2 col-sm-12 col-xs-12 form-control-static">เบอร์โทรศัพท์</label>
+        <div class="col-lg-4 col-sm-12 col-xs-12">
+        	<input type="text" class="form-control" ng-model="Data.tel">
+        </div>
+   </div> 
+   <div class="row form-group">
+        <label class="col-lg-2 col-sm-12 col-xs-12 form-control-static">email</label>
+        <div class="col-lg-4 col-sm-12 col-xs-12">
+        	<input type="text" class="form-control" ng-model="Data.email">
+        </div>
+   </div> 
+   <div class="row form-group">
+        <label class="col-lg-2 col-sm-12 col-xs-12 form-control-static">บทบาท</label>
+        <div class="col-lg-4 col-sm-12 col-xs-12">
+          <select class="form-control" ng-model="Data.role" ng-options="item.id as item.role_name for item in RoleList">
+            <option value="">กรุณาเลือก..</option>
+          </select>
+        </div>
+   </div> 
+   <div class="row form-group">
+        <label class="col-lg-2 col-sm-12 col-xs-12 form-control-static">รหัสผ่าน</label>
+        <div class="col-lg-4 col-sm-12 col-xs-12">
+        	<input type="password" class="form-control" ng-model="Data.password">
+        </div>
+   </div> 
+   <div class="row form-group">
+        <label class="col-lg-2 col-sm-12 col-xs-12 form-control-static">ยืนยันรหัสผ่าน</label>
+        <div class="col-lg-4 col-sm-12 col-xs-12">
+          <input type="password" class="form-control" ng-model="confirmPassword">
+        </div>
+   </div> 
+   <div class="row form-group">
+      <label class="col-lg-2 form-control-static">
+          สถานะการใช้งาน
+      </label>
+      <div class="col-lg-10">
+          <div class="btn-group">
+              <label class="btn btn-default btn-checkbox" ng-model="Data.actives" uib-btn-radio="'Y'">ใช้งาน</label>
+              <label class="btn btn-default btn-checkbox" ng-model="Data.actives" uib-btn-radio="'N'">ไม่ใช้งาน</label>
+          </div>
+      </div>
+  </div>
+   <div class="row form-group">
+        <div class="col-lg-12 text-center">
+              <button class="btn btn-primary" ng-click="saveData(Data)" ng-disabled="Data.id == null && (confirmPassword != '' && (confirmPassword != Data.password))">บันทึก</button>
+              <button class="btn btn-default" ng-click="cancelUpdate()">ยกเลิก</button>
+        </div>
+  </div>
+</div>
+
+<div ng-show="PAGE == 'MAIN'">
+  <div class="row form-group">
+      <div class="col col-lg-12">
+        <button class="btn btn-primary pull-right" ng-click="add()">เพิ่มผู้ใช้งาน</button>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-lg-12">
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>ชื่อ</th>
+                <th>สกุล</th>
+                <th>ตำแหน่ง</th>
+                <th>หน่วยงาน</th>
+                <th>โทรศัพท์</th>
+                <th>email</th>
+                <th>บทบาท</th>
+                <th>สถานะ</th>
+                <th>จัดการ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="Data in DataList">
+                <td>{{Data.firstname}}</td>
+                <td>{{Data.lastname}}</td>
+                <td>{{Data.position}}</td>
+                <td>{{Data.org}}</td>
+                <td>{{Data.tel}}</td>
+                <td>{{Data.email}}</td>
+                <td>{{Data.role_name}}</td>
+                <td>{{Data.actives=='Y'?'ใช้งาน':'ไม่ใช้งาน'}}</td>
+                <td align="center">
+                  <button class="btn btn-default btn-sm" ng-click="edit(Data)">
+                    <span class="glyphicon glyphicon-edit"></span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <ul class="pagination pull-right">
+              <li ng-show="totalPages > 1">
+                <a ng-click="goToPage(0)" aria-label="First">
+                  <span aria-hidden="true">First</span>
+                </a>
+              </li>
+              <li ng-show="totalPages > 1">
+                <a ng-click="goToPage(currentPage - 1)" aria-label="Prev">
+                  <span aria-hidden="true">Prev.</span>
+                </a>
+              </li>
+              <li ng-repeat="page in [] | range : totalPages:currentPage:limitDisplay | limitTo:5" ng-class="{'active':page == (currentPage)}">
+                <a ng-click="goToPage(page)">{{page + 1}}</a>
+              </li>
+              <li ng-show="totalPages > 1">
+                <a ng-click="goToPage(currentPage + 1)" aria-label="Next">
+                  <span aria-hidden="true">Next</span>
+                </a>
+              </li>
+              <li ng-show="totalPages > 1">
+                <a ng-click="goToPage(totalPages - 1)" aria-label="Last">
+                  <span aria-hidden="true">Last</span>
+                </a>
+              </li>
+            </ul>
+        </div>
+      </div>  
+    </div>
+</div>

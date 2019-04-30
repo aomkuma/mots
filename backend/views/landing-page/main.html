@@ -1,0 +1,127 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group" style="padding-top: 10px;">
+	  <div class="col-lg-10">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span >
+		        <img src="../files/img/pin-menu.png">
+		        Landing Page
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+</div>
+<div  ng-show="PAGE == 'UPDATE'">
+	<div class="row form-group">
+		<div class="col-lg-12 text-center">
+			<img ngf-thumbnail="AttachFile" style="width: auto; height: 100px; " ng-show="AttachFile != null && Data.file_path == null" height="200">
+			<img src="{{'../'+ Data.file_path}}" style="width: auto height: 100px; " ng-show="Data.file_path != null && AttachFile == null" height="200">
+		</div>
+	</div>
+
+	<div class="row form-group">
+		<div class="row form-group">
+			<label class="form-control-static col-lg-1">
+				ชื่อ
+			</label>
+			<div class="col-lg-4" >
+				<input class="form-control" ng-model="Data.landing_name">
+			</div>
+			<label class="form-control-static col-lg-1">
+				รูปภาพ
+			</label>
+			<div class="col-lg-4" >
+				<p class="input-group">
+                  <input type="text" class="form-control" ng-model="AttachFile.name"   />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" ngf-select ng-model="AttachFile" ngf-max-size="25MB"  ngf-model-invalid="AttachFile.invalidFile">เลือก</button>
+                    
+                  </span>
+                </p>
+			</div>
+			
+			<div class="col-lg-2">
+				<div class="file-alert" ng-show="AttachFile.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{AttachFile.invalidFile.$errorParam}}</div>
+				<span style="color: green;">ขนาดแนะนำ 1920 * 1080 px</span>
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-1">
+				วันที่เริ่มต้น
+			</label>
+			<div class="col-lg-4">
+				<p class="input-group">
+					<input type="text" class="form-control" ng-model="Data.start_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup1.opened" required="true">
+					<span class="input-group-btn">
+		            	<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+		          </span>
+		        </p>
+			</div>
+			<label class="form-control-static col-lg-1">
+				วันที่สิ้นสุด
+			</label>
+			<div class="col-lg-4">
+				<p class="input-group">
+					<input type="text" class="form-control" ng-model="Data.end_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup2.opened" required="true">
+					<span class="input-group-btn">
+		            	<button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+		          </span>
+		        </p>
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-1">
+				สถานะ
+			</label>
+			<div class="col-lg-10">
+				<div class="btn-group">
+	                <label class="btn btn-default btn-checkbox" ng-model="Data.actives" uib-btn-radio="'Y'">ใช้งาน</label>
+	                <label class="btn btn-default btn-checkbox" ng-model="Data.actives" uib-btn-radio="'N'">ไม่ใช้งาน</label>
+	            </div>
+			</div>
+		</div>
+	</div>
+	<div class="row form-group" ng-show="FileList.length > 0">
+		<div class="col-lg-12 text-center">
+			<button class="btn btn-info" ng-click="save('landing-page/update', Data, AttachFile)">บันทึก</button>
+			<button class="btn btn-default" ng-click="cancel()">ยกเลิก</button>
+		</div>
+	</div>
+</div>
+<div ng-show="PAGE == 'MAIN'">
+	<div class="table-responsive">
+		<div class="col-lg-12">
+			<table class="table table-striped">
+				<caption>
+					<button class="btn btn-primary" ng-click="add()"><span class="glyphicon glyphicon-plus"></span></button>
+				</caption>
+				<thead>
+					<tr>
+						<th>ชื่อ</th>
+						<th>วันที่เริ่มต้น</th>
+						<th>วันที่สิ้นสุด</th>
+						<th>สถานะ</th>
+						<th>จัดการข้อมูล</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="data in DataList">
+						
+						<td>{{data.landing_name}}</td>
+						<td>{{data.start_date}}</td>
+						<td>{{data.end_date}}</td>
+						<td>{{ (data.actives=='Y'?'ใช้งาน':'ไม่ใช้งาน') }}</td>
+						<td>
+							<button class="btn btn-default" ng-click="edit(data)"><span class="glyphicon glyphicon-edit"></span></button>
+							<button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>	
+
+	</div>
+</div>

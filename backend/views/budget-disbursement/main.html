@@ -1,0 +1,73 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group" style="padding-top: 10px;">
+	  <div class="col-lg-10">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+</div>
+<div class="row form-group" ng-form="form_update">
+	<label class="form-control-static col-lg-1">
+		ปีงบประมาณ
+	</label>
+	<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+		<select name="Year" class="form-control" ng-model="Data.years" ng-options="year.yearText as year.yearValue for year in YearList" required="required">
+				<option value="">กรุณาเลือก..</option>
+			</select>
+	</div>
+	<label class="form-control-static col-lg-1">
+		เดือน
+	</label>
+	<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+		<select name="Year" class="form-control" ng-model="Data.months" ng-options="month.monthValue as month.monthText for month in MonthList" required="required">
+				<option value="">กรุณาเลือก..</option>
+			</select>
+	</div>
+	<div class="col-lg-4" >
+		<p class="input-group">
+          <input type="text" readonly="true" class="form-control" ng-model="AttachFile.name" placeholder="เลือกไฟล์.." required="true" />
+          <span class="input-group-btn">
+            <button class="btn btn-default" ngf-select ng-model="AttachFile" ngf-max-size="25MB"  ngf-model-invalid="AttachFile.invalidFile">เลือก</button>
+          </span>
+        </p>
+	</div>
+	<div class="col-lg-1">
+		<button class="btn btn-primary" ng-click="save('budget-disbursement/update', Data, AttachFile)" ng-disabled="form_update.$invalid"> เพิ่มข้อมูล</button>
+	</div>
+	<div class="col-lg-3">
+		<div class="file-alert" ng-show="AttachFile.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{AttachFile.invalidFile.$errorParam}}</div>
+	</div>
+</div>
+
+<div class="row form-group">
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>ปีงบประมาณ</th>
+					<th>เดือน</th>
+					<th>ไฟล์</th>
+					<th>ลบ</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="data in DataList">
+					<td>{{data.years + 543}}</td>
+					<td>{{getMonthName(data.months)}}</td>
+					<td><a href="../{{data.filePath}}" download="{{data.fileName}}" target="_blank">{{data.fileName}}</a></td>
+					<td>
+						<button class="btn btn-danger" ng-click="remove('budget-disbursement/delete', data.id)"> ลบ</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

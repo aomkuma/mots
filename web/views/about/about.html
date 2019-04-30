@@ -1,0 +1,75 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div class="row form-group">
+	<div class="col-lg-3 col-lg-offset-1 text-center">
+		<img src="{{'../'+Palace.picture_path}}" style="width: 250px; height: 260px; border-radius: 50%; border:7px solid #8DCEFF;" ng-show="Palace.picture_path != null">
+	</div>
+	<div class="col-lg-8">
+		<div class="row form-group" style="padding-top: 5%;">
+			<label class="col-lg-12 form-control-static" style="font-size: 1.5em; color: #0000ff;">
+				{{Palace.prefix_name_th + Palace.firstname_th + ' ' + Palace.lastname_th}}
+				<br>({{Palace.prefix_name_en + ' ' + Palace.firstname_en + ' ' + Palace.lastname_en}})</label>
+			</label>
+		</div>
+		<div class="row form-group">
+			<div class="col-lg-12">
+				{{Palace.position_th}}
+				<br>
+				({{Palace.position_en}})
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="row">
+					<div class="col-lg-3">
+					{{DEFAULT_LANGUAGE == 'TH'? 'เอกสารคำสั่งแต่งตั้ง':'Appointment Document'}} : 
+					</div>
+					<div class="col-lg-9">
+						<div class="row form-group" ng-repeat="file in Palace.AttachFiles">
+							<div class="col-lg-8">
+								<a target="_self" href="{{'../'+file.file_path}}" download="{{file.file_name}}">{{file.file_name}}</a>			
+							</div>
+						</div>
+					</div> 
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row form-group"  style="font-size: 1.2em;">
+	<div class="col-lg-3 col-lg-offset-3 text-center">
+		<a style="text-decoration: none;">
+			<div style="width: 200px; height: 200px; background-color: #8BA8F7; border-radius: 50%; color: #FFFFFF; ">
+				<div style="position: relative;top: 50%;transform: translateY(-50%); ">วิสัยทัศน์<br>และพันธกิจ</div>
+			</div>
+		</a>
+	</div>
+	<div class="col-lg-3 text-center">
+		<a href="#/project" style="text-decoration: none;">
+			<div style="width: 200px; height: 200px; background-color: #F69757; border-radius: 50%; color: #FFFFFF;">
+				<div style="position: relative;top: 50%;transform: translateY(-50%); ">โครงการ</div>
+			</div>
+		</a>
+	</div>
+	<div class="col-lg-3 text-center">
+		<a href="#/policy" style="text-decoration: none;">
+			<div style="width: 200px; height: 200px; background-color: #F7DE8B; border-radius: 50%; color: #FFFFFF;">
+				<div style="position: relative;top: 50%;transform: translateY(-50%); ">นโยบาย<br>และแผน</div>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row form-group">
+	<div class="col-lg-8 col-lg-offset-4" id="div_preview" bind-html-compile="(DEFAULT_LANGUAGE == 'TH'?About.contents:About.contents_en)">
+		
+	</div>
+</div>
+<div class="row form-group" ng-repeat="file in About.AttachFiles">
+	<div class="col-lg-8 col-lg-offset-4">
+		<a target="_self" href="{{'../'+file.file_path}}" download="{{file.file_name}}">{{file.file_name}}</a>			
+	</div>
+</div>
+
+<div ng-include src="'views/footer.html'"></div>

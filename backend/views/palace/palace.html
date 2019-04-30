@@ -1,0 +1,245 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div class="page-header">
+	<h3>{{ MenuName.menu_name_th }}</h3>
+</div>
+
+<div ng-show="PAGE == 'UPDATE'">
+	<div class="row form-group">
+		<div class="col-lg-12 text-center">
+			<img ngf-thumbnail="AttachFile" style="width: 250px; height: 315px;" ng-show="AttachFile != null && Palace.picture_path == null">
+			<img src="{{'../'+ Palace.picture_path}}" style="width: 250px; height: 315px; " ng-show="Palace.picture_path != null && AttachFile == null">
+		</div>
+	</div>
+
+	<div class="row form-group">
+		<label class="col-lg-2 col-lg-offset-2 form-control-static">
+			รูปประจำตัว
+		</label>
+		<div class="col-lg-4" >
+			<p class="input-group">
+	          <input type="text" readonly="true" class="form-control" ng-model="AttachFile.name" />
+	          <span class="input-group-btn">
+	            <button class="btn btn-default" ngf-select ng-model="AttachFile" ngf-max-size="5MB"  ngf-model-invalid="AttachFile.invalidFile" accept="image/*" ngf-pattern="'.png,.jpg'" >เลือก</button>
+	          </span>
+	        </p>
+		</div>
+		<div class="col-lg-3">
+			<div class="file-alert" ng-show="fle.attachFile.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{AttachFile.invalidFile.$errorParam}}</div>
+			<span style="color:green;">ขนาดแนะนำ 250 *  315 px</span>
+		</div>
+	</div>
+	
+	<div class="row form-group">
+		<label class="col-lg-2 col-xs-12 form-control-static">
+			ชื่อ-สกุล (TH)
+		</label>
+		<div class="col-lg-4 col-xs-12">
+			<input type="text" class="form-control" ng-model="Palace.firstname_th">
+		</div>
+		<label class="col-lg-2 col-xs-12 form-control-static">
+			ชื่อ-สกุล (EN)
+		</label>
+		<div class="col-lg-4 col-xs-12">
+			<input type="text" class="form-control" ng-model="Palace.firstname_en">
+		</div>
+	</div>
+
+	<div class="row form-group"  ng-show="palace_type == 'current-board'">
+		<label class="col-lg-2 col-xs-12 form-control-static">
+			ตำแหน่ง (TH)
+		</label>
+		<div class="col-lg-4 col-xs-12">
+			<select class="form-control" ng-model="Palace.position_th">
+				<option value="">กรุณาเลือก</option>
+				<option value="เลขาธิการสำนักงานมาตรฐานสินค้าเกษตรและอาหารแห่งชาติ">เลขาธิการสำนักงานมาตรฐานสินค้าเกษตรและอาหารแห่งชาติ</option>
+				<option value="รองเลขาธิการสำนักงานมาตรฐานสินค้าเกษตรและอาหารแห่งชาติ">รองเลขาธิการสำนักงานมาตรฐานสินค้าเกษตรและอาหารแห่งชาติ</option
+					>
+				<option value="เลขานุการกรม">เลขานุการกรม</option>
+				<option value="ผู้อำนวยการกองควบคุมมาตรฐาน">ผู้อำนวยการกองควบคุมมาตรฐาน</option>
+				<option value="ผู้อำนวยการกองนโยบายมาตรฐานสินค้าเกษตรและอาหาร">ผู้อำนวยการกองนโยบายมาตรฐานสินค้าเกษตรและอาหาร</option>
+				<option value="ผู้อำนวยการกองรับรองมาตรฐาน">ผู้อำนวยการกองรับรองมาตรฐาน</option>
+				<option value="ผู้อำนวยการศูนย์เทคโนโลยีสารสนเทศและการสื่อสาร">ผู้อำนวยการศูนย์เทคโนโลยีสารสนเทศและการสื่อสาร</option>
+				<option value="ผู้อำนวยการสำนักกำหนดมาตรฐาน">ผู้อำนวยการสำนักกำหนดมาตรฐาน</option>
+			</select>
+		</div>
+		<label class="col-lg-2 col-xs-12 form-control-static">
+			ตำแหน่ง (EN)
+		</label>
+		<div class="col-lg-4 col-xs-12">
+			<select class="form-control" ng-model="Palace.position_en">
+				<option value="">กรุณาเลือก</option>
+				<option value="เลขาธิการสำนักงานมาตรฐานสินค้าเกษตรและอาหารแห่งชาติ">เลขาธิการสำนักงานมาตรฐานสินค้าเกษตรและอาหารแห่งชาติ</option>
+				<option value="รองเลขาธิการสำนักงานมาตรฐานสินค้าเกษตรและอาหารแห่งชาติ">รองเลขาธิการสำนักงานมาตรฐานสินค้าเกษตรและอาหารแห่งชาติ</option
+					>
+				<option value="เลขานุการกรม">เลขานุการกรม</option>
+				<option value="ผู้อำนวยการกองควบคุมมาตรฐาน">ผู้อำนวยการกองควบคุมมาตรฐาน</option>
+				<option value="ผู้อำนวยการกองนโยบายมาตรฐานสินค้าเกษตรและอาหาร">ผู้อำนวยการกองนโยบายมาตรฐานสินค้าเกษตรและอาหาร</option>
+				<option value="ผู้อำนวยการกองรับรองมาตรฐาน">ผู้อำนวยการกองรับรองมาตรฐาน</option>
+				<option value="ผู้อำนวยการศูนย์เทคโนโลยีสารสนเทศและการสื่อสาร">ผู้อำนวยการศูนย์เทคโนโลยีสารสนเทศและการสื่อสาร</option>
+				<option value="ผู้อำนวยการสำนักกำหนดมาตรฐาน">ผู้อำนวยการสำนักกำหนดมาตรฐาน</option>
+			</select>
+		</div>
+	</div>
+
+	<div ng-show="palace_type == 'current-cio' || palace_type == 'history-cio'">
+		<div class="row form-group">
+			<label class="col-lg-2 col-xs-12 form-control-static">
+				ตำแหน่ง (TH)
+			</label>
+			<div class="col-lg-4 col-xs-12">
+				<input type="text" class="form-control" ng-model="Palace.position_th" readonly="true">
+			</div>
+			<label class="col-lg-2 col-xs-12 form-control-static">
+				ตำแหน่ง (EN)
+			</label>
+			<div class="col-lg-4 col-xs-12">
+				<input type="text" class="form-control" ng-model="Palace.position_en" readonly="true">
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="col-lg-2 col-xs-12 form-control-static">
+				วิสัยทัศน์ (TH)
+			</label>
+			<div class="col-lg-4 col-xs-12">
+				<input type="text" class="form-control" ng-model="Palace.vision_th">
+			</div>
+			<label class="col-lg-2 col-xs-12 form-control-static">
+				วิสัยทัศน์ (EN)
+			</label>
+			<div class="col-lg-4 col-xs-12">
+				<input type="text" class="form-control" ng-model="Palace.vision_en">
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="col-lg-2 col-xs-12 form-control-static">
+				พันธกิจ (TH)
+			</label>
+			<div class="col-lg-4 col-xs-12">
+				<input type="text" class="form-control" ng-model="Palace.mission_th">
+			</div>
+			<label class="col-lg-2 col-xs-12 form-control-static">
+				พันธกิจ (EN)
+			</label>
+			<div class="col-lg-4 col-xs-12">
+				<input type="text" class="form-control" ng-model="Palace.mission_en">
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="col-lg-2 col-xs-12 form-control-static">
+				ข้อมูลการติดต่อ (TH)
+			</label>
+			<div class="col-lg-4 col-xs-12">
+				<input type="text" class="form-control" ng-model="Palace.contact_th">
+			</div>
+			<label class="col-lg-2 col-xs-12 form-control-static">
+				ข้อมูลการติดต่อ (EN)
+			</label>
+			<div class="col-lg-4 col-xs-12">
+				<input type="text" class="form-control" ng-model="Palace.contact_en">
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="col-lg-2 col-xs-12 form-control-static">
+				บทบาทหน้าที่ (TH)
+			</label>
+			<div class="col-lg-4 col-xs-12">
+				<input type="text" class="form-control" ng-model="Palace.role_th">
+			</div>
+			<label class="col-lg-2 col-xs-12 form-control-static">
+				บทบาทหน้าที่ (EN)
+			</label>
+			<div class="col-lg-4 col-xs-12">
+				<input type="text" class="form-control" ng-model="Palace.role_en">
+			</div>
+		</div>
+	</div>
+
+	<div class="row form-group"  ng-show="palace_type != 'current-board' && palace_type != 'current-cio' && palace_type != 'history-cio'">
+		<label class="col-lg-2 col-xs-12 form-control-static">
+			ตำแหน่ง (TH)
+		</label>
+		<div class="col-lg-4 col-xs-12">
+			<input type="text" class="form-control" ng-model="Palace.position_th">
+		</div>
+		<label class="col-lg-2 col-xs-12 form-control-static">
+			ตำแหน่ง (EN)
+		</label>
+		<div class="col-lg-4 col-xs-12">
+			<input type="text" class="form-control" ng-model="Palace.position_en">
+		</div>
+	</div>
+
+	<div class="row form-group">
+		<label class="col-lg-2 col-xs-12 form-control-static">
+			วันที่เข้ารับตำแหน่ง
+		</label>
+		<div class="col-lg-4 col-xs-12">
+			<p class="input-group">
+				<input type="text" class="form-control" ng-model="Palace.position_start_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup1.opened" datepicker-options="dateOptions1">
+				<span class="input-group-btn">
+	            	<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+	          </span>
+	        </p>
+		</div>
+		<label class="col-lg-2 col-xs-12 form-control-static">
+			วันที่สิ้นสุด
+		</label>
+		<div class="col-lg-4 col-xs-12">
+			<p class="input-group">
+				<input type="text" class="form-control" ng-model="Palace.position_end_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup2.opened" datepicker-options="dateOptions2">
+				<span class="input-group-btn">
+	            	<button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+	          	</span>
+	        </p>
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+			สถานะ
+		</label>
+		<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" >
+			<div class="btn-group">
+				<label class="btn btn-default btn-checkbox" ng-model="Palace.actives" uib-btn-radio="'Y'" >ใช้งาน</label>
+	            <label class="btn btn-default btn-checkbox" ng-model="Palace.actives" uib-btn-radio="'N'" >ไม่ใช้งาน</label>
+	        </div>
+		</div>
+	</div>
+	<div class="page-header text-center">
+		<button class="btn btn-info" ng-click="save('palaces/update', Palace, AttachFile, FileList)">บันทึก</button>
+		<button class="btn btn-default" ng-click="cancelUpdate()">ยกเลิก</button>
+	</div>
+</div>
+<div class="row form-group" ng-show="PAGE == 'MAIN'">
+	<div class="table-responsive">
+		<table class="table table-striped" ng-repeat="(listName, list) in model.list">
+			<caption><button ng-click="add()" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> เพิ่ม</button></caption>
+			<thead>
+				<tr>
+					
+					<th>ชื่อ - สกุล (ไทย)</th>
+					<th>ชื่อ - สกุล (อังกฤษ)</th>
+					<th>ตำแหน่ง</th>
+					<th>ช่วงระยะเวลาดำรงตำแหน่ง</th>
+					<th>จัดการ</th>
+				</tr>
+			</thead>
+			<tbody dnd-list="list">
+				<tr ng-repeat="data in list" dnd-draggable="data"
+					        dnd-moved="list.splice($index, 1)"
+					        dnd-effect-allowed="move"
+					        dnd-selected="model.selected = data" 
+					        dnd-dragend="dropCallback(list)">
+					
+					<td>{{data.firstname_th}}</td>
+					<td>{{data.firstname_en}}</td>
+					<td>{{data.position_th}}</td>
+					<td>{{data.position_start_date}} ถึง {{data.position_end_date}}</td>
+					<td>
+						<button class="btn btn-default btn-xs" ng-click="edit(data)"><span class="glyphicon glyphicon-edit"></span></button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

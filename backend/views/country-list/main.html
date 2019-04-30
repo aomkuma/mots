@@ -1,0 +1,234 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group" style="padding-top: 10px;">
+	  <div class="col-lg-10">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+</div>
+<div ng-show="PAGE == 'UPDATE'">
+	<div ng-show="page_type != 'accept-standard'">
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2" ng-show="page_type == 'standard-country'">
+				ชื่อหน่วยงาน (ไทย)
+			</label> 
+			<label class="form-control-static col-lg-2" ng-show="page_type == 'auditor-country'">
+				รายชื่อผู้ตรวจสอบและรับรองมาตรฐาน (ไทย)
+			</label> 
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.org_th">
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2" ng-show="page_type == 'standard-country'">
+				ชื่อหน่วยงาน (อังกฤษ)
+			</label>
+			<label class="form-control-static col-lg-2" ng-show="page_type == 'auditor-country'">
+				รายชื่อผู้ตรวจสอบและรับรองมาตรฐาน (อังกฤษ)
+			</label> 
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.org_en">
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				ชื่อประเทศ (ไทย)
+			</label> 
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.country_th">
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				ชื่อประเทศ (อังกฤษ)
+			</label> 
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.country_en">
+			</div>
+			
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				มาตรฐานที่ทัดเทียม
+			</label> 
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.standard_name">
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				ชื่อลิงก์
+			</label> 
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.link_name">
+			</div>
+			<label class="form-control-static col-lg-1">
+				ลิงก์
+			</label> 
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.link_url">
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				ไฟล์แนบ
+			</label>
+			<div class="col-lg-4">
+				<p class="input-group">
+	              <input type="text" readonly="true" class="form-control" ng-model="AttachFile.name" />
+	              <span class="input-group-btn">
+	                <button class="btn btn-default" ngf-select ng-model="AttachFile" ngf-max-size="25MB"  ngf-model-invalid="AttachFile.invalidFile">เลือก</button>
+	              </span>
+	            </p>
+			</div>
+			<div class="col-lg-3">
+				<div class="file-alert" ng-show="AttachFile.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{AttachFile.invalidFile.$errorParam}}</div>
+			</div>
+			<label class="col-lg-1 form-control-static" ng-show="page_type == 'auditor-country">
+				วันที่เผยแพร่
+			</label>
+			<div class="col-lg-4" >
+				<p class="input-group">
+					<input type="text" class="form-control" ng-model="Data.release_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup1.opened" required="true">
+					<span class="input-group-btn">
+		            	<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+		          </span>
+		        </p>
+			</div>
+		</div>
+	</div>
+	<div ng-show="page_type == 'accept-standard'">
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				ชื่อมาตรฐานสากลที่ยอมรับได้
+			</label> 
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.standard_name">
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				หน่วยงานที่ประกาศใช้มาตรฐาน
+			</label>  
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.org_th">
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="form-control-static col-lg-2">
+				ใช้แทนมาตรฐานบังคับ(ไทย)
+			</label>  
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.standard_name_th">
+			</div>
+			<label class="form-control-static col-lg-2">
+				ใช้แทนมาตรฐานบังคับ(อังกฤษ)
+			</label>  
+			<div class="col-lg-4">
+				<input class="form-control" ng-model="Data.standard_name_en">
+			</div>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-12 text-center">
+			<button class="btn btn-primary" ng-click="saveData(Data, AttachFile)">บันทึก</button>
+			<button class="btn btn-default" ng-click="cancel('MAIN')">ยกเลิก</button>
+		</div>
+	</div>
+</div>
+<div ng-show="PAGE == 'MAIN'">
+	<div class="row form-group">
+		<table class="table table-bordered table-striped" ng-show="page_type != 'accept-standard'">
+			<caption>
+				<div class="row form-group">
+					<div class="col-lg-3">
+						<input class="form-control" ng-model="condition.keyword">
+					</div>
+					
+					<div class="col-lg-2">
+						<button class="btn btn-primary" ng-click="loadList()"> <span class="glyphicon glyphicon-search"></span> ค้นหา</button>
+					</div>
+				</div>
+				
+				<div class="row form-group">
+					<div class="col-lg-12">
+						<button class="btn btn-primary" ng-click="updateData(null)">เพิ่ม</button>
+					</div>
+				</div>
+			</caption>	
+			<thead>
+				<tr>
+					<th>ลำดับ</th>
+					<th ng-show="page_type == 'standard-country'">ชื่อหน่วยงาน</th>
+					<th ng-show="page_type == 'auditor-country'">รายชื่อผู้ตรวจสอบและรับรองมาตรฐาน</th>
+					<th>ชื่อประเทศ</th>
+					<th ng-show="page_type == 'standard-country'">มาตรฐานที่ทัดเทียม</th>
+					<th ng-show="page_type == 'auditor-country'">วันที่ประกาศ</th>
+					<th>ลิงก์</th>
+					<th>แก้ไข</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="data in DataList">
+					<td>{{$index + 1}}</td>
+					<td>{{data.org_th}}</td>
+					<td>{{data.country_th}}</td>
+					<td ng-show="page_type == 'standard-country'">{{data.standard_name}}</td>
+					<th ng-show="page_type == 'auditor-country'">{{data.release_date}}</th>
+					<td><a href="{{data.link_url}}">{{data.link_name}}</a></td>
+					<td>
+						<button class="btn btn-warning" ng-click="updateData(data)">แก้ไข</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<table class="table table-bordered table-striped" ng-show="page_type == 'accept-standard'">
+			<caption>
+				<div class="row form-group">
+					<div class="col-lg-3">
+						<input class="form-control" ng-model="condition.keyword">
+					</div>
+					
+					<div class="col-lg-2">
+						<button class="btn btn-primary" ng-click="loadList()"> <span class="glyphicon glyphicon-search"></span> ค้นหา</button>
+					</div>
+				</div>
+				
+				<div class="row form-group">
+					<div class="col-lg-12">
+						<button class="btn btn-primary" ng-click="updateData(null)">เพิ่ม</button>
+					</div>
+				</div>
+			</caption>	
+			<thead>
+				<tr>
+					<th>ลำดับ</th>
+					<th>ชื่อมาตรฐานสากลที่ยอมรับได้</th>
+					<th>หน่วยงานที่ประกาศใช้มาตรฐาน</th>
+					<th>ใช้แทนมาตรฐานบังคับ</th>
+					<th>แก้ไข</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="data in DataList">
+					<td>{{$index + 1}}</td>
+					<td>{{data.standard_name}}</td>
+					<td>{{data.org_th}}</td>
+					<td>{{data.standard_name_th}}</td>
+					<td>
+						<button class="btn btn-warning" ng-click="updateData(data)">แก้ไข</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
