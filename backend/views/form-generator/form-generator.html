@@ -1,0 +1,62 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group" style="padding-top: 10px;">
+        <div class="col-lg-5">
+          <div class="row">
+            <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+              <img src="../files/img/pin-menu.png">
+              แบบฟอร์ม (Form Generator)
+
+              <span ng-show="MenuName.sub_menu != null">
+                  <img src="../files/img/pin-menu.png">
+                        {{MenuName.sub_menu.menu_name_th}}              
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+
+        </div>
+</div>
+<hr>
+<div ng-show="PAGE == 'UPDATE'">
+  
+ 
+</div>
+
+<div ng-show="PAGE == 'MAIN'">
+  <div class="row form-group">
+      <div class="col col-lg-12">
+        <button class="btn btn-primary pull-right" ng-click="add()">สร้างแบบฟอร์ม</button>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-lg-12">
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>วันที่สร้าง</th>
+                <th>ชื่อฟอร์ม</th>
+              
+                <th>จัดการ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="Data in DataList">
+               
+                <td align="center">
+                  <button class="btn btn-default btn-sm" ng-click="edit(Data)">
+                    <span class="glyphicon glyphicon-edit"></span>
+                  </button>
+                    <button class="btn btn-default btn-sm" ng-click="delete(Data)">
+                    <span class="glyphicon glyphicon-bin"></span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+ 
+        </div>
+      </div>  
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div class="page-header">
+    <h3>กำหนดการแสดงผลของ banner</h3>
+</div>
+<fieldset >
+    <div class="row form-group">
+        <label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+            จำนวนที่แสดง
+        </label>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            ​<input type="text" class="form-control" ng-model="List.shownumber" maxlength="255">
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+            ความเร็ว
+        </label>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            ​<input type="text" class="form-control" ng-model="List.delay" maxlength="500">
+        </div>
+    </div>
+    <div class="row form-group">
+        <label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+            เลื่อนวน
+        </label>
+        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" >
+            <div class="btn-group">
+                <label class="btn btn-default btn-checkbox" ng-model="List.type" uib-btn-radio="'Y'" >วนซ้ำ</label>
+                <label class="btn btn-default btn-checkbox" ng-model="List.type" uib-btn-radio="'N'" >ไม่วนซ้ำ</label>
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+<div class="page-header text-center">
+    <button class="btn btn-info" ng-click="save('bannercontrol/update', List)">บันทึก</button>
+</div>

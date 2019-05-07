@@ -22,6 +22,7 @@
 			<thead>
 				<tr>
 					<th>หมวดหมู่</th>
+                                        <th>คำอธิบาย</th>
 					<th>จัดการ</th>
 				</tr>
 			</thead>
@@ -29,6 +30,9 @@
 				<tr ng-repeat="data in DataList">
 					<td>
 						<input class="form-control" ng-model="data.category_name">
+					</td>
+                                        <td>
+						<input class="form-control" ng-model="data.description">
 					</td>
 					<td>
 						<button class="btn btn-default" ng-click="saveData(data)">บันทึก</button>

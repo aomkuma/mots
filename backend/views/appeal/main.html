@@ -1,242 +1,326 @@
 <div ng-include src="'views/header.html'"></div>
 <div class="row form-group" style="padding-top: 10px;">
-	  <div class="col-lg-10">
-	    <div class="row">
-	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
-	        <span ng-repeat="data in MenuName">
-		        <img src="../files/img/pin-menu.png">
-		        {{data.menu_name_th}}
-		    </span>
-	      </div>
-	    </div>
-	  </div>
-	  <div class="col-lg-6">
+    <div class="col-lg-10">
+        <div class="row">
+            <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+                <span ng-repeat="data in MenuName">
+                    <img src="../files/img/pin-menu.png">
+                    {{data.menu_name_th}}
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
 
-	  </div>
+    </div>
 </div>
 
 <div ng-show="PAGE == 'VIEW'">
-	<fieldset ng-disabled="true">
-		<div class="row form-group">
-			<h4>ข้อมูลผู้ร้องเรียน/อุทธรณ์</h4>
-		</div>
-		<div class="row form-group">
-			<label class="form-control-static col-lg-1">
-				ชื่อ
-			</label>
-			<div class="col-lg-3">
-				<input class="form-control" ng-model="Data.firstname" maxlength="70">
-			</div>
-			<label class="form-control-static col-lg-1">
-				สกุล
-			</label>
-			<div class="col-lg-3">
-				<input class="form-control" ng-model="Data.lastname" maxlength="70">
-			</div>
-		</div>
-		<div class="row form-group">
-			<label class="form-control-static col-lg-1">
-				ที่อยู่
-			</label>
-			<div class="col-lg-3">
-				<textarea class="form-control" ng-model="Data.address" maxlength="255"></textarea>
-			</div>
-		</div>
-		<div class="row form-group">
-			<label class="form-control-static col-lg-1">
-				จังหวัด
-			</label>
-			<div class="col-lg-3">
-				<input class="form-control" ng-model="Data.province">
-			</div>
-			<label class="form-control-static col-lg-1">
-				รหัสไปรษณีย์
-			</label>
-			<div class="col-lg-2">
-				<input class="form-control" ng-model="Data.postcode" maxlength="5">
-			</div>
-		</div>
-		<div class="row form-group">
-			<label class="form-control-static col-lg-1">
-				โทรศัพท์บ้าน
-			</label>
-			<div class="col-lg-3">
-				<input class="form-control" ng-model="Data.tel" maxlength="20">
-			</div>
-			<label class="form-control-static col-lg-1">
-				โทรศัพท์มือถือ
-			</label>
-			<div class="col-lg-3">
-				<input class="form-control" ng-model="Data.mobile" maxlength="20">
-			</div>
-		</div>
-		<div class="row form-group">
-			<label class="form-control-static col-lg-1">
-				อีเมล
-			</label>
-			<div class="col-lg-3">
-				<input class="form-control" ng-model="Data.email" maxlength="70">
-			</div>
-		</div>
-		<div class="row form-group">
-			<h4>ต้องการให้หน่วยงานที่รับคำร้องติดต่อกลับหรือไม่</h4>
-		</div> 
-		<div class="row form-group">
-			<label class="form-control-static col-lg-1">
-				ตืดต่อกลับ
-			</label>
-			<div class="col-lg-3">
-				<input class="form-control" value="{{Data.callback=='Y'?'ต้องการ':'ไม่ต้องการ'}}">
-			</div>
-		</div>
-		<div class="row form-group">
-			<label class="form-control-static col-lg-1">
-				ช่องทางการติดต่อ
-			</label>
-			<div class="col-lg-2" ng-repeat="data in Data.appeal_callback">
-				<input class="form-control" value="{{data.callback_name}}">
-			</div>
-		</div>
-		<div class="row form-group">
-			<h4>ข้อมูลการร้องเรียน/อุทธรณ์ และติชม</h4>
-		</div> 
-		<div class="row form-group">
-			<div class="col-lg-10 col-lg-offset-1">
-				<h4>บุลคล/หน่วยงาน ที่ท่านต้องการติชม/ร้องเรียน/อุทธรณ์</h4>
-			</div>
-		</div> 
-		<div class="row form-group">
-			<div class="col-lg-6 col-lg-offset-1">
-				<input class="form-control" value="{{Data.team_to_comment}}">
-			</div>
-		</div>
-		<div class="row form-group">
-			<label class="form-control-static col-lg-2 col-lg-offset-1">
-				<b>ต้องการส่งคำร้องเพื่อ</b>
-			</label>
-			<div class="col-lg-3 col-lg-offset-1">
-				<input class="form-control" value="{{Data.appeal_type}}">
-			</div>
-			
-		</div> 
-		<div class="row" ng-repeat="data in Data.appeal_list">
-			<label class="form-control-static col-lg-2">
-				
-			</label>
-			<div class="col-lg-4">
-				<input class="form-control" value="{{data.appeal_text}}">
-			</div>
+    <fieldset ng-disabled="true">
+        <div class="row form-group">
+            <h4>ข้อมูลผู้ร้องเรียน/อุทธรณ์</h4>
+        </div>
+        <div class="row form-group">
+            <label class="form-control-static col-lg-1">
+                ชื่อ
+            </label>
+            <div class="col-lg-3">
+                <input class="form-control" ng-model="Data.firstname" maxlength="70">
+            </div>
+            <label class="form-control-static col-lg-1">
+                สกุล
+            </label>
+            <div class="col-lg-3">
+                <input class="form-control" ng-model="Data.lastname" maxlength="70">
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="form-control-static col-lg-1">
+                ที่อยู่
+            </label>
+            <div class="col-lg-3">
+                <textarea class="form-control" ng-model="Data.address" maxlength="255"></textarea>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="form-control-static col-lg-1">
+                จังหวัด
+            </label>
+            <div class="col-lg-3">
+                <input class="form-control" ng-model="Data.province">
+            </div>
+            <label class="form-control-static col-lg-1">
+                รหัสไปรษณีย์
+            </label>
+            <div class="col-lg-2">
+                <input class="form-control" ng-model="Data.postcode" maxlength="5">
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="form-control-static col-lg-1">
+                โทรศัพท์บ้าน
+            </label>
+            <div class="col-lg-3">
+                <input class="form-control" ng-model="Data.tel" maxlength="20">
+            </div>
+            <label class="form-control-static col-lg-1">
+                โทรศัพท์มือถือ
+            </label>
+            <div class="col-lg-3">
+                <input class="form-control" ng-model="Data.mobile" maxlength="20">
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="form-control-static col-lg-1">
+                อีเมล
+            </label>
+            <div class="col-lg-3">
+                <input class="form-control" ng-model="Data.email" maxlength="70">
+            </div>
+        </div>
+        <div class="row form-group">
+            <h4>ต้องการให้หน่วยงานที่รับคำร้องติดต่อกลับหรือไม่</h4>
+        </div> 
+        <div class="row form-group">
+            <label class="form-control-static col-lg-1">
+                ตืดต่อกลับ
+            </label>
+            <div class="col-lg-3">
+                <input class="form-control" value="{{Data.callback=='Y'?'ต้องการ':'ไม่ต้องการ'}}">
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="form-control-static col-lg-1">
+                ช่องทางการติดต่อ
+            </label>
+            <div class="col-lg-2" ng-repeat="data in Data.appeal_callback">
+                <input class="form-control" value="{{data.callback_name}}">
+            </div>
+        </div>
+        <div class="row form-group">
+            <h4>ข้อมูลการร้องเรียน/อุทธรณ์ และติชม</h4>
+        </div> 
+        <div class="row form-group">
+            <div class="col-lg-10 col-lg-offset-1">
+                <h4>บุลคล/หน่วยงาน ที่ท่านต้องการติชม/ร้องเรียน/อุทธรณ์</h4>
+            </div>
+        </div> 
+        <div class="row form-group">
+            <div class="col-lg-6 col-lg-offset-1">
+                <input class="form-control" value="{{Data.team_to_comment}}">
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="form-control-static col-lg-2 col-lg-offset-1">
+                <b>ต้องการส่งคำร้องเพื่อ</b>
+            </label>
+            <div class="col-lg-3 col-lg-offset-1">
+                <input class="form-control" value="{{Data.appeal_type}}">
+            </div>
 
-		</div>
-		<div class="row form-group">
-			<label class="form-control-static col-lg-1">
-				รายละเอียด
-			</label>
-			<div class="col-lg-5">
-				<textarea class="form-control" ng-model="Data.description"></textarea>
-			</div>
-		</div>
-		<div class="row form-group">
-			<label class="col-lg-1 form-control-static">
-				ไฟล์ที่แนบมา
-			</label>
-			<label class="col-lg-4 form-control-static" >
-				<a href="../{{Data.description_filepath}}">{{Data.description_filename}}</a>
-				
-			</label>
-			<div class="col-lg-3">
-				<div class="file-alert" ng-show="fle.attachFile.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{AttachFile.invalidFile.$errorParam}}</div>
-			</div>
-		</div>
-		
-	</fieldset>
-	<div class="row form-group">
-		<div class="col-lg-12 text-center">
-			<button class="btn btn-default" ng-click="cancel()">กลับหน้าแรก</button>
-		</div>
-	</div>
+        </div> 
+        <div class="row" ng-repeat="data in Data.appeal_list">
+            <label class="form-control-static col-lg-2">
+
+            </label>
+            <div class="col-lg-4">
+                <input class="form-control" value="{{data.appeal_text}}">
+            </div>
+
+        </div>
+        <div class="row form-group">
+            <label class="form-control-static col-lg-1">
+                รายละเอียด
+            </label>
+            <div class="col-lg-5">
+                <textarea class="form-control" ng-model="Data.description"></textarea>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="form-control-static col-lg-1">
+                วันที่แจ้งเรื่อง
+            </label>
+            <div class="col-lg-5">
+                <input class="form-control" value="{{Data.create_date}}">
+
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="col-lg-1 form-control-static">
+                ไฟล์ที่แนบมา
+            </label>
+            <label class="col-lg-4 form-control-static" >
+                <a href="../{{Data.description_filepath}}">{{Data.description_filename}}</a>
+
+            </label>
+            <div class="col-lg-3">
+                <div class="file-alert" ng-show="fle.attachFile.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{AttachFile.invalidFile.$errorParam}}</div>
+            </div>
+        </div>
+
+    </fieldset>
+
+
+    <div class="row form-group">
+        <h4>การดำเนินการของเจ้าหน้าที่</h4>
+    </div> 
+    <div class="row form-group">
+        <label class="form-control-static col-lg-1">
+            รายละเอียด
+        </label>
+        <div class="col-lg-5">
+            <textarea class="form-control" ng-model="Data.res_description"></textarea>
+        </div>
+    </div>
+    <div class="row form-group">
+        <label class="col-lg-1 form-control-static">
+            เอกสารแนบแนบ
+        </label>
+        <div class="col-lg-4" >
+            <p class="input-group">
+                <input type="text" readonly="true" class="form-control" ng-model="AttachFile.name" />
+                <span class="input-group-btn">
+                    <button class="btn btn-default" ngf-select ng-model="AttachFile" ngf-max-size="25MB"  ngf-model-invalid="AttachFile.invalidFile" >Browse</button>
+                </span>
+            </p>
+        </div>
+        <div class="col-lg-3">
+            <div class="file-alert" ng-show="fle.attachFile.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{AttachFile.invalidFile.$errorParam}}</div>
+        </div>
+
+    </div>
+    <div class="row form-group">
+        <label class="form-control-static col-lg-1">
+            วันที่ตอบกลับ
+        </label>
+        <div class="col-lg-5">
+
+            <p class="input-group">
+                <input type="text"  class="form-control"  ng-model="Data.res_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup1.opened" required="true">
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+        </div>
+    </div>
+    <div class="row form-group">
+        <label class="form-control-static col-lg-1">
+            สถานะ
+        </label>
+        <div class="col-lg-5">
+            <select  class="form-control" ng-model="Data.res_status">
+                <option value="รับเรื่อง">รับเรื่อง</option>
+                <option value="กำลังดำเนินการ">กำลังดำเนินการ</option>
+                <option value="ดำเนินการแล้ว">ดำเนินการแล้ว</option>
+
+            </select>
+
+        </div>
+    </div>
+    <div class="row form-group">
+        <label class="form-control-static col-lg-1">
+            ผู้บันทึกข้อมูล
+        </label>
+        <div class="col-lg-5">
+            <input class="form-control" ng-model="Data.res_name">
+
+        </div>
+    </div>
+    <div class="row form-group">
+        <button class="btn btn-default" ng-click="callback(Data, AttachFile)">ตอบกลับ</button>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-lg-12 text-center">
+
+            <button class="btn btn-default" ng-click="cancel()">กลับหน้าแรก</button>
+        </div>
+    </div>
 </div>
 
 <div ng-show="PAGE == 'MAIN'">
 
-	<!-- 
-		Page content zone
-	-->
-	<!-- <div class="row form-group">
-		<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
-			เนื้อหาภาษาไทย
-		</label>
-		<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" id="ckeditor1">
-			<textarea class="form-control" id="editor1" name="editor1" ng-model="PageContent.contents" rows="100" data-sample="40" data-sample-short="" >
-			</textarea>
-		</div>
-	</div>
+    <!-- 
+            Page content zone
+    -->
+    <!-- <div class="row form-group">
+            <label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+                    เนื้อหาภาษาไทย
+            </label>
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" id="ckeditor1">
+                    <textarea class="form-control" id="editor1" name="editor1" ng-model="PageContent.contents" rows="100" data-sample="40" data-sample-short="" >
+                    </textarea>
+            </div>
+    </div>
 
-	<div class="row form-group">
-		<label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
-			เนื้อหาภาษาอังกฤษ
-		</label>
-		<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" id="ckeditor2">
-			<textarea class="form-control" id="editor2" name="editor2" ng-model="PageContent.contents_en" rows="100" data-sample="40" data-sample-short="" >
-			</textarea>
-		</div>
-	</div> -->
-	<!-- 
-		End page zone
-	-->
-	<!-- <div class="page-header text-center">
-		<button class="btn btn-info" ng-click="savePage('menu/update/page', PageContent)">บันทึก</button>
-		
-	</div> -->
-	
-	<div class="row form-group text-center">
-		<h4>ข้อมูลการร้องเรียน</h4>
-	</div>
-	<div class="row form-group">
-		<label class="form-control-static col-lg-1 col-lg-offset-2">
-			เดือน
-		</label>
-		<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-			<select name="Year" class="form-control" ng-model="condition.months" ng-options="month.monthValue as month.monthText for month in MonthList" required="required">
-					<option value="">กรุณาเลือก..</option>
-				</select>
-		</div>
-		<label class="form-control-static col-lg-1">
-			ปี
-		</label>
-		<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-			<select name="Year" class="form-control" ng-model="condition.years" ng-options="year.yearText as year.yearValue for year in YearList" required="required">
-					<option value="">กรุณาเลือก..</option>
-				</select>
-		</div>
-		
-		<div class="col-lg-1">
-			<button class="btn btn-primary" ng-click="search(condition)"> ค้นหา</button>
-		</div>
-		
-	</div>
-	
+    <div class="row form-group">
+            <label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+                    เนื้อหาภาษาอังกฤษ
+            </label>
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" id="ckeditor2">
+                    <textarea class="form-control" id="editor2" name="editor2" ng-model="PageContent.contents_en" rows="100" data-sample="40" data-sample-short="" >
+                    </textarea>
+            </div>
+    </div> -->
+    <!-- 
+            End page zone
+    -->
+    <!-- <div class="page-header text-center">
+            <button class="btn btn-info" ng-click="savePage('menu/update/page', PageContent)">บันทึก</button>
+            
+    </div> -->
 
-	<div class="row form-group">
-		<div class="table-responsive">
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>ชื่อ-สกุล</th>
-						<th>ร้องเรียนเมื่อ</th>
-						<th>จัดการ</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="data in DataList">
-						<td>{{data.firstname}} {{data.lastname}}</td>
-						<td>{{data.create_date}}</td>
-						<td>
-							<button class="btn btn-success" ng-click="viewData(data)"> ดูข้อมูล</button>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
+    <div class="row form-group text-center">
+        <h4>ข้อมูลการร้องเรียน</h4>
+    </div>
+    <div class="row form-group">
+        <label class="form-control-static col-lg-1 col-lg-offset-2">
+            เดือน
+        </label>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <select name="Year" class="form-control" ng-model="condition.months" ng-options="month.monthValue as month.monthText for month in MonthList" required="required">
+                <option value="">กรุณาเลือก..</option>
+            </select>
+        </div>
+        <label class="form-control-static col-lg-1">
+            ปี
+        </label>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <select name="Year" class="form-control" ng-model="condition.years" ng-options="year.yearText as year.yearValue for year in YearList" required="required">
+                <option value="">กรุณาเลือก..</option>
+            </select>
+        </div>
+
+        <div class="col-lg-1">
+            <button class="btn btn-primary" ng-click="search(condition)"> ค้นหา</button>
+        </div>
+        <div  class="col-lg-1">
+           <a class="pull-right" style="padding-right: 20px;" ng-click="exportReport(DataList)"><img src="../files/img/excel.png" style="height: 40px;"></a>
+        </div>
+
+    </div>
+
+
+    <div class="row form-group">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ชื่อ-สกุล</th>
+                        <th>ร้องเรียนเมื่อ</th>
+                        <th>จัดการ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="data in DataList">
+                        <td>{{data.firstname}} {{data.lastname}}</td>
+                        <td>{{data.create_date}}</td>
+                        <td>
+                            <button class="btn btn-success" ng-click="viewData(data)"> ดูข้อมูล</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

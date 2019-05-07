@@ -1,0 +1,114 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group" style="padding-top: 10px;">
+    <div class="col-lg-5">
+        <div class="row">
+            <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+                <img src="../files/img/pin-menu.png">
+                แบบฟอร์ม (Form Generator)
+
+                <span ng-show="MenuName.sub_menu != null">
+                    <img src="../files/img/pin-menu.png">
+                    {{MenuName.sub_menu.menu_name_th}}              
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+
+    </div>
+</div>
+<hr>
+<div ng-show="PAGE == 'UPDATE'">
+
+
+</div>
+
+<div ng-show="PAGE == 'MAIN'">
+    <div class="row form-group">
+        <label class="form-control-static col-lg-1">
+            ชื่อฟอร์ม
+        </label>
+        <div class="col-lg-3">
+            <input class="form-control" ng-model="Data.form_name" maxlength="100">
+        </div>
+        <button class="btn btn-primary" ng-click="addinput()"><span class="glyphicon glyphicon-plus"></span> เพิ่มช่องกรอกข้อมูล</button>
+
+    </div>
+
+    <div class="row form-group" ng-repeat="fle in FileList">
+        <label class="form-control-static col-lg-1">
+            ชื่อช่องกรอกข้อมูล
+        </label>
+        <div class="col-lg-2">
+            <input class="form-control" ng-model="fle.name" maxlength="100">
+        </div>
+        <label class="form-control-static col-lg-1">
+            ประเภทช่อง
+        </label>
+        <div class="col-lg-2">
+            <select name="Year" class="form-control" ng-model="fle.type"  required="required">
+                <option value="textbox">Text box</option>
+                <option value="radiobox">Radio box</option>
+                <option value="radiobox">Check box</option>
+            </select>
+        </div>
+        <label class="form-control-static col-lg-1">
+            จำนวนที่ต้องการกรอก
+        </label>
+        <div class="col-lg-2">
+            <input class="form-control" ng-model="fle.maxlenght" maxlength="100">
+        </div>
+        <label class="form-control-static col-lg-1">
+            Require
+        </label>
+        <div class="col-lg-2">
+            <select name="Year" class="form-control" ng-model="fle.req"  required="required">
+                <option value="Y">จำเป็น</option>
+                <option value="N">ไม่จำเป็น</option>
+
+            </select>
+        </div>
+    </div>
+    <div class="row form-group">
+        <label class="form-control-static col-lg-2">
+            อีเมล์ผู้รับผิดชอบ
+        </label>
+        <div class="col-lg-3">
+            <input class="form-control" ng-model="Data.email" maxlength="100">
+        </div>
+
+    </div>
+    <div class="row form-group">
+        <label class="col-lg-1 col-xs-12 form-control-static">
+            วันที่เริ่มต้น
+        </label>
+        <div class="col-lg-2">
+            <p class="input-group">
+                <input type="text" class="form-control" ng-model="Data.start_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup1.opened" datepicker-options="dateOptions1">
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+        </div>
+    </div>
+    <div class="row form-group">
+        <label class="col-lg-1 col-xs-12 form-control-static">
+            วันที่สิ้นสุด
+        </label>
+        <div class="col-lg-2">
+            <p class="input-group">
+                <input type="text" class="form-control" ng-model="Data.end_date" uib-datepicker-popup="yyyy-MM-dd" is-open="popup2.opened" datepicker-options="dateOptions2">
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+        </div>
+    </div>
+    <div class="row form-group text-center">
+  <button class="btn btn-default" ng-click="">Prexiew</button>
+        <button class="btn btn-info" ng-click="save('form-generator/save', Data, FileList)">บันทึก</button>
+      
+
+
+    </div>
+</div>
