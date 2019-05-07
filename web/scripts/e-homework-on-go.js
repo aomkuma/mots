@@ -743,6 +743,17 @@ angular.module('e-homework').config(function($routeProvider, $locationProvider) 
 			} ]
 		}
 	})
+  .when("/ebook", {
+        templateUrl : "views/ebook/ebook.html",
+        controller : "EbookController",
+        resolve : {
+			loadMyCtrl : [ '$ocLazyLoad', function($ocLazyLoad) {
+				return $ocLazyLoad.load({
+					files : [ "scripts/controllers/EbookController.js" ]
+				});
+			} ]
+		}
+	})
 	;
 
 	$locationProvider.hashPrefix('');
