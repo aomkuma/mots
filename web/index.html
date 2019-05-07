@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-US" data-ng-app="e-homework">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<title>กระทรวงการท่องเที่ยวและกีฬา</title>
+
+		<meta name="description" content="">
+		<meta name="author" content="AOMKUMA">
+
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		
+		<!-- include js -->
+		<script src='scripts/node_modules/angular/angular.min.js'></script>
+		<script src='scripts/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js'></script>
+		<script src='scripts/node_modules/angular-route/angular-route.min.js'></script>
+		<script src='scripts/node_modules/angular-animate/angular-animate.min.js'></script>
+		<script src="scripts/node_modules/angular-cookies/angular-cookies.min.js"></script>
+		<script src="scripts/node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+		<script src="scripts/node_modules/oclazyload/dist/ocLazyLoad.min.js"></script>
+		<script src="scripts/node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
+		<script src="scripts/node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
+		<script src="scripts/node_modules/angular-bind-html-compile-ci-dev/angular-bind-html-compile.min.js"></script>
+
+		<script src="scripts/node_modules/chart.js/dist/Chart.bundle.min.js"></script>
+
+		<script src="scripts/node_modules/angular-socialshare/dist/angular-socialshare.min.js"></script>
+		<script src="scripts/node_modules/angular-recaptcha-4.1.5/release/angular-recaptcha.js"></script>
+		<script src='scripts/e-homework-main.js?version=4'></script>
+		<script src='scripts/e-homework-on-go.js?version=4'></script>
+		<script src='scripts/factory.js?version=4'></script>
+		<script src='scripts/util.js?version=4'></script>
+
+		<script src="scripts/ckeditor_sdk/vendor/ckeditor/ckeditor.js"></script>
+		<script src="scripts/ckeditor_sdk/samples/assets/picoModal-2.0.1.min.js"></script>
+		<script src="scripts/ckeditor_sdk/samples/assets/contentloaded.js"></script>
+		<script src="scripts/ckeditor_sdk/samples/assets/beautify-html.js"></script>
+		<script src="scripts/jquery.min.js"></script>
+		<script src="scripts/bootstrap.min.js"></script>
+		<script type="text/javascript">
+		  $(document).ready(function(){
+		    console.log('asd');
+		  $('.dropdown-submenu a.test').on("click", function(e){
+		    $(this).next('ul').toggle();
+		    e.stopPropagation();
+		    e.preventDefault();
+		  });
+		});
+		</script>
+		<!-- include js end -->
+
+		<!-- include css -->
+		<link rel="stylesheet" href="scripts/node_modules/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="scripts/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
+		<link rel="stylesheet" href="css/theme.css?version=2">
+		<!-- include css end -->
+	</head>
+
+	<body data-ng-controller="AppController">
+		<style type="text/css" media="screen">
+			body{
+				font-size: {{FONT_SIZE}}em;
+				color: {{FONT_COLOR}};
+				background-color : {{BG_COLOR}};
+			}	
+			a{
+				color: {{FONT_COLOR}};
+			}
+			.navbar-inverse{
+				background-color : {{BG_COLOR}};
+				color: {{FONT_COLOR}};
+			}
+
+			.navbar-inverse .navbar-nav>li>a{
+				color: {{ (FONT_COLOR=='#000'?'#FFF':FONT_COLOR) }};
+			}
+			
+		</style>
+		<div class="overlay" data-ng-show="overlay.overlay" style="padding-top: 0px;"><img src="img/spin.gif"  style="width:10%; margin: 0 auto; margin-top:20%; padding-top: 50%;" alt="" /></div>
+		<div class="ng-view container"></div>   
+		<div data-ng-show="ShowLandingPage == true" style="position: fixed; width: 100%; height: 100%; background-color: #ccc; z-index: 9999999; left: 0px; top: 0px; background-image: url('../{{LandingPage.file_path}}'); background-position: center; background-size: 100% 100%; text-align: center; cursor: pointer;" data-ng-click="closeLandingPage()">
+
+			<!--<div style="padding: 10px; background-color: #ccc; bottom:80px; text-align: center; width:200px; margin: 0 auto; font-size: 2em; border-radius: 10px; border: 3px solid #000; cursor: pointer; display: table; margin-bottom: 0%;" ng-click="closeLandingPage()">
+				ไปยังหน้าหลัก
+			</div>-->
+		</div>
+	</body>
+	<style type="text/css" media="screen">
+		.overlay{
+		    margin:0 auto;
+		    position: fixed;
+		    height: 100%;
+		    width: 100%;
+		    z-index: 1000000;
+		    opacity:8.0;
+		    filter:alpha(opacity=80);
+		    background-color: rgba(0, 0, 0, 0.05);
+		    text-align:center;   
+		}
+
+		@media (min-width: 769px) and (max-width: 1100px) {
+			.navbar-header {
+                    float: none;
+                }
+                
+                .navbar-left, .navbar-right {
+                    float: none !important;
+                }
+
+                .navbar-toggle {
+                    display: block;
+                }
+
+                .navbar-collapse {
+                    border-top: 1px solid transparent;
+                    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+                }
+
+                .navbar-fixed-top {
+                    top: 0;
+                    border-width: 0 0 1px;
+                }
+
+                .navbar-collapse.collapse {
+                    display: none !important;
+                }
+
+                .navbar-nav {
+                    float: none !important;
+                    margin-top: 7.5px;
+                }
+
+                    .navbar-nav > li {
+                        float: none;
+                    }
+
+                        .navbar-nav > li > a {
+                            padding-top: 10px;
+                            padding-bottom: 10px;
+                        }
+
+                .collapse.in {
+                    display: block !important;
+                }
+		}
+	</style>
+	
+</html>

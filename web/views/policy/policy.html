@@ -1,0 +1,24 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row" ng-repeat="Policy in Policies"  style="padding: 15px;">
+	<div class="col-lg-10 col-lg-offset-1">
+		<div class="row form-group" style="font-size: 1.2em; font-weight: bolder;">
+			<div class="col-lg-10 col-lg-offset-1" id="div_preview" bind-html-compile="(DEFAULT_LANGUAGE == 'TH'?Policy.policy_title:Policy.policy_title_en)">
+				
+			</div>
+		</div>
+		<div class="row form-group"   style="padding-left: 15px;">
+			<div class="col-lg-12" id="div_preview" bind-html-compile="(DEFAULT_LANGUAGE == 'TH'?Policy.contents:Policy.contents_en)">
+				
+			</div>
+		</div>
+		<div class="row form-group" ng-repeat="file in Policy.AttachFiles"  style="padding-left: 15px;">
+			<div class="col-lg-12">
+				<a target="_self" href="{{'../'+file.file_path}}" download="{{file.file_name}}">{{file.file_name}}</a>			
+			</div>
+		</div>
+		<hr>
+	</div>
+
+</div>
+
+<div ng-include src="'views/footer.html'"></div>

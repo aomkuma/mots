@@ -1,0 +1,421 @@
+<div id="box" class="" style="position: fixed; top: 0px; z-index: 99999; width: 100%; background-color: #FFF; border-bottom:  1px solid #999;-webkit-box-shadow: 0px 13px 32px -9px rgba(0,0,0,0.5);
+     -moz-box-shadow: 0px 13px 32px -9px rgba(0,0,0,0.5);
+     box-shadow: 0px 13px 32px -9px rgba(0,0,0,0.5);">
+    <div style="position: absolute; right: 5%; top : 60px; z-index: 9999999;">
+        <div style="width:100%; display: none; ">
+
+        </div>
+
+    </div>
+    <div class="row" style="padding-top: 0px; padding-bottom: 10px; color:#3766FF;  background-color: {{BG_COLOR}};">
+        <div class="col-lg-1 col-md-1 col-sm-4 col-xs-3 visible-lg visible-md" style=" padding-top:1.5%;">
+            <img src="../files/img/cio-logo.jpg" style="height: 80px; width: auto; padding-left:10%;">
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-10 col-xs-10 visible-sm visible-xs" style=" padding-top:5%;">
+            <img src="../files/img/cio-logo.jpg" style="height: 80px; width: auto; padding-left:10%;">
+        </div>
+        <div class="col-lg-6 col-md-6 visible-lg visible-md" style="padding-left: 0%; padding-top:1%; color: #393D65;">
+            <h3>Ministry of Tourism and Sports</h3>
+            <h4>กระทรวงการท่องเที่ยวและกีฬา</h4>
+
+
+        </div>
+        <div class="col-sm-2 col-xs-2 text-right form-group visible-sm visible-xs ">
+            <div class="row text-right"> 
+                <div style="margin-top: 50%;">
+                    <div style="margin-top:2%; float: left;border-radius: 50%;  width: 30px; height: 30px; border: 0px solid #000; cursor: pointer; margin-right: 5px; text-align: center; padding-top: 3px;" ng-click="changeLanguage('TH')" ng-class="{'bg-orange':DEFAULT_LANGUAGE == 'TH', 'bg-grey':DEFAULT_LANGUAGE == 'EN'}">TH</div> &nbsp; 
+                    <div style="margin-top:2%; float: left;border-radius: 50%;width: 30px; height: 30px; border: 0px solid #000; cursor: pointer; margin-right: 20px; text-align: center; padding-top: 3px;" ng-click="changeLanguage('EN')" ng-class="{'bg-orange':DEFAULT_LANGUAGE == 'EN', 'bg-grey':DEFAULT_LANGUAGE == 'TH'}">EN</div> &nbsp; 
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 col-md-5 visible-lg visible-md" style=" padding-top:1%;">
+            <div class="row form-group" ng-show="true">
+
+                <div class="pull-right" style="margin-right: 10%;">
+                    <div style="border-right: 1px solid #ccc; float: left;">
+                        <div style="margin-top:2%; float: left;width: 30px; height: 30px; border: 0px solid #000; cursor: pointer; margin-right: 5px; text-align: center; padding-top: 3px;" >
+                            <img src="../files/img/service.png" style="height: 1.8em;">
+                        </div>
+
+                    </div>
+                    <div style="border-right: 1px solid #ccc; float: left;">&nbsp;&nbsp;&nbsp;
+                        <div style="margin-left:20px;margin-top:2%; float: left;border-radius: 50%;  width: 30px; height: 30px; border: 0px solid #000; cursor: pointer; margin-right: 5px; text-align: center; padding-top: 3px;" ng-click="changeLanguage('TH')" ng-class="{'bg-orange':DEFAULT_LANGUAGE == 'TH', 'bg-grey':DEFAULT_LANGUAGE == 'EN'}">TH</div>
+                        <div style="margin-top:2%; float: left;border-radius: 50%;width: 30px; height: 30px; border: 0px solid #000; cursor: pointer; margin-right: 20px; text-align: center; padding-top: 3px;" ng-click="changeLanguage('EN')" ng-class="{'bg-orange':DEFAULT_LANGUAGE == 'EN', 'bg-grey':DEFAULT_LANGUAGE == 'TH'}">EN</div>
+                    </div>
+                    <div style="border-right: 1px solid #ccc; float: left; padding-left: 10px;">
+                        <div style="margin-top:2%; float: left;border-radius: 50%; background-color: #FFF; color: #000; width: 30px;  height: 30px; border: 1px solid #000; cursor: pointer; margin-right: 5px; text-align: center; padding-top: 3px;" ng-click="changeColor('#FFF', '#000')">C</div> &nbsp; 
+                        <div style="margin-top:2%; float: left;border-radius: 50%; background-color: #000; color: #FFF; width: 30px; height: 30px; border: 1px solid #000; cursor: pointer; margin-right: 5px; text-align: center; padding-top: 3px;" ng-click="changeColor('#000', '#FFF')">C</div> &nbsp; 
+                        <div style="margin-top:2%; float: left; border-radius: 50%; background-color: #000; color: #F5F500; width: 30px; height: 30px; border: 1px solid #000; cursor: pointer; margin-right: 5px; text-align: center; padding-top: 3px;" ng-click="changeColor('#000', '#F5F500')">C</div>
+                    </div>
+                    <div style="float: left; padding-left: 10px;">
+                        <a ng-click="changeFontSize(1.2)" style="font-size: 1.2em;" ng-class="{'selected-language':FONT_SIZE == 1.2}">A</a>&nbsp;&nbsp;
+                        <a ng-click="changeFontSize(1.3)" style="font-size: 1.3em;" ng-class="{'selected-language':FONT_SIZE == 1.3}">A</a>&nbsp;&nbsp;
+                        <a ng-click="changeFontSize(1.4)" style="font-size: 1.4em;" ng-class="{'selected-language':FONT_SIZE == 1.4}">A</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group" ng-show="false">
+                <div class="col-lg-4 col-md-4 col-lg-offset-1 col-md-offset-1" style="border-right: 1px solid #ccc;">
+                    <div style="margin-left: 40%;">
+                        <div style="margin-top:2%; float: left;border-radius: 50%;  width: 30px; height: 30px; border: 0px solid #000; cursor: pointer; margin-right: 5px; text-align: center; padding-top: 3px;" ng-click="changeLanguage('TH')" ng-class="{'bg-orange':DEFAULT_LANGUAGE == 'TH', 'bg-grey':DEFAULT_LANGUAGE == 'EN'}">TH</div>
+                        <div style="margin-top:2%; float: left;border-radius: 50%;width: 30px; height: 30px; border: 0px solid #000; cursor: pointer; margin-right: 20px; text-align: center; padding-top: 3px;" ng-click="changeLanguage('EN')" ng-class="{'bg-orange':DEFAULT_LANGUAGE == 'EN', 'bg-grey':DEFAULT_LANGUAGE == 'TH'}">EN</div>
+                    </div>
+                </div>
+                <div class="col-lg-4  col-md-4" style="border-right: 1px solid #ccc;">
+                    <div style="margin-left:25%;">
+                        <div style="margin-top:2%; float: left;border-radius: 50%; background-color: #FFF; color: #000; width: 30px;  height: 30px; border: 1px solid #000; cursor: pointer; margin-right: 5px; text-align: center; padding-top: 3px;" ng-click="changeColor('#FFF', '#000')">C</div> &nbsp; 
+                        <div style="margin-top:2%; float: left;border-radius: 50%; background-color: #000; color: #FFF; width: 30px; height: 30px; border: 1px solid #000; cursor: pointer; margin-right: 5px; text-align: center; padding-top: 3px;" ng-click="changeColor('#000', '#FFF')">C</div> &nbsp; 
+                        <div style="margin-top:2%; float: left; border-radius: 50%; background-color: #000; color: #F5F500; width: 30px; height: 30px; border: 1px solid #000; cursor: pointer; margin-right: 5px; text-align: center; padding-top: 3px;" ng-click="changeColor('#000', '#F5F500')">C</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div style="margin-left:25%;">
+                        <a ng-click="changeFontSize(1.2)" style="font-size: 1.2em;" ng-class="{'selected-language':FONT_SIZE == 1.2}">A</a>&nbsp;&nbsp;
+                        <a ng-click="changeFontSize(1.3)" style="font-size: 1.3em;" ng-class="{'selected-language':FONT_SIZE == 1.3}">A</a>&nbsp;&nbsp;
+                        <a ng-click="changeFontSize(1.4)" style="font-size: 1.4em;" ng-class="{'selected-language':FONT_SIZE == 1.4}">A</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-show="true">
+                <div class="col-lg-2 col-md-2  ">
+                    <div class="input-group add-on">
+                       
+                        <div class="input-group-btn">
+                            <button class="btn btn-default bg-orange" ng-click="goTo('advsearch')">ค้นหาขั้นสูง</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-5 ">
+                    <div class="input-group add-on">
+                        <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term" ng-model="keyword" ng-keyup="checkEnter($event, keyword)" style="height: 34px;">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default bg-orange" ng-click="goSearch(keyword)"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-5">
+                    <div class="input-group add-on" ng-show="currentUser == undefined || currentUser == null">
+                        <input type="text" class="form-control" placeholder="e-mail address" name="srch-term" id="srch-term" ng-model="email"  style="height: 34px;">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default bg-orange" ng-click="checkLogin(email)"><i class="glyphicon glyphicon-arrow-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="input-group add-on" ng-show="currentUser != undefined || currentUser != null">
+                        <label class="form-control-static">
+                            ยินดีต้อนรับ {{currentUser.email}}
+                        </label>
+                        <div class="input-group-btn">
+                            <button class="btn btn-danger" ng-click="checkLogout()"><i class="glyphicon glyphicon-log-out"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12" ng-show="false">
+                <div class="row form-group">
+                    <div class="col-lg-12">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row form-group visible-lg visible-md">
+                     
+                    <div class="col-lg-12">
+                        <div class="input-group add-on" style="padding-top: 10px;">
+                            <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term" ng-model="keyword" ng-keyup="checkEnter($event, keyword)" style="height: 34px;">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default bg-orange" ng-click="goSearch(keyword)"><i class="glyphicon glyphicon-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12 text-center" ng-show="false">
+                <div class="row form-group visible-sm visible-xs text-right">
+                    <div>
+                        <div style="margin-top:2%; float: left;border-radius: 50%;  width: 30px; height: 30px; border: 0px solid #000; cursor: pointer; margin-right: 5px; text-align: center; padding-top: 3px;" ng-click="changeLanguage('TH')" ng-class="{'bg-orange':DEFAULT_LANGUAGE == 'TH', 'bg-grey':DEFAULT_LANGUAGE == 'EN'}">TH</div> &nbsp; 
+                        <div style="margin-top:2%; float: left;border-radius: 50%;width: 30px; height: 30px; border: 0px solid #000; cursor: pointer; margin-right: 20px; text-align: center; padding-top: 3px;" ng-click="changeLanguage('EN')" ng-class="{'bg-orange':DEFAULT_LANGUAGE == 'EN', 'bg-grey':DEFAULT_LANGUAGE == 'TH'}">EN</div> &nbsp; 
+                    </div>
+                </div>
+                <div class="row form-group visible-lg visible-md">
+                    <div class="col-lg-4 col-md-4" style="border-right: 1px solid #ccc;">
+                        <div style="margin-top:2%; float: left;border-radius: 50%;  width: 30px; height: 30px; border: 0px solid #000; cursor: pointer; margin-right: 5px; text-align: center; padding-top: 3px;" ng-click="changeLanguage('TH')" ng-class="{'bg-orange':DEFAULT_LANGUAGE == 'TH', 'bg-grey':DEFAULT_LANGUAGE == 'EN'}">TH</div> &nbsp; 
+                        <div style="margin-top:2%; float: left;border-radius: 50%;width: 30px; height: 30px; border: 0px solid #000; cursor: pointer; margin-right: 20px; text-align: center; padding-top: 3px;" ng-click="changeLanguage('EN')" ng-class="{'bg-orange':DEFAULT_LANGUAGE == 'EN', 'bg-grey':DEFAULT_LANGUAGE == 'TH'}">EN</div>
+                    </div>
+                    <div class="col-lg-5 col-md-4" style="border-right: 1px solid #ccc;">
+                        <div style="margin-top:2%; float: left;border-radius: 50%; background-color: #FFF; color: #000; width: 30px;  height: 30px; border: 1px solid #000; cursor: pointer; margin-right: 5px; text-align: center; padding-top: 3px;" ng-click="changeColor('#FFF', '#000')">C</div> &nbsp; 
+                        <div style="margin-top:2%; float: left;border-radius: 50%; background-color: #000; color: #FFF; width: 30px; height: 30px; border: 1px solid #000; cursor: pointer; margin-right: 5px; text-align: center; padding-top: 3px;" ng-click="changeColor('#000', '#FFF')">C</div> &nbsp; 
+                        <div style="margin-top:2%; float: left; border-radius: 50%; background-color: #000; color: #F5F500; width: 30px; height: 30px; border: 1px solid #000; cursor: pointer; margin-right: 5px; text-align: center; padding-top: 3px;" ng-click="changeColor('#000', '#F5F500')">C</div>
+                    </div>
+                    <div class="col-lg-3 col-md-4">
+
+                        <a ng-click="changeFontSize(1.2)" style="font-size: 1.2em;" ng-class="{'selected-language':FONT_SIZE == 1.2}">A</a>&nbsp;&nbsp;
+                        <a ng-click="changeFontSize(1.3)" style="font-size: 1.3em;" ng-class="{'selected-language':FONT_SIZE == 1.3}">A</a>&nbsp;&nbsp;
+                        <a ng-click="changeFontSize(1.4)" style="font-size: 1.4em;" ng-class="{'selected-language':FONT_SIZE == 1.4}">A</a>
+                    </div>
+                </div>
+
+                <div class="row form-group  visible-lg visible-md">
+                    <div class="col-lg-10">
+                        <div class="input-group add-on" ng-show="currentUser == undefined || currentUser == null">
+                            <input type="text" class="form-control" placeholder="e-mail address" name="srch-term" id="srch-term" ng-model="email"  style="height: 34px;">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default bg-orange" ng-click="checkLogin(email)"><i class="glyphicon glyphicon-arrow-right"></i></button>
+                            </div>
+                        </div>
+                        <div class="input-group add-on" ng-show="currentUser != undefined || currentUser != null">
+                            <label class="form-control-static">
+                                ยินดีต้อนรับ {{currentUser.email}}
+                            </label>
+                            <div class="input-group-btn">
+                                <button class="btn btn-danger" ng-click="checkLogout()"><i class="glyphicon glyphicon-log-out"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="background-color: #FFF;">
+        <nav class="navbar navbar-inverse hidden-xs" role="navigation" style="margin-bottom: 0px;">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+
+                <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'" style="background-color: #FFF;">
+
+                <ul class="nav navbar-nav" style="background-color: #48A3D8; color: #FFF; padding: 30px; font-size: 1.4em; margin-bottom: -50px; padding-left: 5%; padding-right: 5%;-webkit-box-shadow: 0px 13px 32px -9px rgba(0,0,0,0.5);
+                    -moz-box-shadow: 0px 13px 32px -9px rgba(0,0,0,0.5);
+                    box-shadow: 0px 13px 32px -9px rgba(0,0,0,0.5);">
+                    <li ><a href="#/"  style="border-left: 0px solid #000000;">
+                            {{DEFAULT_LANGUAGE=='TH'?'หน้าหลัก':'Home'}}</a></li>
+
+                    <li ng-repeat="menu in Menu" ng-class="{'active':menu_selected == menu.menu_url, 'menu-item dropdown':menu.sub_menu.length > 0}" class="dropdown">
+
+                        <a ng-show="menu.sub_menu.length == 0" 
+                           href="#/{{ menu.menu_url}}">
+                            {{DEFAULT_LANGUAGE=='TH'?menu.menu_name_th:menu.menu_name_en}}
+                        </a>
+
+                        <a tabindex="-1" ng-show="menu.sub_menu.length > 0"
+                           href="" 
+                           class="dropdown-toggle" 
+                           data-toggle="dropdown" 
+                           role="button" 
+                           aria-haspopup="true" 
+                           aria-expanded="false" >
+                            {{DEFAULT_LANGUAGE=='TH'?menu.menu_name_th:menu.menu_name_en}} <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu  sub-menu" ng-show="menu.sub_menu.length > 0"><!-- style="min-width: 400px; overflow: scroll; height: 500px;"-->
+                            <li ng-repeat="sub_menu1 in menu.sub_menu"
+                                ng-class="{'dropdown-submenu':sub_menu1.sub_menu.length > 0}">
+                                <a ng-show="sub_menu1.menu_type == 'EXLINK'" href="{{ sub_menu1.menu_url}}" target="_blank">
+                                    {{DEFAULT_LANGUAGE=='TH'?sub_menu1.menu_name_th:sub_menu1.menu_name_en}}
+                                </a>
+                                <a href="#/{{sub_menu1.menu_url}}" ng-show="sub_menu1.sub_menu.length == 0 && sub_menu1.menu_type != 'EXLINK'">{{DEFAULT_LANGUAGE=='TH'?sub_menu1.menu_name_th:sub_menu1.menu_name_en}}
+                                </a>
+                                <a href="" tabindex="-1" class="test" ng-show="sub_menu1.sub_menu.length > 0 && sub_menu1.menu_type != 'EXLINK'">
+                                    {{DEFAULT_LANGUAGE=='TH'?sub_menu1.menu_name_th:sub_menu1.menu_name_en}}
+                                </a>
+                                <ul class="dropdown-menu  sub-menu sub-menu1" ng-show="sub_menu1.sub_menu.length > 0">
+                                    <li ng-repeat="sub_menu2 in sub_menu1.sub_menu" 
+                                        ng-class="{'dropdown-submenu':sub_menu2.sub_menu.length > 0}">
+                                        <a ng-show="sub_menu2.menu_type == 'EXLINK'" href="{{ sub_menu2.menu_url}}" target="_blank">
+                                            {{DEFAULT_LANGUAGE=='TH'?sub_menu2.menu_name_th:sub_menu2.menu_name_en}}
+                                        </a>
+                                        <a href="#/{{sub_menu2.menu_url}}" ng-show="sub_menu2.menu_type != 'EXLINK' && sub_menu2.sub_menu.length == 0">{{DEFAULT_LANGUAGE=='TH'?sub_menu2.menu_name_th:sub_menu2.menu_name_en}}
+                                        </a>
+                                        <a href="" tabindex="-1" class="test" ng-show="sub_menu2.menu_type == 'PARENT' && sub_menu2.sub_menu.length > 0">{{DEFAULT_LANGUAGE=='TH'?sub_menu2.menu_name_th:sub_menu2.menu_name_en}}
+                                        </a>
+                                        <ul class="dropdown-menu  sub-menu2" style="margin-right: 300px;" ng-show="sub_menu2.sub_menu.length > 0">
+                                            <li ng-repeat="sub_menu3 in sub_menu2.sub_menu">
+                                                <a ng-show="sub_menu3.menu_type != 'EXLINK'" href="#/{{ sub_menu3.menu_url}}">
+                                                    {{DEFAULT_LANGUAGE=='TH'?sub_menu3.menu_name_th:sub_menu3.menu_name_en}}
+                                                </a>
+                                                <a ng-show="sub_menu3.menu_type == 'EXLINK'" href="{{ sub_menu3.menu_url}}" target="_blank">
+                                                    {{DEFAULT_LANGUAGE=='TH'?sub_menu3.menu_name_th:sub_menu3.menu_name_en}}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+
+                    </li>
+                    <!--
+                    <li ng-class="{'active':menu_selected == 'home'}"><a href="#/"  style="border-left: 0px solid #000000;">
+                      <img src="../files/img/home-ico.png" class="menu-icon"><br><br>หน้าหลัก</a></li>
+                    <li class="menu-item dropdown" ng-class="{'active':menu_selected == ''}">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ><img src="../files/img/alert-ico.png" class="menu-icon"><br><br>เกี่ยวกับหน่วยงาน <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="menu-item dropdown dropdown-submenu" ng-click="goPage('history')">ประวัติความเป็นมา</li>
+                            <li class="menu-item dropdown dropdown-submenu" ng-click="goPage('authority')">อำนาจหน้าที่</li>
+                            <li class="menu-item dropdown dropdown-submenu" ng-click="goLink('structure')">โครงสร้างหน่วยงาน</li>
+                            <li class="menu-item dropdown dropdown-submenu" ng-click="goTo('palace-minister')">ทำเนียบรัฐมนตรี</li>
+                            <li class="menu-item dropdown dropdown-submenu" ng-click="goTo('palace')">บุคลากร</li>
+                            
+                            
+                        </ul>
+                    </li>
+                    <li ng-class="{'active':menu_selected == 'law'}"><a href="#/law"><img src="../files/img/laptop-ico.png" class="menu-icon"><br><br>งานบริการ</a></li>
+                    <li ng-class="{'active':menu_selected == 'news'}"><a href="#/news"><img src="../files/img/world-ico.png" class="menu-icon"><br><br>เครือข่ายกระทรวง</a></li>
+                    <li ng-class="{'active':menu_selected == 'traditions'}"><a ng-click="goPage('tradition')"><img src="../files/img/folder-ico.png" class="menu-icon"><br><br>สื่อและเอกสารเผยแพร่</a></li>
+                    <li ng-class="{'active':menu_selected == 'resolution'}"><a ng-click="goLink('resolution')"><img src="../files/img/question-ico.png" class="menu-icon"><br><br>คำถามที่พบบ่อย</a></li>
+                    <li ng-class="{'active':menu_selected == 'relatelink'}"><a href="#/relate-link"><img src="../files/img/checkin-ico.png" class="menu-icon"><br><br>ติดต่อหน่วยงาน</a></li>
+                    -->
+                </ul>
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+
+        <nav class="navbar navbar-inverse visible-xs" role="navigation" style="margin-bottom: 0px;">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+
+                <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'" style="background-color: #8186B0; height: 400px; overflow: auto; margin-left: -30px;">
+
+                <ul class="nav navbar-nav" style="background-color: #48A3D8; color: #FFF; padding: 30px; font-size: 1.2em; width: 80%;">
+                    <li ><a href="#/"  style="border-left: 0px solid #000000; text-align: left;">
+                            {{DEFAULT_LANGUAGE=='TH'?'หน้าหลัก':'Home'}}</a></li>
+
+                    <li ng-repeat="menu in Menu" ng-class="{'active':menu_selected == menu.menu_url, 'menu-item dropdown':menu.sub_menu.length > 0}" class="dropdown-mobile">
+
+                        <a ng-show="menu.sub_menu.length == 0" 
+                           href="#/{{ menu.menu_url}}" style="text-align: left; color: {{$parent.FONT_COLOR=='#000'?'#FFF':$parent.FONT_COLOR}};">
+                            {{DEFAULT_LANGUAGE=='TH'?menu.menu_name_th:menu.menu_name_en}}
+                        </a>
+
+                        <a ng-show="menu.sub_menu.length > 0"
+                           href="" tabindex="-1" class="test" style="text-align: left;  color: {{$parent.FONT_COLOR=='#000'?'#FFF':$parent.FONT_COLOR}};">
+                            {{DEFAULT_LANGUAGE=='TH'?menu.menu_name_th:menu.menu_name_en}} <b class="caret"></b>
+                        </a>
+
+                        <ul class="dropdown-menu-mobile" ng-show="menu.sub_menu.length > 0" style="display: none; background-color: #2B316C; padding-top: 15px;padding-bottom: 15px; font-size: 0.8em;"><!-- style="min-width: 400px; overflow: scroll; height: 500px;"-->
+                            <li ng-repeat="sub_menu1 in menu.sub_menu"
+                                ng-class="{'dropdown-submenu':sub_menu1.sub_menu.length > 0}">
+                                <a ng-show="sub_menu1.menu_type == 'EXLINK'" href="{{ sub_menu1.menu_url}}" target="_blank" style="text-align: left; color: {{$parent.FONT_COLOR=='#000'?'#FFF':$parent.FONT_COLOR}};">
+                                    {{DEFAULT_LANGUAGE=='TH'?sub_menu1.menu_name_th:sub_menu1.menu_name_en}}
+                                </a>
+                                <a href="#/{{sub_menu1.menu_url}}" ng-show="sub_menu1.sub_menu.length == 0 && sub_menu1.menu_type != 'EXLINK'" style="text-align: left; color: {{$parent.FONT_COLOR=='#000'?'#FFF':$parent.FONT_COLOR}};">{{DEFAULT_LANGUAGE=='TH'?sub_menu1.menu_name_th:sub_menu1.menu_name_en}}
+                                </a>
+                                <a href="" tabindex="-1" class="test" ng-show="sub_menu1.sub_menu.length > 0 && sub_menu1.menu_type != 'EXLINK'" style="text-align: left; color: {{$parent.FONT_COLOR=='#000'?'#FFF':$parent.FONT_COLOR}};">
+                                    {{DEFAULT_LANGUAGE=='TH'?sub_menu1.menu_name_th:sub_menu1.menu_name_en}}
+                                </a>
+
+                                <ul class="dropdown-menu-mobile1" ng-show="sub_menu1.sub_menu.length > 0" style="display: none; background-color: #3A4181;padding-top: 15px;padding-bottom: 15px;">
+                                    <li ng-repeat="sub_menu2 in sub_menu1.sub_menu" 
+                                        ng-class="{'dropdown-submenu':sub_menu2.sub_menu.length > 0}">
+                                        <a ng-show="sub_menu2.menu_type == 'EXLINK'" href="{{ sub_menu2.menu_url}}" target="_blank" style="text-align: left; color: {{$parent.FONT_COLOR=='#000'?'#FFF':$parent.FONT_COLOR}};">
+                                            {{DEFAULT_LANGUAGE=='TH'?sub_menu2.menu_name_th:sub_menu2.menu_name_en}}
+                                        </a>
+                                        <a href="#/{{sub_menu2.menu_url}}" ng-show="sub_menu2.menu_type != 'EXLINK' && sub_menu2.sub_menu.length == 0" style="text-align: left; color: {{$parent.FONT_COLOR=='#000'?'#FFF':$parent.FONT_COLOR}};">{{DEFAULT_LANGUAGE=='TH'?sub_menu2.menu_name_th:sub_menu2.menu_name_en}}
+                                        </a>
+                                        <a href="" tabindex="-1" class="test" ng-show="sub_menu2.menu_type == 'PARENT' && sub_menu2.sub_menu.length > 0" style="text-align: left; color: {{$parent.FONT_COLOR=='#000'?'#FFF':$parent.FONT_COLOR}};">{{DEFAULT_LANGUAGE=='TH'?sub_menu2.menu_name_th:sub_menu2.menu_name_en}}
+                                        </a>
+
+                                        <ul class="dropdown-menu-mobile2" ng-show="sub_menu2.sub_menu.length > 0" style="display: none; background-color: #474F95;padding-top: 15px;padding-bottom: 15px;">
+                                            <li ng-repeat="sub_menu3 in sub_menu2.sub_menu">
+                                                <a ng-show="sub_menu3.menu_type != 'EXLINK'" href="#/{{ sub_menu3.menu_url}}" style="text-align: left; color: {{$parent.FONT_COLOR=='#000'?'#FFF':$parent.FONT_COLOR}};">
+                                                    {{DEFAULT_LANGUAGE=='TH'?sub_menu3.menu_name_th:sub_menu3.menu_name_en}}
+                                                </a>
+                                                <a ng-show="sub_menu3.menu_type == 'EXLINK'" href="{{ sub_menu3.menu_url}}" target="_blank" style="text-align: left; color: {{$parent.FONT_COLOR=='#000'?'#FFF':$parent.FONT_COLOR}};">
+                                                    {{DEFAULT_LANGUAGE=='TH'?sub_menu3.menu_name_th:sub_menu3.menu_name_en}}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                </ul>
+
+                </ul>
+
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 text-center">
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-6 text-center">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a ng-click="changeFontSize(1.2)" style="font-size: 1.2em;" ng-class="{'selected-language':FONT_SIZE == 1.2}">A</a>&nbsp;&nbsp;
+                                <a ng-click="changeFontSize(1.4)" style="font-size: 1.4em;" ng-class="{'selected-language':FONT_SIZE == 1.4}">A</a>&nbsp;&nbsp;
+                                <a ng-click="changeFontSize(1.6)" style="font-size: 1.6em;" ng-class="{'selected-language':FONT_SIZE == 1.6}">A</a>
+                            </div>
+                            <div class="col-sm-6 col-xs-6 text-center">
+                                <div style="margin-top:2%; float: left;border-radius: 50%; background-color: #FFF; color: #000; width: 30px; border: 1px solid #000; cursor: pointer; padding-top: 1.7px;" ng-click="changeColor('#FFF', '#000')">C</div> &nbsp; 
+                                <div style="margin-top:2%; float: left;border-radius: 50%; background-color: #000; color: #FFF; width: 30px;border: 1px solid #000; cursor: pointer; padding-top: 1.7px;" ng-click="changeColor('#000', '#FFF')">C</div> &nbsp; 
+                                <div style="margin-top:2%; float: left; border-radius: 50%; background-color: #000; color: #F5F500; width: 30px;border: 1px solid #000; cursor: pointer; padding-top: 1.7px;" ng-click="changeColor('#000', '#F5F500')">C</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-8 col-xs-8  col-sm-offset-2 col-xs-offset-2 text-center">
+                        <div class="input-group add-on" style="padding-top: 10px;">
+                            <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term" ng-model="keyword" ng-keyup="checkEnter($event, keyword)" style="height: 34px;">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default bg-orange" ng-click="goSearch(keyword)"><i class="glyphicon glyphicon-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 text-center">
+                        <div class="input-group add-on" ng-show="currentUser == undefined || currentUser == null">
+                            <input type="text" class="form-control" placeholder="e-mail address" name="srch-term" id="srch-term" ng-model="email"  style="height: 34px;">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default bg-orange" ng-click="checkLogin(email)"><i class="glyphicon glyphicon-arrow-right"></i></button>
+                            </div>
+                        </div>
+                        <div class="input-group add-on" ng-show="currentUser != undefined || currentUser != null">
+                            <label class="form-control-static">
+                                ยินดีต้อนรับ {{currentUser.email}}
+                            </label>
+                            <div class="input-group-btn">
+                                <button class="btn btn-danger" ng-click="checkLogout()"><i class="glyphicon glyphicon-log-out"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /.navbar-collapse -->
+            <div style="height: 2px; background-color: #13569A; width: 100%;">
+        </nav>
+
+
+    </div>
+</div>
+<style type="text/css">
+    .glyphicon-search{
+        /*padding-top: 2px;
+        padding-bottom: 7px;*/
+        padding-right: 5px;
+    }
+</style>
+

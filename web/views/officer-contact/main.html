@@ -1,0 +1,105 @@
+<div ng-include src="'views/header.html'"></div>
+<div  style="margin-top:180px;">
+	<div class="row form-group" style="padding-top: 70px;">
+	  <div class="col-lg-10 col-lg-offset-1">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	      	<img src="../files/img/pin-menu.png">
+	        ติดต่อเรา
+	      	<img src="../files/img/pin-menu.png">
+	        ติดต่อเรา
+	        <img src="../files/img/pin-menu.png">
+	        ติดต่อเจ้าหน้าที่
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<span class="title-content">
+				<h2>{{(DEFAULT_LANGUAGE == 'TH'?MenuName[MenuName.length - 1].menu_name_th:MenuName[MenuName.length - 1].menu_name_en)}}</h2>
+			</span>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<img src="../files/img/header_line.png" style="width: 70%;">
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1">
+
+			<div ng-show="PAGE == 'PERSON'">
+				<div class="row form-group">
+					<label class="form-control-static col-lg-12 text-center">
+						<h4>{{DEFAULT_LANGUAGE == 'TH'?Dep.dep_name_th:Dep.dep_name_en}}</h4>
+					</label>
+				</div>
+				<div class="table-responsive">
+					<table class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>ชื่อ-สกุล</th>
+								<th>ตำแหน่ง</th>
+								<th>email</th>
+								<th>สายตรง</th>
+								<th>โทรศัพท์</th>
+								<th>โทรสาร</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="data in PersonList">
+								<td>
+									{{DEFAULT_LANGUAGE == 'TH'?data.name_th:data.name_en}}
+								</td>
+								<td>
+									{{DEFAULT_LANGUAGE == 'TH'?data.position_th:data.position_en}}
+								</td>
+								<td>
+									{{data.email}}
+								</td>
+								<td>
+									{{data.hotline}}
+								</td>
+								<td>
+									{{data.tel}}
+								</td>
+								<td>
+									{{data.fax}}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div ng-show="PAGE == 'MAIN'">
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>กอง</th>
+								<th>รายละเอียด</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="data in DepList">
+								<td>
+									{{DEFAULT_LANGUAGE == 'TH'?data.dep_name_th:data.dep_name_en}}
+								</td>
+								<td>
+									<button class="btn btn-default" ng-click="loadOfficer(data.id, data)"><span class="glyphicon glyphicon-zoom-in"></span></button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<div ng-include src="'views/footer.html'"></div>

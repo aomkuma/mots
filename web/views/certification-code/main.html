@@ -1,0 +1,80 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div  style="margin-top:180px;">
+	<div class="row form-group" style="padding-top: 70px;">
+	  <div class="col-lg-10 col-lg-offset-1">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<span class="title-content">
+				<h2>{{(DEFAULT_LANGUAGE == 'TH'?MenuName[MenuName.length - 1].menu_name_th:MenuName[MenuName.length - 1].menu_name_en)}}</h2>
+			</span>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<img src="../files/img/header_line.png" style="width: 70%;">
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1">
+			<div class="row form-group">
+				<table class="table table-bordered table-striped">
+					<caption>
+						<div class="row form-group">
+							<div class="col-lg-3">
+								<input class="form-control" ng-model="condition.keyword">
+							</div>
+							
+							<div class="col-lg-2">
+								<button class="btn btn-primary" ng-click="loadList()"> <span class="glyphicon glyphicon-search"></span> ค้นหา</button>
+							</div>
+						</div>
+						
+					</caption>	
+					<thead>
+						<tr>
+							<th>ชื่อเกษตรกร/ผู้ประกอบการ/ผู้ขอใบรับรอง</th>
+							<th>ขอบข่ายการให้การรับรองมาตรฐาน</th>
+							<th>จังหวัด</th>
+							<th>ชื่อผู้ประกอบการตรวจสอบมาตรฐาน</th>
+							<th>ชนิดสินค้า</th>
+							<th>มาตรฐานสินค้าเกษตรที่ได้รับการรับรอง</th>
+							<th>ที่ตั้งสถานที่ผลิต / ฟาร์ม / แปลง / โรงงาน</th>
+							<th>สถานะ</th>
+							<th>วันออกใบรับรอง</th>
+							<th>วันหมดอายุ</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="data in DataList">
+							<td>{{data.operator_name_th}}</td>
+							<td>{{data.scope_th}}</td>
+							<td>{{data.province_th}}</td>
+							<td>{{data.auditor_th}}</td>
+							<td>{{data.product_th}}</td>
+							<td>{{data.accredit_stadard_th}}</td>
+							<td>{{data.address_th}}</td>
+							<td>{{data.status_th}}</td>
+							<td>{{data.start_date}}</td>
+							<td>{{data.end_date}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<div ng-include src="'views/footer.html'"></div>

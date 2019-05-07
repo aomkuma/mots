@@ -1,0 +1,97 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="row form-group" style="padding-top: 180px;">
+	  <div class="row form-group" style="padding-top: 70px;">
+	  <div class="col-lg-10 col-lg-offset-1">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+	</div>
+</div>
+<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<span class="title-content">
+				<h2>{{(DEFAULT_LANGUAGE == 'TH'?MenuName[MenuName.length - 1].menu_name_th:MenuName[MenuName.length - 1].menu_name_en)}}</h2>
+			</span>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<img src="../files/img/header_line.png" style="width: 70%;">
+		</div>
+	</div>
+<div class="row">
+	<div class="col-lg-10 col-lg-offset-1">
+		<div class="row form-group" ng-form="form_update">
+			<label class="form-control-static col-lg-1 col-lg-offset-2">
+				ปีงบประมาณ
+			</label>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+				<select name="Year" class="form-control" ng-model="condition.years" ng-options="year.yearText as year.yearValue for year in YearList" required="required">
+						<option value="">กรุณาเลือก..</option>
+					</select>
+			</div>
+			<label class="form-control-static col-lg-1">
+				เดือน
+			</label>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+				<select name="Year" class="form-control" ng-model="condition.months" ng-options="month.monthValue as month.monthText for month in MonthList" required="required">
+						<option value="">กรุณาเลือก..</option>
+					</select>
+			</div>
+			<div class="col-lg-1">
+				<button class="btn btn-primary" ng-click="loadData(condition)">ค้นหา
+				</button>
+			</div>
+		</div>
+		<div class="row form-group" ng-show="Data != null">
+			<div class="col-lg-8 col-lg-offset-2 table-responsive">
+				<table class="table">
+					<caption class="text-center" style="background-color: #7FAC72; color:#FFF;">
+						<h4>ผลการเบิกจ่ายงบประมาณ ประจำปี {{ condition.years + 543 }}</h4>
+					</caption>
+					<caption class="text-center">
+						<h4>ณ {{ getMonthName(condition.months) }} {{ condition.years + 543 }}</h4>
+					</caption>
+					<thead>
+						<tr style="font-weight: bolder;">
+							<td>รายการ</td>
+							<td>งบบุคลากร</td>
+							<td>งบดำเนินงาน</td>
+							<td>งบลงทุน</td>
+							<td>งบเงินอุดหนุน</td>
+							<td>งบรายจ่ายอื่น</td>
+							<td>รวม</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="data in Data.item">
+							<td>{{data.item}}</td>
+							<td>{{data.staff}}</td>
+							<td>{{data.operating}}</td>
+							<td>{{data.investing}}</td>
+							<td>{{data.subsidy}}</td>
+							<td>{{data.other}}</td>
+							<td>{{data.subtotal}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row form-group" ng-show="Data != null">
+		
+			<div class="col-lg-8 col-lg-offset-2 text-center">
+				<canvas id="myChart" style="height: 100px;"></canvas>
+			</div>
+		
+		</div>
+	</div>
+</div>

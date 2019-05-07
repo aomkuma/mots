@@ -1,0 +1,226 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div  style="margin-top:180px;">
+	<div class="row form-group" style="padding-top: 70px;">
+	  <div class="col-lg-10 col-lg-offset-1">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+	</div>
+	
+	<div ng-show="PAGE == 'UPDATE'" ng-form="appeal_form">
+		<div class="row form-group">
+			<div class="col-lg-10 col-lg-offset-1">
+				<div class="row form-group">
+					<div class="col-lg-12 text-center">
+						<h3>การร้องเรียน / อุทธรณ์</h3>
+						<h4>ต่อคณะกรรมการความเป็นกลาง (Board of Diretor) และการกำหนดมาตรฐานสินค้าการเกษตร</h4>
+
+					</div>
+				</div>
+				<div class="row form-group">
+					<h4>ข้อมูลผู้ร้องเรียน/อุทธรณ์</h4>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-1">
+						ชื่อ
+					</label>
+					<div class="col-lg-3">
+						<input class="form-control" ng-model="Data.firstname" maxlength="70" required="">
+					</div>
+					<label class="form-control-static col-lg-1">
+						สกุล
+					</label>
+					<div class="col-lg-3">
+						<input class="form-control" ng-model="Data.lastname" maxlength="70" required="">
+					</div>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-1">
+						ที่อยู่
+					</label>
+					<div class="col-lg-3">
+						<textarea class="form-control" ng-model="Data.address" maxlength="255" required=""></textarea>
+					</div>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-1">
+						จังหวัด
+					</label>
+					<div class="col-lg-3">
+						<select class="form-control" ng-model="Data.province" ng-options="data.ProvinceName as data.ProvinceName for data in ProvinceList" required="">
+							<option value="">กรุณาเลือก..</option>
+						</select>
+					</div>
+					<label class="form-control-static col-lg-1">
+						รหัสไปรษณีย์
+					</label>
+					<div class="col-lg-2">
+						<input class="form-control" ng-model="Data.postcode" maxlength="5" required="">
+					</div>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-1">
+						โทรศัพท์บ้าน
+					</label>
+					<div class="col-lg-3">
+						<input class="form-control" ng-model="Data.tel" maxlength="20" required="">
+					</div>
+					<label class="form-control-static col-lg-1">
+						โทรศัพท์มือถือ
+					</label>
+					<div class="col-lg-3">
+						<input class="form-control" ng-model="Data.mobile" maxlength="20" required="">
+					</div>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-1">
+						อีเมล
+					</label>
+					<div class="col-lg-3">
+						<input class="form-control" ng-model="Data.email" maxlength="70" required="">
+					</div>
+				</div>
+				<div class="row form-group">
+					<h4>ต้องการให้หน่วยงานที่รับคำร้องติดต่อกลับหรือไม่</h4>
+				</div> 
+				<div class="row form-group">
+					<label class="form-control-static col-lg-1">
+						ตืดต่อกลับ
+					</label>
+					<div class="col-lg-1">
+						<input id="callback1" type="radio" ng-model="Data.callback" value="Y" required="true"> <label for="callback1"> ต้องการ</label>
+					</div>
+					<div class="col-lg-2">
+						<input id="callback2" type="radio" ng-model="Data.callback" value="N" required="true"> <label for="callback2"> ไม่ต้องการ</label>
+					</div>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-1">
+						ช่องทางการติดต่อ
+					</label>
+					<div class="col-lg-2" ng-repeat="data in AppealCallback">
+						<input id="callback_type{{$index}}" type="checkbox" value="ตามที่อยู่" ng-click="toggleCallback(data.callback_name)"> <label for="callback_type{{$index}}"> {{data.callback_name}}</label>
+					</div>
+				</div>
+				<div class="row form-group">
+					<h4>ข้อมูลการร้องเรียน/อุทธรณ์</h4>
+				</div> 
+				<div class="row form-group">
+					<div class="col-lg-10 col-lg-offset-1">
+						<h4>บุลคล/หน่วยงาน ที่ท่านต้องการร้องเรียน/อุทธรณ์</h4>
+					</div>
+				</div> 
+				<div class="row form-group">
+					<div class="col-lg-10 col-lg-offset-1">
+						<input id="officer" type="radio" ng-model="Data.officer" value="Y"  ng-click="setEmptyRadio()"> <label for="officer"> เจ้าหน้าที่ มกอช.</label>
+					</div>
+					<div class="col-lg-8 col-lg-offset-2">
+						<input id="team_to_commen1" type="radio" ng-model="Data.team_to_comment" value="เจ้าหน้าที่ผู้ให้บริการ / ผู้ปฏิบัติงาน" ng-disabled="Data.officer != 'Y'""> <label for="team_to_commen1"> เจ้าหน้าที่ผู้ให้บริการ / ผู้ปฏิบัติงาน</label>
+					</div>
+					<div class="col-lg-8 col-lg-offset-2">
+						<input id="team_to_commen2" type="radio" ng-model="Data.team_to_comment" value="สำนักกำหนดมาตรฐาน(สกม.)" ng-disabled="Data.officer != 'Y'"> <label for="team_to_commen2"> สำนักกำหนดมาตรฐาน(สกม.)</label>
+					</div>
+				</div> 
+				<div class="row form-group">
+					<div class="col-lg-10 col-lg-offset-1">
+						<input id="team_to_commen3" type="radio" ng-model="Data.team_to_comment" value="คณะกรรมการความเป็นกลาง" ng-click="setEmptyOfficer()"> <label for="team_to_commen3"> คณะกรรมการความเป็นกลาง</label>
+					</div>
+				</div> 
+				<div class="row form-group">
+					<label class="form-control-static col-lg-2 col-lg-offset-1">
+						<b>ต้องการส่งคำร้องเพื่อ</b>
+					</label>
+					<div class="col-lg-1">
+						<input id="purpose1" type="radio" ng-model="Data.appeal_type" value="ร้องเรียน" required="true"> <label for="purpose1"> ร้องเรียน</label>
+					</div>
+					<div class="col-lg-1">
+						<input id="purpose2" type="radio" ng-model="Data.appeal_type" value="อุทธรณ์" required="true"> <label for="purpose2"> อุทธรณ์</label>
+					</div>
+				</div> 
+				<div class="row" ng-repeat="data in AppealList">
+					<label class="form-control-static col-lg-2">
+						
+					</label>
+					<div class="col-lg-2">
+						<input id="list_type{{$index}}" type="checkbox" value="ตามที่อยู่" ng-click="toggleAppealList(data.appeal_text)" required="true"> <label for="list_type{{$index}}"> {{data.appeal_text}}</label>
+					</div>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-1">
+						รายละเอียด
+					</label>
+					<div class="col-lg-5">
+						<textarea class="form-control" ng-model="Data.description" required="true"></textarea>
+					</div>
+				</div>
+				<div class="row form-group">
+					<label class="form-control-static col-lg-3 col-lg-offset-1">
+						<span style="color: red;">** โปรด ระบุรายละเอียดให้ชัดเจน</span>
+					</label>
+				</div>
+				<div class="row form-group">
+					<label class="col-lg-1 form-control-static">
+						รายละเอียด
+					</label>
+					<div class="col-lg-4" >
+						<p class="input-group">
+				          <input type="text" readonly="true" class="form-control" ng-model="AttachFile.name" />
+				          <span class="input-group-btn">
+				            <button class="btn btn-default" ngf-select ng-model="AttachFile" ngf-max-size="25MB"  ngf-model-invalid="AttachFile.invalidFile" >Browse</button>
+				          </span>
+				        </p>
+					</div>
+					<div class="col-lg-3">
+						<div class="file-alert" ng-show="fle.attachFile.invalidFile.$error === 'maxSize'">ขนาดไฟล์ต้องไม่เกิน : {{AttachFile.invalidFile.$errorParam}}</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-lg-12 text-center">
+						<button class="btn btn-primary" ng-click="updateData(Data, AppealListList, AppealCallbackList, AttachFile)" ng-disabled="appeal_form.$invalid">ส่งคำร้อง</button>
+						<button class="btn btn-danger" ng-click="cancel()">ยกเลิก</button>
+						<br><br>
+						<b>หากมีปัญหาหรือข้อสงสัย กรุณาติดต่อ : 
+						สำนักกำหนดมาตรฐาน สำนักงานมาตรฐานสินค้าการเกษตรและอาหารแห่งชาติ
+						โทร 025612277 โทรสาร 025613373 e-mail codex@acfs.go.th</b>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-show="PAGE == 'MAIN'">
+		<div class="row form-group">
+			<div class="col-lg-10 col-lg-offset-1 text-center" >
+				<span class="title-content">
+					<h2>{{(DEFAULT_LANGUAGE == 'TH'?MenuName[MenuName.length - 1].menu_name_th:MenuName[MenuName.length - 1].menu_name_en)}}</h2>
+				</span>
+			</div>
+		</div>
+		<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<img src="../files/img/header_line.png" style="width: 70%;">
+		</div>
+	</div>
+		
+		<div class="row form-group">
+			<div class="col-lg-10 col-lg-offset-1">
+				<button class="btn btn-danger" ng-click="goUpdate()">ร้องเรียน / อุทธรณ์ และติชม</button>
+			</div>
+		</div>
+		<div class="row form-group">
+			<div class="col-lg-10 col-lg-offset-1" bind-html-compile="(DEFAULT_LANGUAGE == 'TH'?Page.contents:Page.contents_en)">
+
+			</div>
+		</div>
+	</div>
+	<div ng-include src="'views/footer.html'"></div>
+</div>

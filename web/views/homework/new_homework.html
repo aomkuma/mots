@@ -1,0 +1,75 @@
+<div ng-include src="'views/header.html'"></div>
+<div class="page-header">
+	<h3 ng-show="DEFAULT_LANGUAGE == 'TH'">สั่งการบ้านใหม่</h3>
+	<h3 ng-show="DEFAULT_LANGUAGE == 'EN'">New Home Work</h3>
+	<span ng-show="DEFAULT_LANGUAGE == 'TH'">อาจารย์ : {{Teacher.firstname_th + ' ' + Teacher.lastname_th}}</span>
+	<span ng-show="DEFAULT_LANGUAGE == 'EN'">Teacher : {{Teacher.firstname_en + ' ' + Teacher.lastname_en}}</span>
+</div>
+<form name="n_form" novalidate>
+	<div class="row form-group" ng-show="DEFAULT_LANGUAGE == 'TH'">
+		<div class="col-xs-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
+			<div class="form-group has-feedback">
+				<label>ห้องเรียน :</label>
+				<select name="classroom" class="form-control ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched" ng-model="Form.classroom_id" required ng-options="item.classroom_id as item.classroom_name_th for item in ClassRoomList">
+					<option value="">กรุณาเลือก</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
+			<div class="form-group has-feedback">
+				<label>วิชา :</label>
+				<select name="classroom" class="form-control ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched" ng-model="Form.subject_id" required ng-options="item.subject_id as item.subject_name_th for item in SubjectList">
+					<option value="">กรุณาเลือก</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
+			<div class="form-group has-feedback">
+				<label>หัวข้อการบ้าน :</label>
+				<input name="work_title" class="form-control ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched" ng-model="Form.work_title" required placeholder="หัวข้องาน / การบ้าน...">					
+			</div>
+		</div>
+	</div>
+
+	<div class="row form-group" ng-show="DEFAULT_LANGUAGE == 'EN'">
+		<div class="col-xs-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
+			<div class="form-group has-feedback">
+				<label>Class room :</label>
+				<select name="classroom" class="form-control ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched" ng-model="Form.classroom_id" required ng-options="item.classroom_id as item.classroom_name_en for item in ClassRoomList">
+					<option value="">Plase select</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
+			<div class="form-group has-feedback">
+				<label>Subject :</label>
+				<select name="classroom" class="form-control ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched" ng-model="Form.subject_id" required ng-options="item.subject_id as item.subject_name_en for item in SubjectList">
+					<option value="">Please select</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
+			<div class="form-group has-feedback">
+				<label>Topic :</label>
+				<input name="work_title" class="form-control ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched" ng-model="Form.work_title" required placeholder="Home work topic...">					
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
+			<div class="form-group has-feedback">
+				<label>Description :</label>
+				<textarea name="work_description" class="form-control ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched" ng-model="Form.work_description" required placeholder="Home work description..." rows="5"></textarea>					
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
+			<div class="form-group has-feedback">
+				<label>Deadline :</label>
+				<p class="input-group">
+                  <input type="text" name="finish_datetime" readonly="true" class="form-control ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched" uib-datepicker-popup="yyyy-MM-dd" ng-model="ReserveRoomInfo.StartDate" is-open="popup1.opened" datepicker-options="dateOptions1" ng-required="true" close-text="Close" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </p>					
+			</div>
+		</div>
+	</div>
+</form>

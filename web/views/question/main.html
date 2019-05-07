@@ -1,0 +1,61 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div  style="margin-top:300px;">
+	
+	<div class="row form-group" style="margin-top: 20px; color: #071CA5; font-weight: bolder; font-size: 1.5em;">
+		<div class="col-lg-12 text-center">
+			{{ (DEFAULT_LANGUAGE == 'TH'?'คำถามที่พบบ่อย':'Questions') }}
+			<br>
+			<div style="background: url('../cio-files/img/line-bottom.png') no-repeat; height: 3px; width:480px; margin:0px auto; margin-top:20px;margin-bottom:15px;"></div>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-12">
+			<span style="font-size: 1.7em;">คำถามเกี่ยวกับการท่องเที่ยว</span>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-12">
+			<ul>
+				<li ng-repeat="data in TravelList">
+					
+					<a ng-click="displayQuestion(data)">{{data.question}}</a>	
+					<div class="row" ng-show="data.views">
+						<div class="col-lg-10 col-lg-offset-1">
+							&nbsp;&nbsp;&nbsp;
+							<span bind-html-compile="data.question_reply"></span>
+							
+						</div>	
+					</div>
+				</li>
+			</ul>
+			
+		</div>
+	</div>
+	<hr>
+	<div class="row form-group">
+		<div class="col-lg-12">
+			<span style="font-size: 1.7em;">คำถามเกี่ยวกับกีฬา</span>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-12">
+			<ul>
+				<li ng-repeat="data in SportList">
+					
+					<a ng-click="displayQuestion(data)">{{data.question}}</a>	
+					<div class="row" ng-show="data.views">
+						<div class="col-lg-10 col-lg-offset-1">
+							&nbsp;&nbsp;&nbsp;
+							<span bind-html-compile="data.question_reply"></span>
+							
+						</div>	
+					</div>
+				</li>
+			</ul>
+			
+		</div>
+	</div>
+		
+	<div ng-include src="'views/footer.html'"></div>
+</div>

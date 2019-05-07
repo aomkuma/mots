@@ -1,0 +1,276 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div  style="margin-top:180px;">
+	<div class="row form-group" style="padding-top: 70px;">
+	  <div class="col-lg-10 col-lg-offset-1">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<span class="title-content">
+				<h2>{{(DEFAULT_LANGUAGE == 'TH'?MenuName[MenuName.length - 1].menu_name_th:MenuName[MenuName.length - 1].menu_name_en)}}</h2>
+			</span>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<img src="../files/img/header_line.png" style="width: 70%;">
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1">
+			<div ng-show="PAGE == 'UPDATE'">
+				<div class="row">
+					<label class="form-control-static col-lg-2 text-right">
+						Thai Name : 
+					</label>
+					<label class="form-control-static col-lg-6">
+						{{Data.name_th}}
+					</label>
+				</div>
+				<div class="row">
+					<label class="form-control-static col-lg-2 text-right">
+						Common Name : 
+					</label>
+					<label class="form-control-static col-lg-6">
+						{{Data.name_en}}
+					</label>
+				</div>
+				<div class="row">
+					<label class="form-control-static col-lg-2 text-right">
+						Scientific Name : 
+					</label>
+					<label class="form-control-static col-lg-6">
+						{{Data.name_science}}
+					</label>
+				</div>
+				<div class="row">
+					<label class="form-control-static col-lg-2 text-right">
+						Color : 
+					</label>
+					<label class="form-control-static col-lg-6">
+						{{Data.color_en}}
+					</label>
+				</div>
+				<div class="row">
+					<label class="form-control-static col-lg-2 text-right">
+						Color : 
+					</label>
+					<label class="form-control-static col-lg-6">
+						{{Data.color_en}}
+					</label>
+				</div>
+				<div class="row">
+					<label class="form-control-static col-lg-2 text-right">
+						Taste : 
+					</label>
+					<label class="form-control-static col-lg-6">
+						{{Data.flavour_en}}
+					</label>
+				</div>
+				<div class="row">
+					<label class="form-control-static col-lg-2 text-right">
+						Shape : 
+					</label>
+					<label class="form-control-static col-lg-6">
+						{{Data.shape_en}}
+					</label>
+				</div>
+				<div class="row">
+					<label class="form-control-static col-lg-2 text-right">
+						Availibility : 
+					</label>
+					<label class="form-control-static col-lg-6">
+						{{getThaiMonth(Data.season_from)}} - {{getThaiMonth(Data.season_to)}}
+					</label>
+				</div>
+				<div class="row">
+					<label class="form-control-static col-lg-2 text-right">
+						Preparation And Eating : 
+					</label>
+					<label class="form-control-static col-lg-6" bind-html-compile="Data.prepare_to_eat_en">
+						
+					</label>
+				</div>
+				<div class="row">
+					<label class="form-control-static col-lg-2 text-right">
+						Uses : 
+					</label>
+					<label class="form-control-static col-lg-6">
+						{{Data.usage_en}}
+					</label>
+				</div>
+				<div class="row">
+					<label class="form-control-static col-lg-2 text-right">
+						Storage : 
+					</label>
+					<label class="form-control-static col-lg-6">
+						{{Data.storage_en}}
+					</label>
+				</div>
+				<div class=" col-lg-6 col-lg-offset-3 table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr bgcolor="BAE193">
+								<th colspan="3">Nutrition value of {{Data.name_en}} 100 g</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Energy</td>
+								<td>{{Data.energy}}</td>
+								<td>Calories</td>
+							</tr>
+							<tr>
+								<td>Protein</td>
+								<td>{{Data.protein}}</td>
+								<td>g</td>
+							</tr>
+							<tr>
+								<td>Fat</td>
+								<td>{{Data.fat}}</td>
+								<td>g</td>
+							</tr>
+							<tr>
+								<td>Carbohydrate</td>
+								<td>{{Data.carbohydrate}}</td>
+								<td>g</td>
+							</tr>
+							<tr>
+								<td>Fiber</td>
+								<td>{{Data.fiber}}</td>
+								<td>g</td>
+							</tr>
+						</tbody>
+						<thead>
+							<tr bgcolor="BAE193">
+								<th colspan="3">Minerals</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Calcium</td>
+								<td>{{Data.calcium}}</td>
+								<td>mg</td>
+							</tr>
+							<tr>
+								<td>Phosphorus</td>
+								<td>{{Data.phosphorus}}</td>
+								<td>mg</td>
+							</tr>
+							<tr>
+								<td>Iron</td>
+								<td>{{Data.steel}}</td>
+								<td>mg</td>
+							</tr>
+							<tr>
+								<td>Potassium</td>
+								<td>{{Data.potassium}}</td>
+								<td>mg</td>
+							</tr>
+							<tr>
+								<td>Magnesium</td>
+								<td>{{Data.magnesium}}</td>
+								<td>mg</td>
+							</tr>
+						</tbody>
+						<thead>
+							<tr bgcolor="BAE193">
+								<th colspan="3">Vitamin</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Total Vitamin A</td>
+								<td>{{Data.vitamin_e}}</td>
+								<td>I.U.</td>
+							</tr>
+							<tr>
+								<td>B1(Thiamine)</td>
+								<td>{{Data.vitamin_b_ty_amine}}</td>
+								<td>mg</td>
+							</tr>
+							<tr>
+								<td>B2(Riboflavin)</td>
+								<td>{{Data.vitamin_b_riboflavin}}</td>
+								<td>mg</td>
+							</tr>
+							<tr>
+								<td>B1+B2</td>
+								<td>{{Data.vitamin_b1_b2}}</td>
+								<td>mg</td>
+							</tr>
+							<tr>
+								<td>C</td>
+								<td>{{Data.vitamin_c}}</td>
+								<td>mg</td>
+							</tr>
+							<tr>
+								<td>Niacin</td>
+								<td>{{Data.niacin}}</td>
+								<td>mg</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+			<div ng-show="PAGE == 'MAIN'">
+				<div class="row form-group">
+					<label class="form-control-static col-lg-1">
+						ค้นหา
+					</label>
+					<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+						<input class="form-control" ng-model="condition.keyword">
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+						<select name="Year" class="form-control" ng-model="condition.column_name" >
+							<option value="">ทั้งหมด</option>
+							<option value="name_th">ชื่อภาษาไทย</option>
+							<option value="name_en">ชื่อภาษาอังกฤษ</option>
+							<option value="name_science">ชื่อทางวิทยาศาตร์</option>
+						</select>
+					</div>
+					
+					<div class="col-lg-3">
+						<button class="btn btn-primary" ng-click="loadList(condition)"> ค้นหา</button>
+					</div>
+					
+				</div>
+				<div class="row form-group">
+					<div class="table-responsive">	
+						<table class="table table-striped table-bordered">
+							<thead>
+								<tr>
+									<th>ผลไม้</th>
+									<th>รายละเอียด</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="data in DataList">
+									<td>
+										{{DEFAULT_LANGUAGE == 'TH'? data.name_th:data.name_en}}
+									</td>
+									<td>
+										<button class="btn btn-default" ng-click="updateData(data)">รายละเอียด</button>
+										
+									</td>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+<div ng-include src="'views/footer.html'"></div>

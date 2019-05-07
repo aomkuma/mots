@@ -1,0 +1,177 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div  style="margin-top:180px;">
+	<div class="row form-group" style="padding-top: 70px;">
+	  <div class="col-lg-10 col-lg-offset-1">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<span class="title-content">
+				<h2>{{(DEFAULT_LANGUAGE == 'TH'?MenuName[MenuName.length - 1].menu_name_th:MenuName[MenuName.length - 1].menu_name_en)}}</h2>
+			</span>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<img src="../files/img/header_line.png" style="width: 70%;">
+		</div>
+	</div>
+	<div class="row form-group" ng-form="form_data">
+		<div class="col-lg-10 col-lg-offset-1">
+			<div class="row form-group">
+				<div class="col-lg-12 text-center">
+					<h3>แบบฟอร์มขอรับความคิดเห็น</h3>
+				</div>
+			</div>
+			<div class="row form-group">
+				<h4>ข้อมูลผู้ให้ความเห็นที่ติดต่อกลับได้</h4>
+			</div>
+			<div class="row form-group">
+				<label class="form-control-static col-lg-1">
+					ชื่อ
+				</label>
+				<div class="col-lg-3">
+					<input class="form-control" ng-model="Data.firstname" maxlength="70">
+				</div>
+				<label class="form-control-static col-lg-1">
+					สกุล
+				</label>
+				<div class="col-lg-3">
+					<input class="form-control" ng-model="Data.lastname" maxlength="70">
+				</div>
+			</div>
+			<div class="row form-group">
+				<label class="form-control-static col-lg-1">
+					โทรศัพท์
+				</label>
+				<div class="col-lg-3">
+					<input class="form-control" ng-model="Data.tel" maxlength="20">
+				</div>
+				<label class="form-control-static col-lg-1">
+					อีเมล
+				</label>
+				<div class="col-lg-3">
+					<input class="form-control" ng-model="Data.email" maxlength="70">
+				</div>
+			</div>
+			<div class="row form-group">
+				<h4>ข้อมูลทั่วไปของผู้ให้ความเห็น</h4>
+			</div>
+			<div class="row form-group">
+				<label class="form-control-static col-lg-1">
+					อาชีพ
+				</label>
+				<div class="col-lg-11">
+					<div class="row">
+						<div class="col-lg-3">
+							<input id="job1" type="radio" ng-model="Data.job" value="นักเรียน/นักศึกษา" required="true"> <label for="job1"> นักเรียน/นักศึกษา</label>
+						</div>
+						<div class="col-lg-3">
+							<input id="job2" type="radio" ng-model="Data.job" value="พนักงาน" required="true"> <label for="job2"> พนักงาน</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-3">
+							<input id="job3" type="radio" ng-model="Data.job" value="ข้าราชการ/พนักงานรัฐวิสาหกิจ" required="true"> <label for="job3"> ข้าราชการ/พนักงานรัฐวิสาหกิจ</label>
+						</div>
+						<div class="col-lg-3">
+							<input id="job4" type="radio" ng-model="Data.job" value="เจ้าของกิจการ/ธุรกิจ" required="true"> <label for="job4"> เจ้าของกิจการ/ธุรกิจ</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-3">
+							<input id="job5" type="radio" ng-model="Data.job" value="อื่นๆ" required="true"> <label for="job5"> อื่นๆ</label>
+						</div>
+					</div>
+					<div class="row" ng-show="Data.job == 'อื่นๆ'">
+						<div class="col-lg-6">
+							<input class="form-control" ng-model="Data.other_job" maxlength="100">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<label class="form-control-static col-lg-1">
+					ที่ทำงาน / สถานศึกษา
+				</label>
+				<div class="col-lg-4">
+					<textarea class="form-control" ng-model="Data.workplace" maxlength="255"></textarea>
+				</div>
+			</div>
+			<div class="row form-group">
+				<label class="form-control-static col-lg-1">
+					จังหวัด
+				</label>
+				<div class="col-lg-2">
+					<select class="form-control" ng-model="Data.province" ng-options="data.ProvinceName as data.ProvinceName for data in ProvinceList">
+						
+					</select>
+				</div>
+				<label class="form-control-static col-lg-2">
+					รหัสไปรษณีย์
+				</label>
+				<div class="col-lg-2">
+					<input class="form-control" ng-model="Data.postcode" maxlength="5">
+				</div>
+			</div>
+			<div class="row form-group">
+				<h4>ความเห็นเกี่ยวกับเกี่ยวกับมาตรฐานบังคับ</h4>
+			</div> 
+			<div class="row form-group">
+				<label class="form-control-static col-lg-1">
+					
+				</label>
+				<div class="col-lg-11">
+					<div class="row">
+						<div class="col-lg-3">
+							<input id="agree1" type="radio" ng-model="Data.comment" value="1" required="true"> <label for="agree1"> เห็นชอบทุกประการ</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-3">
+							<input id="agree2" type="radio" ng-model="Data.comment" value="2" required="true"> <label for="agree2"> เห็นชอบส่วนใหญ่แต่มีข้อคิดเห็น</label>
+						</div>
+						<div class="col-lg-3" ng-show="Data.comment == '2'">
+							<textarea class="form-control" ng-model="Data.agree_comment" maxlength="255"></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-3">
+							<input id="agree3" type="radio" ng-model="Data.comment" value="3" required="true"> <label for="agree3"> ไม่ให้ความเห็นชอบ เพราะ</label>
+						</div>
+						<div class="col-lg-3" ng-show="Data.comment == '3'">
+							<textarea class="form-control" ng-model="Data.disagree_comment" maxlength="255"></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-3">
+							<input id="agree4" type="radio" ng-model="Data.comment" value="4" required="true"> <label for="agree4"> ไม่ออกความเห็น</label>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-lg-12 text-center">
+					<button ng-disabled="form_data.$invalid" class="btn btn-primary" ng-click="updateData('listening/comment/add', Data)">ส่งความเห็น</button>
+					<br><br>
+					<b>หากมีข้อสงสัยประการใด สามารถติดต่อขอข้อมูลเพิ่มเติมได้ที่ 
+					กลุ่มนิติการ สำนักงานเลขนุการกรม โทร. 02 561 2277 ต่อ 1177 โทรสาร 02 5612212</b>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-include src="'views/footer.html'"></div>
+</div>

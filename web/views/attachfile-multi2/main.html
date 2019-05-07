@@ -1,0 +1,65 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div  style="margin-top:180px;">
+	<div class="row form-group" style="padding-top: 70px;">
+	  <div class="col-lg-10 col-lg-offset-1">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png" style="height: 0.8em;">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<span class="title-content">
+				<h2>{{(DEFAULT_LANGUAGE == 'TH'?MenuName[MenuName.length - 1].menu_name_th:MenuName[MenuName.length - 1].menu_name_en)}}</h2>
+			</span>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<img src="../files/img/header_line.png" style="width: 70%;">
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="form-control-static col-lg-1 col-lg-offset-1">
+			ค้นหา
+		</label> 
+		<div class="col-lg-3">
+			<input class="form-control" ng-model="condition.keyword">
+		</div>
+		<label class="form-control-static col-lg-1" ng-show="MasterList.length > 0">
+			แสดงข้อมูล
+		</label> 
+		<div class="col-lg-2" ng-show="MasterList.length > 0">
+			<select class="form-control" ng-model="condition.type" ng-options="data.type_name as data.type_name for data in MasterList">
+				<option value="">ทั้งหมด</option>
+			</select>
+		</div>
+		<div class="col-lg-2">
+			<button class="btn btn-primary" ng-click="search(condition)"> <span class="glyphicon glyphicon-search"></span> ค้นหา</button>
+		</div>
+	</div>
+	<div class="row form-group" >
+		<div class="col-lg-5 col-lg-offset-1">
+			<ul>
+				<li class="li-attach-file" ng-repeat="data in DataList">
+					<div style="padding:10px;">
+						<img src="../files/img/attach-file.png" style="height: 2em;"> &nbsp; 
+						<a ng-show="DEFAULT_LANGUAGE == 'TH'" href="../{{data.AttachFiles[0].file_path}}" download="{{data.AttachFiles[0].file_name}}">{{data.AttachFiles[0].display_name==''||data.AttachFiles[0].display_name==null?data.AttachFiles[0].file_name:data.AttachFiles[0].display_name}}</a>
+						<a ng-show="DEFAULT_LANGUAGE == 'EN'" href="../{{data.AttachFiles[1].file_path}}" download="{{data.AttachFiles[1].file_name}}">{{data.AttachFiles[1].display_name==''||data.AttachFiles[1].display_name==null?data.AttachFiles[1].file_name:data.AttachFiles[1].display_name}}</a>
+					</div>
+				</li>
+			</ul>
+			
+		</div>
+	</div>
+	<div ng-include src="'views/footer.html'"></div>
+</div>

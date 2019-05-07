@@ -1,0 +1,142 @@
+<div ng-include src="'views/header.html'"></div>
+
+<div  style="margin-top:300px;">
+	
+	<div class="row form-group" style="margin-top: 20px; color: #071CA5; font-weight: bolder; font-size: 1.5em;">
+		<div class="col-lg-12 text-center">
+			{{ (DEFAULT_LANGUAGE == 'TH'?'งานบริการ':'Services') }}
+			<br>
+			<div style="background: url('../cio-files/img/line-bottom.png') no-repeat; height: 3px; width:480px; margin:0px auto; margin-top:20px;margin-bottom:15px;"></div>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1">
+			<ul>
+				<li ng-repeat="data in ServicesList">
+					<a href="{{data.url}}" target="_blank">{{data.service_name}}</a>	
+				</li>
+			</ul>
+			
+		</div>
+	</div>
+	<hr>
+	<div class="row form-group" ng-form="question_form">
+		<div class="col-lg-10 col-lg-offset-1">
+			<div class="row form-group">
+				<div class="col-lg-12">
+					<h4><b>แบบประเมินความพึงพอใจเว็บไซต์กระทรวงการท่องเที่ยวและกีฬา</b></h4>
+				</div>
+			</div>
+			<div class="row form-group" style="background-color: #ccc; padding: 10px; font-weight: bold;">
+				<div class="col-lg-12">
+					ส่วนที่ 1 : ข้อมูลผู้ตอบแบบสอบถาม 
+					<br>Description : กรุณตอบให้ครบทุกข้อ
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-lg-12">
+					1. เพศ
+				</div>
+				<div class="col-lg-12">
+					<input id="gender_m" type="radio" ng-model="Question.gender" value="M" required="true"> <label for="gender_m"> ชาย</label>
+					<br>
+					<input id="gender_f" type="radio" ng-model="Question.gender" value="F" required="true"> <label for="gender_f"> หญิง</label>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-lg-12">
+					2. สถานภาพ
+				</div>
+				<div class="col-lg-12">
+					<input id="status_1" type="radio" ng-model="Question.status" value="1" required="true"> <label for="status_1">นักเรียน/นักศึกษา</label>	
+					<br>
+					<input id="status_2" type="radio" ng-model="Question.status" value="2" required="true"> <label for="status_2">ข้าราชการ</label> 
+					<br>
+					<input id="status_3" type="radio" ng-model="Question.status" value="3" required="true"> <label for="status_3">พ่อค้า/ผู้ประกอบการ</label>
+					<br>
+					<input id="status_4" type="radio" ng-model="Question.status" value="4" required="true"> <label for="status_4">พนักงานบริษัท</label> 
+					<br>
+					<input id="status_5" type="radio" ng-model="Question.status" value="5" required="true"> <label for="status_5">ประชาชน</label>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-lg-12">
+					3. อายุ
+				</div>
+				<div class="col-lg-12">
+					<input id="age_1" type="radio" ng-model="Question.age" value="1" required="true"> <label for="age_1">ต่ำกว่า 20 ปี	</label>
+					<br>
+					<input id="age_2" type="radio" ng-model="Question.age" value="2" required="true"> <label for="age_2">21 - 30 ปี</label> 
+					<br>
+					<input id="age_3" type="radio" ng-model="Question.age" value="3" required="true"> <label for="age_3">31 - 40 ปี</label>
+					<br>
+					<input id="age_4" type="radio" ng-model="Question.age" value="4" required="true"> <label for="age_4">41 - 50 ปี</label> 
+					<br>
+					<input id="age_5" type="radio" ng-model="Question.age" value="5" required="true"> <label for="age_5">มากกว่า 50 ปี</label>
+				</div>
+			</div>
+			<div class="row form-group" style="background-color: #ccc; padding: 10px; font-weight: bold;">
+				<div class="col-lg-12">
+					ส่วนที่ 2 : แบบประเมินการใช้งานเว็บไซต์ 
+					<br>Description : กรุณตอบให้ครบทุกข้อ
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-lg-12 table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th></th>
+								<th>รายการ</th>
+								<th>มากสุด</th>
+								<th>มาก</th>
+								<th>ปานกลาง</th>
+								<th>น้อย</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="QuestionDetail in QuestionDetailList">
+								<td>{{$index + 1}}</td>
+								<td>{{QuestionDetail.question_desc}}</td>
+								<td>
+									<input type="radio" ng-model="QuestionDetail.points" value="4" required="true">
+								</td>
+								<td>
+									<input type="radio" ng-model="QuestionDetail.points" value="3" required="true">
+								</td>
+								<td>
+									<input type="radio" ng-model="QuestionDetail.points" value="2" required="true">
+								</td>
+								<td>
+									<input type="radio" ng-model="QuestionDetail.points" value="1" required="true">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="row form-group" style="background-color: #ccc; padding: 10px; font-weight: bold;">
+				<div class="col-lg-12">
+					ส่วนที่ 3 : ข้อมูลเสนอแนะ
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-lg-6">
+					<textarea class="form-control" ng-model="Question.suggestion" maxlength="500"></textarea>
+				</div>
+			</div>
+			<div class="row form-group" style="background-color: #DEFFFA; padding: 10px;">
+				<div class="col-lg-12 text-center">
+					<button class="btn btn-info" ng-click="save(Question, QuestionDetailList)" ng-disabled="!question_form.$valid">ส่ง</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div ng-include src="'views/footer.html'"></div>
+</div>
+<style type="text/css">
+	label{
+		font-weight: normal;
+	}
+</style>

@@ -1,0 +1,73 @@
+<div ng-include src="'views/header.html'"></div>
+<div  style="margin-top:180px;">
+	<div class="row form-group" style="padding-top: 70px;">
+	  <div class="col-lg-10 col-lg-offset-1">
+	    <div class="row">
+	      <div class="col-lg-10" style="padding: 5px; font-weight: bolder; font-size: 1.3em;">
+	        <span ng-repeat="data in MenuName">
+		        <img src="../files/img/pin-menu.png">
+		        {{data.menu_name_th}}
+		    </span>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+
+	  </div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<span class="title-content">
+				<h2>{{(DEFAULT_LANGUAGE == 'TH'?MenuName[MenuName.length - 1].menu_name_th:MenuName[MenuName.length - 1].menu_name_en)}}</h2>
+			</span>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1 text-center" >
+			<img src="../files/img/header_line.png" style="width: 70%;">
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-lg-10 col-lg-offset-1">
+			<div class="row form-group">
+				<div class="col-lg-12">
+					<button class="btn btn-default" ng-class="{'active':QuestionIndex==0}" ng-click="setQuestionType(0)">มาตรฐาน</button>
+					<button class="btn btn-default" ng-class="{'active':QuestionIndex==1}" ng-click="setQuestionType(1)">การรับรอง</button>
+					<button class="btn btn-default" ng-class="{'active':QuestionIndex==2}" ng-click="setQuestionType(2)">เกษตรดิจิทัล</button>
+					<button class="btn btn-default" ng-class="{'active':QuestionIndex==3}" ng-click="setQuestionType(3)">การควบคุม</button>
+					<button class="btn btn-default" ng-class="{'active':QuestionIndex==4}" ng-click="setQuestionType(4)">ความรู้ทั่วไป</button>
+					<button class="btn btn-default" ng-class="{'active':QuestionIndex==5}" ng-click="setQuestionType(5)">พ.ร.บ. มาตรฐานสินค้าเกษตร</button>
+				</div>
+			</div>
+			<div class="row form-group">
+				<label class="form-control-static col-lg-1">
+					ค้นหา
+				</label> 
+				<div class="col-lg-3">
+					<input class="form-control" ng-model="keyword">
+				</div>
+				<div class="col-lg-2">
+					<button class="btn btn-primary" ng-click="loadList(QuestionType)"> <span class="glyphicon glyphicon-search"></span> ค้นหา</button>
+				</div>
+				
+			</div>
+			<div ng-repeat="data in DataList">
+				<div class="row form-group" >
+					<label class="form-control-static col-lg-1">
+						<img src="../files/img/questions.png" height="30" alt="">
+					</label> 
+					<div class="col-lg-11">
+						<br>
+						{{$index + 1}}. {{DEFAULT_LANGUAGE == 'TH'?data.question_th:data.question_en}}
+					</div>
+					<div class="col-lg-11">
+						<br>
+						{{DEFAULT_LANGUAGE == 'TH'?data.answer_th:data.answer_en}}
+					</div>
+				</div>
+				<hr>
+			</div>
+		</div>
+	</div>
+</div>
+<div ng-include src="'views/footer.html'"></div>
