@@ -445,6 +445,132 @@ angular.module('e-homework').controller('HomeController', function ($scope, $coo
         }
 
     }
+
+    $scope.makeDateString = function(d){
+        if(d!= null && d != ''){
+            return convertDateToFullThaiDateIgnoreTime(new Date(d.split(' ')[0]));    
+        }
+        return '';
+    }
+
+    $scope.goToLastMonth = function() {
+        $scope.date = new Date($scope.date.getFullYear(), $scope.date.getMonth(), 0);
+        $scope.getDayOfMonth()
+        // this.getDaysOfMonth();
+    }
+
+    $scope.goToNextMonth = function() {
+        $scope.date = new Date($scope.date.getFullYear(), $scope.date.getMonth()+2, 0);
+        $scope.getDayOfMonth()
+    // this.getDaysOfMonth();
+    }
+
+    $scope.getDayOfMonth = function(){
+
+        $scope.daysInThisMonth = [];
+        $scope.daysInLastMonth = [];
+        $scope.daysInNextMonth = [];        
+        $scope.currentMonth = $scope.monthNames[$scope.date.getMonth()];
+        $scope.currentMonthInt = $scope.date.getMonth() + 1;
+        $scope.currentYear = $scope.date.getFullYear();
+        if($scope.date.getMonth() === new Date().getMonth()) {
+          $scope.currentDate = new Date().getDate();
+        } else {
+          $scope.currentDate = 999;
+        }
+
+        var firstDayThisMonth = new Date($scope.date.getFullYear(), $scope.date.getMonth(), 1).getDay();
+        var prevNumOfDays = new Date($scope.date.getFullYear(), $scope.date.getMonth(), 0).getDate();
+        for(var i = prevNumOfDays-(firstDayThisMonth-1); i <= prevNumOfDays; i++) {
+          $scope.daysInLastMonth.push(i);
+        }
+
+        var $scopeNumOfDays = new Date($scope.date.getFullYear(), $scope.date.getMonth()+1, 0).getDate();
+        for (var i = 0; i < $scopeNumOfDays; i++) {
+          $scope.daysInThisMonth.push(i+1);
+        }
+
+        var lastDayThisMonth = new Date($scope.date.getFullYear(), $scope.date.getMonth()+1, 0).getDay();
+        var nextNumOfDays = new Date($scope.date.getFullYear(), $scope.date.getMonth()+2, 0).getDate();
+        for (var i = 0; i < (6-lastDayThisMonth); i++) {
+          $scope.daysInNextMonth.push(i+1);
+        }
+        var totalDays = $scope.daysInLastMonth.length+$scope.daysInThisMonth.length+$scope.daysInNextMonth.length;
+        if(totalDays<36) {
+          for(var i = (7-lastDayThisMonth); i < ((7-lastDayThisMonth)+7); i++) {
+            $scope.daysInNextMonth.push(i);
+          }
+        }
+
+        if($scope.isFirstLoadPage){
+            console.log('this day : ' + $scope.date.getDate());
+            
+            $scope.setMeetingTable($scope.findMeetingInDay($scope.date.getDate()));
+            $scope.isFirstLoadPage = false;
+        }
+        console.log($scope.daysInThisMonth);
+    }
+
+    $scope.findMeetingInDay = function(day){
+        // Create date obj
+        
+        var curDate = $scope.date;
+        curDate.setDate(day);
+        // console.log(curDate);
+
+        var meetingList = [];
+        // convert date to string
+        curDate = makeSQLDate(curDate);
+        for(var i = 0; i < $scope.Meeting.length; i++){
+            // convert meeting start and end date time to string 
+            var startDate = $scope.Meeting[i].startDate.split(' ')[0];
+            var endDate = $scope.Meeting[i].endDate.split(' ')[0];
+            // console.log(curDate, startDate, endDate);
+            if(curDate == startDate || curDate == endDate){
+                meetingList.push($scope.Meeting[i]);
+            }
+        }
+        // console.log(meetingList);
+        return meetingList;
+    }
+
+    $scope.setMeetingTable = function(meeting, date){
+
+        $scope.CurrentDay = convertDateToFullThaiDateIgnoreTime(new Date($scope.date));
+        $scope.MeetingList = meeting;
+        console.log($scope.MeetingList);
+    }
+
+    $scope.showMeetingDetail = function(data){
+        $scope.MeetingDetail = data;
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'meeting_detail.html',
+            size: 'lg',
+            scope: $scope,
+            backdrop: 'static',
+            controller: 'ModalDialogReturnFromOKBtnCtrl',
+            resolve: {
+                params: function () {
+                    return {};
+                }
+            },
+        });
+    }
+
+
+    $scope.date = new Date();
+      $scope.monthNames = ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
+
+    $scope.daysInThisMonth = [];
+    $scope.daysInLastMonth = [];
+    $scope.daysInNextMonth = [];
+    $scope.Meeting = [];
+    $scope.CurrentDay = convertDateToFullThaiDateIgnoreTime(new Date());
+    $scope.MeetingList = [];
+    $scope.isFirstLoadPage = true;
+
+    $scope.getDayOfMonth();
 });
 
 // Next/previous controls

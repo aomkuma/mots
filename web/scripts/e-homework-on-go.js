@@ -754,6 +754,18 @@ angular.module('e-homework').config(function($routeProvider, $locationProvider) 
 			} ]
 		}
 	})
+
+  .when("/gallery", {
+        templateUrl : "views/gallery/main.html",
+        controller : "GalleryController",
+        resolve : {
+			loadMyCtrl : [ '$ocLazyLoad', function($ocLazyLoad) {
+				return $ocLazyLoad.load({
+					files : [ "scripts/controllers/GalleryController.js" ]
+				});
+			} ]
+		}
+	})
 	;
 
 	$locationProvider.hashPrefix('');
