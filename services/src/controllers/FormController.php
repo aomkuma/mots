@@ -24,7 +24,6 @@ class FormController extends Controller {
 
 
 
-
             return $this->returnResponse(200, $this->data_result, $response, false);
         } catch (\Exception $e) {
             return $this->returnSystemErrorResponse($this->logger, $this->data_result, $e, $response);
@@ -42,17 +41,64 @@ class FormController extends Controller {
             $_Detail = $params['obj']['FileList'];
 
 
-            
+         
+          
             $id = FormGeneratorService::update($_Data);
-            print_r($id);
-            exit;
-            foreach ($_Detail as $item){
-                $iddetail = FormGeneratorService::updateDetail($_Detail,$id); 
-                
+
+            foreach ($_Detail as $key => $item) {
+                 print_r($item);
+                $iddetail = FormGeneratorService::updateDetail($item, $id, $key);
+                if(sizeof($item['value'])>0){
+                    foreach ($item['value'] as $val){
+                         
+                        $idval=FormGeneratorService::updatevalue($val, $iddetail);
+                    }
+                    
+                }
             }
 
             $this->data_result['DATA']['id'] = $id;
 
+            return $this->returnResponse(200, $this->data_result, $response, false);
+        } catch (\Exception $e) {
+            return $this->returnSystemErrorResponse($this->logger, $this->data_result, $e, $response);
+        }
+    }
+
+    public function deleteData($request, $response, $args) {
+
+        try {
+            $params = $request->getParsedBody();
+            $id = $params['obj']['id'];
+
+            $result = FormGeneratorService::removeData($id);
+
+            $this->data_result['DATA']['result'] = $result;
+
+            return $this->returnResponse(200, $this->data_result, $response, false);
+        } catch (\Exception $e) {
+            return $this->returnSystemErrorResponse($this->logger, $this->data_result, $e, $response);
+        }
+    }
+
+    public function getListdetail($request, $response, $args) {
+
+        try {
+            $params = $request->getParsedBody();
+            $id = $params['obj']['id'];
+         
+            $form = FormGeneratorService::getData($id);
+            $item = FormGeneratorService::getdetail($id);
+            foreach ($item as $key=>$data){
+                if($data['type']!='text'){
+                    print_r($data);
+                    $item[$key]['value']=FormGeneratorService::getvaue($data['id']);
+                }
+            }
+      
+            $this->data_result['DATA']['form'] = $form;
+            $this->data_result['DATA']['item'] = $item;
+        
             return $this->returnResponse(200, $this->data_result, $response, false);
         } catch (\Exception $e) {
             return $this->returnSystemErrorResponse($this->logger, $this->data_result, $e, $response);

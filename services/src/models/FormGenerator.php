@@ -12,8 +12,8 @@ class FormGenerator extends \Illuminate\Database\Eloquent\Model {
                 , 'create_date'
                 , 'email'
                 , 'description'
-              
-               
+              , 'showpage'
+               , 'reply_email'
               );
 
    

@@ -11,7 +11,7 @@ angular.module('e-homework').controller('FormDetailController', function ($scope
 
     $scope.MenuPermission = angular.fromJson(sessionStorage.getItem('MenuPermission'));
 
-    console.log('Hello ! AttachFile Multi page');
+    console.log('Hello ! formgenD');
     $scope.DEFAULT_LANGUAGE = 'TH';
     $scope.$parent.menu_selected = 'authority';
 
@@ -70,23 +70,24 @@ angular.module('e-homework').controller('FormDetailController', function ($scope
         ]
 
     };
- $scope.save = function(action, Data,FileList){
-        
+    $scope.save = function (action, Data, FileList) {
+
         IndexOverlayFactory.overlayShow();
-        
-        var params = {'Data':Data, 'FileList':FileList};
-        
-        HTTPService.uploadRequest(action, params).then(function(result){
+        $scope.Data.start_date = makeSQLDate($scope.Data.start_date);
+        $scope.Data.end_date = makeSQLDate($scope.Data.end_date);
+        var params = {'Data': Data, 'FileList': FileList};
+
+        HTTPService.uploadRequest(action, params).then(function (result) {
             console.log(result);
-            if(result.data.STATUS == 'OK'){
+            if (result.data.STATUS == 'OK') {
                 alert('บันทึกสำเร็จ');
 //                $scope.FileList = [];
 //                $scope.addFiles();
 //                $scope.loadDataList('attachfile-multi/get/type' ,$scope.page_type);
 //                $scope.PAGE = 'MAIN';
-  window.location.replace('#/form-generator/');
+                window.location.replace('#/form-generator/');
                 IndexOverlayFactory.overlayHide();
-            }else{
+            } else {
                 IndexOverlayFactory.overlayHide();
             }
         });
@@ -117,7 +118,7 @@ angular.module('e-homework').controller('FormDetailController', function ($scope
 
 
 
-    $scope.loadList = function (action) {
+    $scope.loadDetail = function (action) {
 
         HTTPService.clientRequest(action).then(function (result) {
             console.log(result);
@@ -139,7 +140,7 @@ angular.module('e-homework').controller('FormDetailController', function ($scope
     $scope.open1 = function () {
         $scope.popup1.opened = true;
     };
-     $scope.popup2 = {
+    $scope.popup2 = {
         opened: false
     };
     $scope.open2 = function () {
@@ -148,9 +149,7 @@ angular.module('e-homework').controller('FormDetailController', function ($scope
     $scope.cancel = function () {
         $scope.PAGE = 'MAIN';
     }
-    $scope.add = function () {
-        window.location.replace('form-generator/add');
-    }
+    $scope.id = $routeParams.id;
 
     IndexOverlayFactory.overlayHide();
     $scope.PageContent = {
@@ -162,16 +161,73 @@ angular.module('e-homework').controller('FormDetailController', function ($scope
         , 'contents_en': ''
     };
     $scope.PAGE = 'MAIN';
-    $scope.FileList = [];
- 
+    $scope.FileList = [{'form_generetor_id': '', 'value': []
+        }];
+
     //  $scope.loadList('form-generator');
 
     $scope.getMenu('menu/get/type', $scope.page_type);
-
-     $scope.addinput = function(){
-        $scope.FileList.push({
-                            });
+    $scope.addvalue = function (index) {
+        $scope.FileList[index].value.push({
+        });
     }
-   
+    $scope.delvalue = function (key, index) {
+        $scope.FileList[key].value.splice(index, 1)
+    }
+    $scope.addinput = function () {
+        $scope.FileList.push({'form_generetor_id': '', 'value': []
+        });
+    }
+    $scope.delinput = function (index) {
+        $scope.FileList.splice(index, 1)
+    }
+    $scope.back = function () {
+        $scope.PAGE = 'MAIN';
+    }
+    $scope.preview = function (Data, FileList) {
+        $scope.PAGE = 'PREVIEW';
+        $scope.input = '<h3 class="row form-group text-center">' + Data.form_name + '</h3>';
+        angular.forEach(FileList, function (value, key) {
+            if (value.type == "text") {
+                $scope.input = $scope.input + '<div class="row form-group"> <label class="form-control-static col-lg-2">' + value.name + '</label>' +
+                        ' <div class="col-lg-2"> <input class="form-control" type="' + value.type + '" maxlength="100"> </div></div>';
+            } else  {
+                $scope.input = $scope.input + '<div class="row form-group"> <label class="form-control-static col-lg-2">' + value.name + '</label>';
+                angular.forEach(value.value, function (item, vkey) {
+                    $scope.input = $scope.input + ' <div class="col-lg-2"> <input class="form-control " type="' + value.type + '" name="' + value.name + '" value="' + item.value + '" style="width: 1em;height: 1em;">' + item.value + ' </div>';
+                });
+                $scope.input = $scope.input + '</div>';
+            }
+        });
+    }
+    $scope.checkoption = function (type, key) {
+        console.log(type[key].type);
+        $scope.ck = 'show' + key;
+    }
+
+    // Drag & drop zone
+
+//    $scope.$watch('models', function(models) {
+//        $scope.modelAsJson = angular.toJson(models, true);
+//    }, true);
+//
+//    $scope.models = {selected: null,
+//        FileList: {}
+//    };
+
+
+    /////
+    if ($scope.id != undefined && $scope.id != null && $scope.id != '') {
+        var params = {'id': $scope.id};
+        HTTPService.clientRequest('form-generator/listdetail', params).then(function (result) {
+            
+            $scope.Data = result.data.DATA.form;
+            $scope.FileList = result.data.DATA.item;
+console.log($scope.FileList);
+            $scope.Data.start_date = makeDate($scope.Data.start_date);
+            $scope.Data.end_date = makeDate($scope.Data.end_date);
+            IndexOverlayFactory.overlayHide();
+        });
+    }
 
 });

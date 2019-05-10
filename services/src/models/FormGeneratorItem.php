@@ -7,12 +7,13 @@ class FormGeneratorItem extends \Illuminate\Database\Eloquent\Model {
   	public $timestamps = false;
   	protected $fillable = array('id'
                 , 'form_generetor_id'
+            
                 , 'name'
                 , 'type'
                 , 'maxlenght'
                 , 'req'
                 , 'seq'
-              
+              ,'ck_mail'
                
               );
 

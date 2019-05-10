@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Model\FormGenerator;
 use App\Model\FormGeneratorItem;
+use App\Model\FormGeneratorValue;
 use Illuminate\Database\Capsule\Manager as DB;
 
 class FormGeneratorService {
@@ -13,40 +14,82 @@ class FormGeneratorService {
                         ->get();
     }
 
+    public static function getdetail($id) {
+        return FormGeneratorItem::where("form_generetor_id", $id)
+                        ->orderBy('seq', 'ASC')
+                        ->get()
+                        ->toArray();
+    }
+ public static function getvaue($id) {
+     
+        return FormGeneratorValue::where("item_id", $id)
+                       
+                        ->get()
+                        ->toArray();
+    }
     public static function update($obj) {
 
         $model = FormGenerator::find($obj['id']);
         if (empty($model)) {
             $model = new FormGenerator;
         }
-        print_r($obj);
+
         // $model->update_date = date('Y-m-d H:i:s');
         $model->form_name = $obj['form_name'];
         $model->start_date = $obj['start_date'];
         $model->end_date = $obj['end_date'];
 
         $model->email = $obj['email'];
+        $model->showpage = $obj['showpage'];
+        $model->reply_email = $obj['reply_email'];
 
         $model->save();
         return $model->id;
     }
 
-    public static function updateDetail($obj, $id) {
+    public static function updateDetail($obj, $id, $key) {
 
         $model = FormGeneratorItem::find($obj['id']);
         if (empty($model)) {
             $model = new FormGeneratorItem;
         }
         // $model->update_date = date('Y-m-d H:i:s');
-        $model->form_generator_id = $id;
+        $model->form_generetor_id = $id;
+
         $model->name = $obj['name'];
         $model->type = $obj['type'];
 
         $model->maxlenght = $obj['maxlenght'];
-        $model->seq = $obj['seq'];
+        $model->seq = $key;
         $model->req = $obj['req'];
+        $model->ck_mail = $obj['ck_mail'];
         $model->save();
         return $model->id;
+    }
+
+    public static function updatevalue($obj, $id) {
+
+        $model = FormGeneratorValue::find($obj['id']);
+        if (empty($model)) {
+            $model = new FormGeneratorValue;
+        }
+        // $model->update_date = date('Y-m-d H:i:s');
+        $model->item_id = $id;
+
+        $model->value = $obj['value'];
+        
+
+       
+        $model->save();
+        return $model->id;
+    }
+
+    public static function removeData($id) {
+        return FormGenerator::find($id)->delete();
+    }
+
+    public static function getData($id) {
+        return FormGenerator::find($id);
     }
 
 }

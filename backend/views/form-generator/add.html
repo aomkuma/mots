@@ -18,10 +18,7 @@
     </div>
 </div>
 <hr>
-<div ng-show="PAGE == 'UPDATE'">
 
-
-</div>
 
 <div ng-show="PAGE == 'MAIN'">
     <div class="row form-group">
@@ -31,43 +28,113 @@
         <div class="col-lg-3">
             <input class="form-control" ng-model="Data.form_name" maxlength="100">
         </div>
-        <button class="btn btn-primary" ng-click="addinput()"><span class="glyphicon glyphicon-plus"></span> เพิ่มช่องกรอกข้อมูล</button>
 
     </div>
+    <div class="row form-group">
+        <button class="btn btn-primary" ng-click="addinput()"><span class="glyphicon glyphicon-plus"></span> เพิ่มช่องกรอกข้อมูล</button>
+    </div>
+    <div class=" form-group" ng-repeat="(key, fle) in FileList">
 
-    <div class="row form-group" ng-repeat="fle in FileList">
-        <label class="form-control-static col-lg-1">
-            ชื่อช่องกรอกข้อมูล
-        </label>
-        <div class="col-lg-2">
-            <input class="form-control" ng-model="fle.name" maxlength="100">
-        </div>
-        <label class="form-control-static col-lg-1">
-            ประเภทช่อง
-        </label>
-        <div class="col-lg-2">
-            <select name="Year" class="form-control" ng-model="fle.type"  required="required">
-                <option value="textbox">Text box</option>
-                <option value="radiobox">Radio box</option>
-                <option value="radiobox">Check box</option>
-            </select>
-        </div>
-        <label class="form-control-static col-lg-1">
-            จำนวนที่ต้องการกรอก
-        </label>
-        <div class="col-lg-2">
-            <input class="form-control" ng-model="fle.maxlenght" maxlength="100">
-        </div>
-        <label class="form-control-static col-lg-1">
-            Require
-        </label>
-        <div class="col-lg-2">
-            <select name="Year" class="form-control" ng-model="fle.req"  required="required">
-                <option value="Y">จำเป็น</option>
-                <option value="N">ไม่จำเป็น</option>
 
-            </select>
+
+
+        <div class="row">
+            <label class="form-control-static col-lg-1">
+                ชื่อช่องกรอกข้อมูล
+            </label>
+            <div class="col-lg-2">
+                <input class="form-control" ng-model="fle.name" maxlength="100">
+            </div>
+            <label class="form-control-static col-lg-1">
+                ประเภทช่อง
+            </label>
+
+            <div class="col-lg-2">
+                <select name="ckbox" class="form-control" ng-model="fle.type" >
+                    <option value="text">Text box</option>
+                    <option value="radio">Radio box</option>
+                    <option value="checkbox">Check box</option>
+                </select>
+            </div>
+            <label class="form-control-static col-lg-1">
+                จำนวนที่ต้องการกรอก
+            </label>
+            <div class="col-lg-2">
+                <input class="form-control" ng-model="fle.maxlenght" maxlength="100">
+            </div>
         </div>
+        <div class="row">
+            <label class="form-control-static col-lg-1">
+                Require
+            </label>
+            <div class="col-lg-2">
+                <select name="Year" class="form-control" ng-model="fle.req"  required="required">
+                    <option value="Y">จำเป็น</option>
+                    <option value="N">ไม่จำเป็น</option>
+
+                </select>
+            </div>
+            <label class="form-control-static col-lg-1">
+                E-mail Require
+            </label>
+            <div class="col-lg-2">
+                <select name="Year" class="form-control" ng-model="fle.ck_mail"  required="required">
+                    <option value="Y">เช็ค</option>
+                    <option value="N">ไม่เช็ค</option>
+
+                </select>
+            </div>
+            <div class="col-lg-1">
+                <button class="btn btn-primary" ng-click="delinput(key)"><span ></span> ลบ</button>
+
+            </div>
+            <div class="col-lg-1">
+                <button class="btn btn-primary" ng-click="addvalue(key)"><span class="glyphicon glyphicon-plus"></span>Value </button>
+
+            </div>
+        </div>
+        <div class="row form-group" ng-repeat="(keyv, v) in fle.value">
+            <label class="form-control-static col-lg-1">
+                value
+            </label>
+            <div class="col-lg-2">
+                <input class="form-control" ng-model="v.value" maxlength="100">
+            </div>
+            <div class="col-lg-1">
+                <button class="btn btn-primary" ng-click="delvalue(key, keyv)"><span class="glyphicon glyphicon-minus"></span> </button>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    <div class="row form-group">
+        <label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+            หน้าจอสำหรับแสดงหลังจากบันทึกผล
+        </label>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" >
+            <div class="btn-group">
+                <label class="btn btn-default btn-checkbox" ng-model="Data.showpage" uib-btn-radio="'Y'" >แสดง</label>
+                <label class="btn btn-default btn-checkbox" ng-model="Data.showpage" uib-btn-radio="'N'" >ไม่แสดง</label>
+            </div>
+        </div>
+    </div>
+    <div class="row form-group">
+        <label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-control-static">
+            อีเมล์ตอบกลับเมื่อบันทึกฟอร์มแล้ว
+        </label>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" >
+            <div class="btn-group">
+                <label class="btn btn-default btn-checkbox" ng-model="Data.reply_email" uib-btn-radio="'Y'" >ตอบกลับ</label>
+                <label class="btn btn-default btn-checkbox" ng-model="Data.reply_email" uib-btn-radio="'N'" >ไม่ตอบกลับ</label>
+            </div>
+        </div>
+
+
     </div>
     <div class="row form-group">
         <label class="form-control-static col-lg-2">
@@ -104,11 +171,27 @@
             </p>
         </div>
     </div>
+    
     <div class="row form-group text-center">
-  <button class="btn btn-default" ng-click="">Prexiew</button>
+        <button class="btn btn-default" ng-click="preview(Data, FileList)">Preview</button>
         <button class="btn btn-info" ng-click="save('form-generator/save', Data, FileList)">บันทึก</button>
+
+
+
+    </div>
+</div>
+<div ng-show="PAGE == 'PREVIEW'">
+    <div class="row form-group text-center" >
+        <div class="col-lg-10 col-lg-offset-1" bind-html-compile="input">
+
+
+        </div>
+        <div class="row form-group text-center">
+              <button class="btn btn-default" ng-click="back()">กลับ</button>
+        </div>
       
 
 
     </div>
+
 </div>

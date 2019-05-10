@@ -693,8 +693,19 @@ angular.module('e-homework').config(function ($routeProvider, $locationProvider)
                         }]
                 }
             })
-             .when("/form-generator/add", {
+            .when("/form-generator/add", {
                 templateUrl: "views/form-generator/add.html",
+                controller: "FormDetailController",
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                files: ["scripts/controllers/FormDetailController.js"]
+                            });
+                        }]
+                }
+            })
+            .when("/form-generator/add/:id?", {
+                  templateUrl: "views/form-generator/add.html",
                 controller: "FormDetailController",
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {

@@ -1,4 +1,4 @@
-angular.module('e-homework').controller('FormController', function ($scope, $compile, $cookies, $filter, $state, $routeParams, HTTPService, IndexOverlayFactory) {
+angular.module('e-homework').controller('FormController', function ($scope, $uibModal, $compile, $cookies, $filter, $state, $routeParams, HTTPService, IndexOverlayFactory) {
     IndexOverlayFactory.overlayShow();
 
     var $user_session = sessionStorage.getItem('user_session');
@@ -11,7 +11,7 @@ angular.module('e-homework').controller('FormController', function ($scope, $com
 
     $scope.MenuPermission = angular.fromJson(sessionStorage.getItem('MenuPermission'));
 
-    console.log('Hello ! AttachFile Multi page');
+    console.log('Hello ! FromGen');
     $scope.DEFAULT_LANGUAGE = 'TH';
     $scope.$parent.menu_selected = 'authority';
 
@@ -40,36 +40,7 @@ angular.module('e-homework').controller('FormController', function ($scope, $com
 
     $scope.loadMenu('menu/list');
 
-    var ckEditorConfig = {
-        extraPlugins: 'uploadimage,image2,filebrowser,colorbutton',
-        height: 300,
-        uploadUrl: '/acfs/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
-        filebrowserBrowseUrl: '/acfs/ckfinder/ckfinder.html',
-        filebrowserImageBrowseUrl: '/acfs/ckfinder/ckfinder.html?type=Images',
-        filebrowserUploadUrl: '/acfs/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-        filebrowserImageUploadUrl: '/acfs/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-        contentsCss: [CKEDITOR.basePath + 'contents.css', 'https://sdk.ckeditor.com/samples/assets/css/widgetstyles.css'],
-        image2_alignClasses: ['image-align-left', 'image-align-center', 'image-align-right'],
-        image2_disableResizer: true,
-        height: '400px',
-        toolbar: [
-            {name: 'document', items: ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']},
-            {name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
-            {name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt']},
-            {name: 'forms', items: ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField']},
-            '/',
-            {name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'CopyFormatting', 'RemoveFormat']},
-            {name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language']},
-            {name: 'links', items: ['Link', 'Unlink', 'Anchor']},
-            {name: 'insert', items: ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
-            '/',
-            {name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize']},
-            {name: 'colors', items: ['TextColor', 'BGColor']},
-            {name: 'tools', items: ['Maximize', 'ShowBlocks']},
-            {name: 'Page', items: ['Page']}
-        ]
 
-    };
 
     $scope.getMenu = function (action, menu_type) {
         var params = {'menu_type': menu_type};
@@ -100,14 +71,40 @@ angular.module('e-homework').controller('FormController', function ($scope, $com
     $scope.loadList = function (action) {
 
         HTTPService.clientRequest(action).then(function (result) {
-            console.log(result);
+         //   console.log(result);
             $scope.DataList = result.data.DATA;
 
             IndexOverlayFactory.overlayHide();
         });
     }
 
+    $scope.removeData = function (id) {
+        $scope.alertMessage = 'ต้องการลบข้อมูลนี้ ใช่หรือไม่ ?';
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'views/dialog_confirm.html',
+            size: 'sm',
+            scope: $scope,
+            backdrop: 'static',
+            controller: 'ModalDialogCtrl',
+            resolve: {
+                params: function () {
+                    return {};
+                }
+            },
+        });
 
+        modalInstance.result.then(function (valResult) {
+            IndexOverlayFactory.overlayShow();
+            var params = {'id': id};
+            HTTPService.clientRequest('form-generator/delete', params).then(function (result) {
+                // $scope.load('Datas');
+                $scope.loadList('form-generator/list');
+                IndexOverlayFactory.overlayHide();
+            });
+        });
+
+    }
 
     $scope.viewData = function (data) {
         $scope.Data = angular.copy(data);
@@ -124,6 +121,11 @@ angular.module('e-homework').controller('FormController', function ($scope, $com
     }
     $scope.add = function () {
         window.location.replace('#/form-generator/add');
+    }
+
+    $scope.edit = function (id) {
+        
+        window.location.href = '#/form-generator/add/' + id;
     }
 
     IndexOverlayFactory.overlayHide();
