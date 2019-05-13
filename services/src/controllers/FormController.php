@@ -105,4 +105,49 @@ class FormController extends Controller {
         }
     }
 
+    public function getListByFormGeneratorID($request, $response, $args) {
+        try {
+            $params = $request->getParsedBody();
+            $form_generator_id = $params['obj']['form_generator_id'];
+            $keyword = $params['obj']['keyword'];
+
+            $Data = FormGeneratorService::getFormDataList($form_generator_id, $keyword);
+            $item = FormGeneratorService::getdetail($form_generator_id);
+            foreach ($item as $key=>$data){
+                if($data['type']!='text'){
+                    print_r($data);
+                    $item[$key]['value']=FormGeneratorService::getvaue($data['id']);
+                }
+            }
+            $this->data_result['DATA']['Form'] = $item;
+            $this->data_result['DATA']['List'] = $Data;
+
+
+
+            return $this->returnResponse(200, $this->data_result, $response, false);
+        } catch (\Exception $e) {
+            return $this->returnSystemErrorResponse($this->logger, $this->data_result, $e, $response);
+        }
+    }
+
+    public function updateFormData($request, $response, $args) {
+        try {
+            $params = $request->getParsedBody();
+            $form_generator_id = $params['obj']['form_generator_id'];
+            $Data = $params['obj']['Data'];
+
+            $update_data['id'] = '';
+            $update_data['form_generator_id'] = $form_generator_id;
+            $update_data['data_description'] = json_encode($Data);
+
+            $id = FormGeneratorService::updateFormData($update_data);
+            
+            $this->data_result['DATA']['id'] = $id;
+
+            return $this->returnResponse(200, $this->data_result, $response, false);
+        } catch (\Exception $e) {
+            return $this->returnSystemErrorResponse($this->logger, $this->data_result, $e, $response);
+        }
+    }
+
 }

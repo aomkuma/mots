@@ -748,6 +748,18 @@ angular.module('e-homework').config(function ($routeProvider, $locationProvider)
                         }]
                 }
             })
+            .when("/form-data/:form_generator_id", {
+                templateUrl : "views/form-data/main.html",
+                controller : "FormDataController",
+                resolve : {
+                    loadMyCtrl : [ '$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            files : [ "scripts/controllers/FormDataController.js" ]
+                        });
+                    } ]
+                }
+            })
+            
             /*
              .when("/about/manage", {
              templateUrl : "views/about/about.html",

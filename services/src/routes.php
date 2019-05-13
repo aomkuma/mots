@@ -290,6 +290,8 @@ $app->post('/form-generator/list/', 'FormController:getList');
 $app->post('/form-generator/save/', 'FormController:save');
 $app->post('/form-generator/delete/', 'FormController:deleteData');
 $app->post('/form-generator/listdetail/', 'FormController:getListdetail');
+$app->post('/form-data/list/', 'FormController:getListByFormGeneratorID');
+$app->post('/form-data/update/', 'FormController:updateFormData');
 
 $app->post('/chart/', 'ChartController:getChart');
 

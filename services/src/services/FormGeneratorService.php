@@ -5,6 +5,9 @@ namespace App\Service;
 use App\Model\FormGenerator;
 use App\Model\FormGeneratorItem;
 use App\Model\FormGeneratorValue;
+
+use App\Model\FormData;
+
 use Illuminate\Database\Capsule\Manager as DB;
 
 class FormGeneratorService {
@@ -91,5 +94,30 @@ class FormGeneratorService {
     public static function getData($id) {
         return FormGenerator::find($id);
     }
+
+    public static function getFormDataList($form_generator_id, $keyword) {
+        return FormData::where('form_generator_id', $form_generator_id)
+                    ->where(function($query) use ($keyword){
+                        if(!empty($keyword)){
+                            $query->where('data_description', 'LIKE', DB::raw("'%" . $keyword . "%'"));
+                        }
+                    })
+                    ->get();
+    }
+
+    public static function updateFormData($obj){
+            if(empty($obj['id'])){
+                $obj['create_date'] = date('Y-m-d H:i:s');
+                $obj['update_date'] = date('Y-m-d H:i:s');
+                $model = FormData::create($obj);
+                return $model->id;    
+               
+            }else{
+                $obj['update_date'] = date('Y-m-d H:i:s');
+                FormData::where('id', $obj['id'])->update($obj);
+                return $obj['id'];
+            }
+        
+        }
 
 }
