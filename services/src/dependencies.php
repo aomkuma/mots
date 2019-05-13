@@ -232,5 +232,7 @@ $container['ChartController'] = function ($c) {
 $container['FormController'] = function ($c) {
     return new \App\Controller\FormController($c->get('logger'), $c->get('db'));
 };
-
+$container['CalendarController'] = function ($c) {
+    return new \App\Controller\CalendarController($c->get('logger'), $c->get('db'));
+};
 

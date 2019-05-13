@@ -5,9 +5,8 @@
         <group>
             <file>file:/C:/xampp5/htdocs/mots/backend/scripts/controllers/FormDetailController.js</file>
             <file>file:/C:/xampp5/htdocs/mots/backend/scripts/controllers/FormController.js</file>
-            <file>file:/C:/xampp5/htdocs/mots/backend/views/main.html</file>
+            <file>file:/C:/xampp5/htdocs/mots/web/views/appeal/main.html</file>
             <file>file:/C:/xampp5/htdocs/mots/backend/views/form-generator/add.html</file>
-            <file>file:/C:/xampp5/htdocs/mots/backend/scripts/controllers/MainController.js</file>
         </group>
     </open-files>
 </project-private>

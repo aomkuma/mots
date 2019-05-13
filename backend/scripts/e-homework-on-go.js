@@ -715,6 +715,39 @@ angular.module('e-homework').config(function ($routeProvider, $locationProvider)
                         }]
                 }
             })
+             .when("/calendar", {
+                templateUrl: "views/calendar/calendar.html",
+                controller: "CalendarController",
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                files: ["scripts/controllers/CalendarController.js"]
+                            });
+                        }]
+                }
+            })
+            .when("/calendar/add", {
+                templateUrl: "views/calendar/add.html",
+                controller: "CalendarDetailController",
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                files: ["scripts/controllers/CalendarDetailController.js"]
+                            });
+                        }]
+                }
+            })
+            .when("/calendar/add/:id?", {
+                  templateUrl: "views/calendar/add.html",
+                controller: "CalendarDetailController",
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                files: ["scripts/controllers/CalendarDetailController.js"]
+                            });
+                        }]
+                }
+            })
             /*
              .when("/about/manage", {
              templateUrl : "views/about/about.html",

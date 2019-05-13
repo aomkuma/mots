@@ -292,6 +292,8 @@ $app->post('/form-generator/delete/', 'FormController:deleteData');
 $app->post('/form-generator/listdetail/', 'FormController:getListdetail');
 
 $app->post('/chart/', 'ChartController:getChart');
+
+$app->post('/calendar/list/', 'CalendarController:getList');
 // Default action
 $app->get('/[{name}]', function ($request, $response, $args) {
     // Sample log message
